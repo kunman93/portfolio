@@ -1,0 +1,20 @@
+<div class="flex justify-between sm:justify-around">
+    <div class="flex gap-3 items-center ml-6">
+        <img class="w-9 h-9" src="assets/img/noji-enterprise-high-resolution-logo.png">
+        <p class="flex text-white font-bold">Manu&nbsp;<span class="sm:inline hidden">|&nbsp;Fullstack Software Engineer</span></p>
+    </div>
+    <nav class="sm:block hidden content-center">
+        <ul class="flex gap-10 text-secondary font-medium">
+            <li class="hover:text-white"><a href="">About</a></li>
+            <li class="hover:text-white"><a href="">Work</a></li>
+            <li class="hover:text-white"><a href="">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="sm:hidden flex items-center mr-6">
+        @if(!isSelected) {
+            <i class="fa-solid fa-bars hover:text-white font-medium" (click)="onToggle()"></i>
+        } @else {
+            <i class="fa-solid fa-xmark hover:text-white font-medium" (click)="onToggle()"></i>
+        }
+    </div>
+</div>
