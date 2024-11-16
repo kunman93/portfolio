@@ -1,25 +1,25 @@
 <div class="flex justify-between sm:justify-around">
     <div class="flex gap-3 items-center ml-6">
-        <img class="w-9 h-9" src="assets/img/noji-enterprise-high-resolution-logo.png">
-        <p class="flex text-white font-bold">Manu&nbsp;<span class="sm:inline hidden">|&nbsp;Fullstack Software Engineer</span></p>
+        <img id="logo" class="w-9 h-9" src="assets/img/noji-enterprise-high-resolution-logo.png">
+        <p id="nameOccupation"class="text-white font-bold">Manu&nbsp;<span class="sm:inline hidden">|&nbsp;Fullstack Software Engineer</span></p>
     </div>
     <nav class="sm:block hidden content-center">
         <ul class="flex gap-10 text-secondary font-medium">
-            <li class="hover:text-white"><a href="">About</a></li>
-            <li class="hover:text-white"><a href="">Work</a></li>
-            <li class="hover:text-white"><a href="">Contact</a></li>
+            <li class="hover:text-white"><a id="navAbout" href="">About</a></li>
+            <li class="hover:text-white"><a id="navWork" href="">Work</a></li>
+            <li class="hover:text-white"><a id="navContact" href="">Contact</a></li>
         </ul>
     </nav>
-    <div class="sm:hidden flex items-center mr-6 relative">
+    <div id="dropdownMenu" class="sm:hidden flex items-center mr-6 relative">
         @if(!isSelected) {
-            <i class="fa-solid fa-bars hover:text-white text-2xl font-medium" (click)="onToggle()"></i>
+            <i id="menuIcon" class="fa-solid fa-bars hover:text-white text-2xl font-medium" (click)="onToggle()"></i>
         } @else {
-            <i class="fa-solid fa-xmark hover:text-white text-2xl font-medium" (click)="onToggle()"></i>
+            <i id="closeIcon" class="fa-solid fa-xmark hover:text-white text-2xl font-medium" (click)="onToggle()"></i>
             <div class="absolute top-0 right-0 mt-10 rounded-md shadow-lg ring-1 ring-black/5" tabindex="-1">
                 <div class="flex flex-col py-1 text-secondary font-medium">
-                    <a href="" class="px-4 py-2 hover:bg-gray-50" tabindex="-1" id="menu-item-0">About</a>
-                    <a href="" class="px-4 py-2 hover:bg-gray-50" tabindex="-1" id="menu-item-1">Work</a>
-                    <a href="" class="px-4 py-2 hover:bg-gray-50" tabindex="-1" id="menu-item-2">Contact</a>
+                    <a href="" class="px-4 py-2 hover:bg-gray-50" tabindex="-1" id="aboutMenuItem">About</a>
+                    <a href="" class="px-4 py-2 hover:bg-gray-50" tabindex="-1" id="workMenuItem">Work</a>
+                    <a href="" class="px-4 py-2 hover:bg-gray-50" tabindex="-1" id="contactMenuItem">Contact</a>
                 </div>
             </div>
         }

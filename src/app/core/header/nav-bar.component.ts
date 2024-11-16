@@ -11,5 +11,4 @@ export class NavBarComponent {
   onToggle(): void {
     this.isSelected = !this.isSelected;
   }
-
 }
