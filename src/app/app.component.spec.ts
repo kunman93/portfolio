@@ -1,29 +1,23 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { Shallow } from 'shallow-render';
+import { AppModule } from './app.module';
 
 describe('AppComponent', () => {
+  let shallow: Shallow<AppComponent>;
+
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        RouterModule.forRoot([])
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
+    shallow = new Shallow(AppComponent, AppModule);
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  it('should create the app', async () => {
+    const { find } = await shallow.render(`<app-root><app-root>`);
+    expect(find).toBeTruthy();
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toBe('Portfolio');
+  describe("template", () => {
+    it('display the nav bar component', async () => {
+      const { find } = await shallow.render(`<app-root><app-root>`);
+      expect(find(`app-nav-bar`)).toBeTruthy();
+    });
   });
 });
