@@ -16,7 +16,7 @@
         } @else {
             <i id="closeIcon" class="fa-solid fa-xmark hover:text-white text-2xl font-medium" (click)="onToggle()"></i>
             <div class="absolute top-0 right-0 mt-10 rounded-md shadow-lg ring-1 ring-black/5" tabindex="-1">
-                <div class="flex flex-col py-1 text-secondary font-medium">
+                <div class="flex flex-col py-1 text-secondary font-medium" (click)="onToggle()">
                     <a routerLink="/" fragment="about" class="px-4 py-2 hover:bg-gray-50" tabindex="-1" id="aboutMenuItem">About</a>
                     <a routerLink="/" fragment="work" class="px-4 py-2 hover:bg-gray-50" tabindex="-1" id="workMenuItem">Work</a>
                     <a routerLink="/" fragment="contact" class="px-4 py-2 hover:bg-gray-50" tabindex="-1" id="contactMenuItem">Contact</a>
