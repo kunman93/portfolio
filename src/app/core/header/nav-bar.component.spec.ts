@@ -15,24 +15,41 @@ describe('NavBarComponent', () => {
   });
 
   describe("template", () => {
-    it("displays the logo", async () => {
-      const { find } = await shallow.render(`<app-nav-bar></app-nav-bar>`);
-      expect(find("#logo")).toBeTruthy();
-    });
 
-    describe("first and job title", () => {
-      it("displays the first name and job title", async () => {
-        const { find } = await shallow.render(`<app-nav-bar></app-nav-bar>`, { detectChanges: false });
-        const nbsp = "\u00a0";
+    describe("logo and first name", () => {
+        it("displays the logo", async () => {
+            const { find } = await shallow.render(`<app-nav-bar></app-nav-bar>`);
+            expect(find("#logo")).toBeTruthy();
+        });
 
-        expect(find("#nameOccupation").nativeElement.textContent).toBe(`Manu${nbsp}|${nbsp}Fullstack Software Engineer`);
-        expect(find("#nameOccupation span").nativeElement.className).toBe("sm:inline hidden");
-      });
+        describe("first name and job title", () => {
+            it("displays the first name and job title", async () => {
+                const { find } = await shallow.render(`<app-nav-bar></app-nav-bar>`, { detectChanges: false });
+                const nbsp = "\u00a0";
 
-      it("hides the job title", async () => {
-        const { find } = await shallow.render(`<app-nav-bar></app-nav-bar>`, { detectChanges: false });
-        expect(find("#nameOccupation span").nativeElement.className).toBe("sm:inline hidden");
-      });
+                expect(find("#nameOccupation").nativeElement.textContent).toBe(`Manu${nbsp}|${nbsp}Fullstack Software Engineer`);
+                expect(find("#nameOccupation span").nativeElement.className).toBe("sm:inline hidden");
+            });
+
+            it("hides the job title", async () => {
+                const { find } = await shallow.render(`<app-nav-bar></app-nav-bar>`, { detectChanges: false });
+                expect(find("#nameOccupation span").nativeElement.className).toBe("sm:inline hidden");
+            });
+        });
+
+        it("scroll to the top when the logo, name or occupation is clicked", async () => {
+            // arrange
+            const { find, fixture } = await shallow.render(`<app-nav-bar></app-nav-bar>`);
+            const logoNameOccupationContainer = find("#logoNameOccupationContainer");
+            const scrollMock = spyOn(window, 'scroll').and.callThrough();
+
+            // act
+            logoNameOccupationContainer.triggerEventHandler("click", {});
+            fixture.detectChanges();
+
+            // assert
+            expect(scrollMock).toHaveBeenCalled();
+        });
     });
 
     describe ("navigation", () => {
@@ -70,9 +87,9 @@ describe('NavBarComponent', () => {
         // arrange
         const { find, fixture } = await shallow.render(`<app-nav-bar></app-nav-bar>`);
         const menuIcon = find("#menuIcon");
-        menuIcon.triggerEventHandler("click", {});
         
         // act
+        menuIcon.triggerEventHandler("click", {});
         fixture.detectChanges();
 
         // assert

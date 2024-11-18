@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-nav-bar',
-  templateUrl: './nav-bar.component.html',
-  styleUrl: './nav-bar.component.scss'
+    selector: 'app-nav-bar',
+    templateUrl: './nav-bar.component.html',
+    styleUrl: './nav-bar.component.scss'
 })
 export class NavBarComponent {
-  isSelected = false;
+    isSelected = false;
 
-  onToggle(): void {
-    this.isSelected = !this.isSelected;
-  }
+    onDropdownMenuClick(): void {
+        this.isSelected = !this.isSelected;
+    }
+
+    onLogoNameOccupationClick(): void {
+        window.scroll({ top: 0, left: 0 });
+    }
 }
