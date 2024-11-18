@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './header/nav-bar.component';
+import { CoreRoutingModule } from './core-routing.module';
 
 
 
@@ -9,7 +10,8 @@ import { NavBarComponent } from './header/nav-bar.component';
     NavBarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    CoreRoutingModule
   ],
   exports: [
     NavBarComponent
