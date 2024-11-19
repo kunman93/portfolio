@@ -1,0 +1,27 @@
+<div class="flex justify-between sm:justify-around">
+    <div id="logoNameOccupationContainer" class="flex gap-3 items-center ml-6 cursor-pointer" (click)="onLogoNameOccupationClick()">
+        <img id="logo" class="w-9 h-9" src="assets/img/noji-enterprise-high-resolution-logo.png">
+        <p id="nameOccupation"class="text-white font-bold">Manu&nbsp;<span class="sm:inline hidden">|&nbsp;Fullstack Software Engineer</span></p>
+    </div>
+    <nav class="sm:block hidden content-center">
+        <ul class="flex gap-10 text-secondary font-medium">
+            <li class="hover:text-white"><a id="navAbout" routerLink="/" fragment="about">About</a></li>
+            <li class="hover:text-white"><a id="navWork" routerLink="/" fragment="work">Work</a></li>
+            <li class="hover:text-white"><a id="navContact" routerLink="/" fragment="contact">Contact</a></li>
+        </ul>
+    </nav>
+    <div id="dropdownMenu" class="sm:hidden flex items-center mr-6 relative">
+        @if(!isSelected) {
+            <i id="menuIcon" class="fa-solid fa-bars hover:text-white text-2xl font-medium" (click)="onDropdownMenuClick()"></i>
+        } @else {
+            <i id="closeIcon" class="fa-solid fa-xmark hover:text-white text-2xl font-medium" (click)="onDropdownMenuClick()"></i>
+            <div class="absolute top-0 right-0 mt-10 rounded-md shadow-lg ring-1 ring-black/5" tabindex="-1">
+                <div class="flex flex-col py-1 text-secondary font-medium" (click)="onDropdownMenuClick()">
+                    <a routerLink="/" fragment="about" class="px-4 py-2 hover:bg-gray-50" tabindex="-1" id="aboutMenuItem">About</a>
+                    <a routerLink="/" fragment="work" class="px-4 py-2 hover:bg-gray-50" tabindex="-1" id="workMenuItem">Work</a>
+                    <a routerLink="/" fragment="contact" class="px-4 py-2 hover:bg-gray-50" tabindex="-1" id="contactMenuItem">Contact</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
