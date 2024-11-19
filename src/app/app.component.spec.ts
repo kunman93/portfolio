@@ -15,22 +15,22 @@ describe('AppComponent', () => {
     });
 
     describe("template", () => {
-        it('display the nav bar component', async () => {
+        it('displays the nav bar component', async () => {
             const { find } = await shallow.render(`<app-root><app-root>`);
             expect(find(`app-nav-bar`)).toBeTruthy();
         });
 
-        it('display about section', async () => {
+        it('displays about section', async () => {
             const { find } = await shallow.render(`<app-root><app-root>`);
             expect(find(`app-about`)).toBeTruthy();
         });
 
-        it('display the work section', async () => {
+        it('displays the work section', async () => {
             const { find } = await shallow.render(`<app-root><app-root>`);
             expect(find(`app-work`)).toBeTruthy();
         });
 
-        it('display the contact section', async () => {
+        it('displays the contact section', async () => {
             const { find } = await shallow.render(`<app-root><app-root>`);
             expect(find(`app-contact`)).toBeTruthy();
         });

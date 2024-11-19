@@ -37,7 +37,7 @@ describe('NavBarComponent', () => {
                 });
             });
 
-            it("scroll to the top when the logo, name or occupation is clicked", async () => {
+            it("scrolls to the top when the logo, name or occupation is clicked", async () => {
                 // arrange
                 const { find, fixture } = await shallow.render(`<app-nav-bar></app-nav-bar>`);
                 const logoNameOccupationContainer = find("#logoNameOccupationContainer");
