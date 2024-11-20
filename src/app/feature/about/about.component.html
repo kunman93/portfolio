@@ -11,5 +11,10 @@
       share my dedication and enthusiasm, I'm eager to contribute to your
       innovative team and help drive the success of your company.
     </p>
+    <div class="flex flex-row flex-wrap justify-center mt-5">
+        @for(service of services; track service.title) {
+            <app-card class="mx-3 mt-6" [service]="service"></app-card>
+        }
+    </div>
   </div>
 </div>
