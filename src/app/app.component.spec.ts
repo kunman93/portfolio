@@ -20,6 +20,11 @@ describe('AppComponent', () => {
             expect(find(`app-nav-bar`)).toBeTruthy();
         });
 
+        it('displays home section', async () => {
+            const { find } = await shallow.render(`<app-root><app-root>`);
+            expect(find(`app-home`)).toBeTruthy();
+        });
+        
         it('displays about section', async () => {
             const { find } = await shallow.render(`<app-root><app-root>`);
             expect(find(`app-about`)).toBeTruthy();
