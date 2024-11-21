@@ -1,6 +1,14 @@
-<div class="flex flex-row justify-center">
+@if (getExperiences().length > 0) {
+<div id="experienceContainer" class="flex flex-row justify-center">
   <div class="flex flex-col w-5/6 sm:w-3/4">
     <p id="smallTitle" class="text-gray-500">WHAT I HAVE DONE SO FAR</p>
     <h2 id="title" class="text-white mt-2 mb-3">Experience.</h2>
+    @for(experience of getExperiences(); track experience) {
+    <app-experience-card
+      class="mt-6"
+      [experience]="experience"
+    ></app-experience-card>
+    }
   </div>
 </div>
+}

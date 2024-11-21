@@ -6,6 +6,7 @@ import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { WorkstationComponent } from './home/workstation.component';
 import { CardComponent } from './about/card.component';
+import { ExperienceCardComponent } from './work/experience-card.component';
 
 
 
@@ -17,6 +18,7 @@ import { CardComponent } from './about/card.component';
     ContactComponent,
     WorkstationComponent,
     CardComponent,
+    ExperienceCardComponent,
   ],
   imports: [
     CommonModule
