@@ -36,11 +36,13 @@ describe('WorkComponent', () => {
             const workExperiences: Experience[] = [
                 {
                     jobTitle: "Full-Stack Software Engineer",
-                    company: "K&W Software AG"
+                    company: "K&W Software AG",
+                    projects: []
                 },
                 {
                     jobTitle: "Unicorn",
-                    company: "Unicorn Land"
+                    company: "Unicorn Land",
+                    projects: []
                 }
             ];
 
