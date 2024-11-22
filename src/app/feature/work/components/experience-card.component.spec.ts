@@ -14,6 +14,9 @@ describe('ExperienceCardComponent', () => {
         experience = {
             jobTitle: "Unicorn",
             company: "Unicorn Limited",
+            companyLogo: "some unicorn logo",
+            dateFrom: new Date(2019, 8),
+            dateUntil: new Date(2022, 6),
             projects: [{ title: "title", description: "description" }]
         };
     });

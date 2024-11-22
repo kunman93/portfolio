@@ -4,6 +4,9 @@ export const workExperiences: Experience[] = [
     {
         jobTitle: "Full-Stack Software Engineer",
         company: "K&W Software AG",
+        companyLogo: "k&w.png",
+        dateFrom: new Date(2022, 10),
+        dateUntil: new Date(2024, 7),
         projects: [
             {
                 title: "ELA Kredit",
@@ -32,10 +35,26 @@ export const workExperiences: Experience[] = [
     {
         jobTitle: "Unicorn",
         company: "One-Man-Army",
+        companyLogo: "unicorn.png",
+        dateFrom: new Date(2019, 8),
+        dateUntil: new Date(2022, 6),
         projects: [
             {
                 title: "The Art of War",
                 description: "Let your plans be dark and impenetrable as night, and when you move, fall like a thunderbolt.",
+            }
+        ]
+    },
+    {
+        jobTitle: "Batman",
+        company: "Batcave",
+        companyLogo: "batman.png",
+        dateFrom: new Date(2013, 8),
+        dateUntil: new Date(2018, 6),
+        projects: [
+            {
+                title: "Gotham",
+                description: "Bruce Wayne by day, Batman at night",
             }
         ]
     }
