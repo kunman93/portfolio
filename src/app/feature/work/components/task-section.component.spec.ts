@@ -1,7 +1,7 @@
 import { Shallow } from 'shallow-render';
-import { FeatureModule } from '../feature.module';
+import { FeatureModule } from '../../feature.module';
 import { TaskSectionComponent } from './task-section.component';
-import { Task } from './task';
+import { Task } from '../models/task';
 
 describe('TaskSectionComponent', () => {
     let shallow: Shallow<TaskSectionComponent>;

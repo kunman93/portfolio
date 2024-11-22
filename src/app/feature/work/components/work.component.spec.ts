@@ -1,8 +1,8 @@
 import { Shallow } from 'shallow-render';
 import { WorkComponent } from './work.component';
-import { FeatureModule } from '../feature.module';
+import { FeatureModule } from '../../feature.module';
 import { ExperienceCardComponent } from './experience-card.component';
-import { Experience } from './experience';
+import { Experience } from '../models/experience';
 
 describe('WorkComponent', () => {
     let shallow: Shallow<WorkComponent>;

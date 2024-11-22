@@ -1,8 +1,8 @@
 import { ProjectSectionComponent } from './project-section.component';
-import { FeatureModule } from '../feature.module';
-import { Project } from './project';
+import { FeatureModule } from '../../feature.module';
+import { Project } from '../models/project';
 import { Shallow } from 'shallow-render';
-import { Task } from './task';
+import { Task } from '../models/task';
 import { TaskSectionComponent } from './task-section.component';
 
 describe('ProjectSectionComponent', () => {
