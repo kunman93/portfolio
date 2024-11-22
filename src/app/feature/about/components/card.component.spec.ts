@@ -1,7 +1,7 @@
 import { Shallow } from 'shallow-render';
-import { FeatureModule } from '../feature.module';
+import { FeatureModule } from '../../feature.module';
 import { CardComponent } from './card.component';
-import { Service } from './service';
+import { Service } from '../models/service';
 
 describe('CardComponent', () => {
     let shallow: Shallow<CardComponent>;
