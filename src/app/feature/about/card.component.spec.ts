@@ -5,24 +5,25 @@ import { Service } from './service';
 
 describe('CardComponent', () => {
     let shallow: Shallow<CardComponent>;
+    let service: Service;
 
     beforeEach(() => {
         shallow = new Shallow(CardComponent, FeatureModule);
+        service = {
+            title: "title",
+            icon: "icon-path"
+        };
     });
 
     it('creates a component', async () => {
-        const { find } = await shallow.render(`<app-card></app-card>`);
+        const { find } = await shallow.render({ bind: { service } });
         expect(find).toBeTruthy();
     });
 
     describe('template', () => {
         it('displays icon and title', async () => {
             // arrange
-            const service: Service = {
-                title: "title",
-                icon: "icon-path"
-            };
-            const { find } = await shallow.render({bind: { service }});
+            const { find } = await shallow.render({ bind: { service } });
             const icon = find('img');
             const title = find('p');
 

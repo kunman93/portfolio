@@ -7,5 +7,5 @@ import { Service } from './service';
     styleUrl: './card.component.scss'
 })
 export class CardComponent {
-    @Input() service?: Service;
+    @Input() service!: Service;
 }
