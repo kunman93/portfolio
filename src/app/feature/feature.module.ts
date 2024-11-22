@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { WorkstationComponent } from './home/workstation.component';
 import { CardComponent } from './about/card.component';
 import { ExperienceCardComponent } from './work/experience-card.component';
+import { TaskSectionComponent } from './work/task-section.component';
 
 
 
@@ -19,6 +20,7 @@ import { ExperienceCardComponent } from './work/experience-card.component';
     WorkstationComponent,
     CardComponent,
     ExperienceCardComponent,
+    TaskSectionComponent,
   ],
   imports: [
     CommonModule
