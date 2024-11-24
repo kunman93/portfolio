@@ -2,9 +2,9 @@ import { Project } from "./project";
 import { Task } from "./task";
 
 export interface History {
-    jobTitle: string
-    company: string
-    companyLogo: string
+    profession: string
+    institution: string
+    logo: string
     dateFrom: Date
     dateUntil: Date
     projects: Project[]

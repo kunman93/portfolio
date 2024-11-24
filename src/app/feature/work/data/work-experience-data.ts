@@ -3,9 +3,9 @@ import { History } from "../models/history";
 export const assetsPath = "assets/img/company";
 export const workExperiences: History[] = [
     {
-        jobTitle: "Full-Stack Software Engineer",
-        company: "K&W Software AG",
-        companyLogo: "k&w.png",
+        profession: "Full-Stack Software Engineer",
+        institution: "K&W Software AG",
+        logo: "k&w.png",
         dateFrom: new Date(2022, 10),
         dateUntil: new Date(2024, 7),
         projects: [
@@ -34,9 +34,9 @@ export const workExperiences: History[] = [
         }
     },
     {
-        jobTitle: "Unicorn",
-        company: "One-Man-Army",
-        companyLogo: "unicorn.png",
+        profession: "Unicorn",
+        institution: "One-Man-Army",
+        logo: "unicorn.png",
         dateFrom: new Date(2019, 8),
         dateUntil: new Date(2022, 6),
         projects: [
@@ -47,9 +47,9 @@ export const workExperiences: History[] = [
         ]
     },
     {
-        jobTitle: "Batman",
-        company: "Batcave",
-        companyLogo: "batman.png",
+        profession: "Batman",
+        institution: "Batcave",
+        logo: "batman.png",
         dateFrom: new Date(2013, 8),
         dateUntil: new Date(2018, 6),
         projects: [
