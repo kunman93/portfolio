@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { History } from '../models/history';
-import { assetsPath, workExperiences } from '../data/work-experience-data';
+import { assetsPath } from '../data/work-experience-data';
 
 @Component({
     selector: 'app-work-experience',
@@ -9,9 +9,9 @@ import { assetsPath, workExperiences } from '../data/work-experience-data';
 })
 export class WorkExperienceComponent {
     readonly assetsPath = assetsPath;
-    private readonly experiences = workExperiences;
+    @Input() history!: History[];
 
     getExperiences(): History[] {
-        return this.experiences;
+        return this.history;
     }
 }

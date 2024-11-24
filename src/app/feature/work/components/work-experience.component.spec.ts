@@ -2,14 +2,15 @@ import { Shallow } from 'shallow-render';
 import { WorkExperienceComponent } from './work-experience.component';
 import { FeatureModule } from '../../feature.module';
 import { History } from '../models/history';
+import { assetsPath } from '../data/work-experience-data';
 
 describe('WorkExperienceComponent', () => {
     let shallow: Shallow<WorkExperienceComponent>;
-    let workExperiences: History[];
+    let history: History[];
 
     beforeEach(() => {
         shallow = new Shallow(WorkExperienceComponent, FeatureModule);
-        workExperiences = [
+        history = [
             {
                 profession: "Full-Stack Software Engineer",
                 institution: "K&W Software AG",
@@ -30,20 +31,20 @@ describe('WorkExperienceComponent', () => {
     });
 
     it('creates a component', async () => {
-        const { find } = await shallow.render(`<app-work-experience></app-work-experience>`);
+        const { find } = await shallow.render({ bind: { history } });
         expect(find).toBeTruthy();
     });
 
     describe('template', () => {
         it('displays the small title', async () => {
-            const { find } = await shallow.render(`<app-work-experience></app-work-experience>`);
+            const { find } = await shallow.render({ bind: { history } });
             const smallTitle = find('#smallTitle');
 
             expect(smallTitle.nativeElement.textContent).toBe('WHAT I HAVE DONE SO FAR');
         });
 
         it('displays the experience title', async () => {
-            const { find } = await shallow.render(`<app-work-experience></app-work-experience>`);
+            const { find } = await shallow.render({ bind: { history } });
             const title = find('#title');
 
             expect(title.nativeElement.textContent).toBe('Experience.');
@@ -53,8 +54,8 @@ describe('WorkExperienceComponent', () => {
             it('displays the company logos', async () => {
                 // arrange
                 const baseUrl = 'assets/img/company';
-                const { instance, fixture, find } = await shallow.render(`<app-work-experience></app-work-experience>`);
-                spyOn(instance, 'getExperiences').and.returnValue(workExperiences);
+                const {  instance, fixture, find  } = await shallow.render({ bind: { history } });
+                spyOn(instance, 'getExperiences').and.returnValue(history);
 
                 // act
                 fixture.detectChanges();
@@ -74,8 +75,8 @@ describe('WorkExperienceComponent', () => {
 
             it('displays the working period', async () => {
                 // arrange
-                const { instance, fixture, find } = await shallow.render(`<app-work-experience></app-work-experience>`);
-                spyOn(instance, 'getExperiences').and.returnValue(workExperiences);
+                const { instance, fixture, find } = await shallow.render({ bind: { history } });
+                spyOn(instance, 'getExperiences').and.returnValue(history);
 
                 // act
                 fixture.detectChanges();
@@ -95,8 +96,8 @@ describe('WorkExperienceComponent', () => {
 
             it('displays the experience cards for desktop and mobile', async () => {
                 // arrange
-                const { instance, fixture, find } = await shallow.render(`<app-work-experience></app-work-experience>`);
-                spyOn(instance, 'getExperiences').and.returnValue(workExperiences);
+                const { instance, fixture, find } = await shallow.render({ bind: { history } });
+                spyOn(instance, 'getExperiences').and.returnValue(history);
 
                 // act
                 fixture.detectChanges();
@@ -105,14 +106,14 @@ describe('WorkExperienceComponent', () => {
                 const experienceCardsDesktop = find('#experienceCardDesktop');
                 const experienceCardsMobile = find('#experienceCardMobile');
                 expect(experienceCardsDesktop).toHaveFound(2);
-                expect(experienceCardsDesktop.map(c => c.componentInstance.history)).toEqual(workExperiences);
+                expect(experienceCardsDesktop.map(c => c.componentInstance.history)).toEqual(history);
                 expect(experienceCardsMobile).toHaveFound(2);
-                expect(experienceCardsMobile.map(c => c.componentInstance.history)).toEqual(workExperiences);
+                expect(experienceCardsMobile.map(c => c.componentInstance.history)).toEqual(history);
             });
 
             it('hides the experience section if there is no work experience', async () => {
                 // arrange
-                const { instance, fixture, find } = await shallow.render(`<app-work-experience></app-work-experience>`);
+                const { instance, fixture, find } = await shallow.render({ bind: { history } });
                 spyOn(instance, 'getExperiences').and.returnValue([]);
 
                 // act

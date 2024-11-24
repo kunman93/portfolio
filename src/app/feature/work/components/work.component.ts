@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { workExperiences } from '../data/work-experience-data';
 
 @Component({
     selector: 'app-work',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
     styleUrl: './work.component.scss'
 })
 export class WorkComponent {
-
+    readonly workExperience = workExperiences;
 }

@@ -10,7 +10,6 @@ import { ExperienceCardComponent } from './work/components/experience-card.compo
 import { ProjectSectionComponent } from './work/components/project-section.component';
 import { TaskSectionComponent } from './work/components/task-section.component';
 import { WorkComponent } from './work/components/work.component';
-import { AcademicHistoryComponent } from './work/components/academic-history.component';
 
 
 
@@ -26,7 +25,6 @@ import { AcademicHistoryComponent } from './work/components/academic-history.com
         ProjectSectionComponent,
         TaskSectionComponent,
         WorkComponent,
-        AcademicHistoryComponent,
     ],
     imports: [
         CommonModule
