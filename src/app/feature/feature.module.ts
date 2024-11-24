@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AboutComponent } from './about/components/about.component';
-import { WorkExperienceComponent } from './work/components/work-experience.component';
+import { ExperienceComponent } from './work/components/experience.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { WorkstationComponent } from './home/workstation.component';
@@ -17,7 +17,7 @@ import { WorkComponent } from './work/components/work.component';
     declarations: [
         HomeComponent,
         AboutComponent,
-        WorkExperienceComponent,
+        ExperienceComponent,
         ContactComponent,
         WorkstationComponent,
         CardComponent,

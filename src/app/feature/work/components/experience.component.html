@@ -1,8 +1,8 @@
 @if (getExperiences().length > 0) {
 <div id="experienceContainer" class="flex flex-row justify-center">
   <div class="flex flex-col w-5/6 sm:w-3/4">
-    <p id="smallTitle" class="text-gray-500">WHAT I HAVE DONE SO FAR</p>
-    <h2 id="title" class="text-white mt-2 mb-3">Experience.</h2>
+    <p id="smallTitle" class="text-gray-500">{{ smallTitle }}</p>
+    <h2 id="title" class="text-white mt-2 mb-3">{{ title }}</h2>
     <div class="grid grid-cols-[0.125rem_1fr] gap-x-16 lg:hidden">
         @for(experience of getExperiences(); track experience) {
             <div class="relative bg-green-500">

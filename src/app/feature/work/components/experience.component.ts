@@ -3,12 +3,14 @@ import { History } from '../models/history';
 import { assetsPath } from '../data/work-experience-data';
 
 @Component({
-    selector: 'app-work-experience',
-    templateUrl: './work-experience.component.html',
-    styleUrl: './work-experience.component.scss'
+    selector: 'app-experience',
+    templateUrl: './experience.component.html',
+    styleUrl: './experience.component.scss'
 })
-export class WorkExperienceComponent {
+export class ExperienceComponent {
     readonly assetsPath = assetsPath;
+    @Input() smallTitle!: string;
+    @Input() title!: string;
     @Input() history!: History[];
 
     getExperiences(): History[] {

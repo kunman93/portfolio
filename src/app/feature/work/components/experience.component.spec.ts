@@ -1,15 +1,15 @@
 import { Shallow } from 'shallow-render';
-import { WorkExperienceComponent } from './work-experience.component';
+import { ExperienceComponent } from './experience.component';
 import { FeatureModule } from '../../feature.module';
 import { History } from '../models/history';
 import { assetsPath } from '../data/work-experience-data';
 
 describe('WorkExperienceComponent', () => {
-    let shallow: Shallow<WorkExperienceComponent>;
+    let shallow: Shallow<ExperienceComponent>;
     let history: History[];
 
     beforeEach(() => {
-        shallow = new Shallow(WorkExperienceComponent, FeatureModule);
+        shallow = new Shallow(ExperienceComponent, FeatureModule);
         history = [
             {
                 profession: "Full-Stack Software Engineer",
@@ -37,14 +37,24 @@ describe('WorkExperienceComponent', () => {
 
     describe('template', () => {
         it('displays the small title', async () => {
-            const { find } = await shallow.render({ bind: { history } });
+            const { find } = await shallow.render({
+                bind: {
+                    smallTitle: 'WHAT I HAVE DONE SO FAR',
+                    history
+                }
+            });
             const smallTitle = find('#smallTitle');
 
             expect(smallTitle.nativeElement.textContent).toBe('WHAT I HAVE DONE SO FAR');
         });
 
         it('displays the experience title', async () => {
-            const { find } = await shallow.render({ bind: { history } });
+            const { find } = await shallow.render({
+                bind: {
+                    title: 'Experience.',
+                    history
+                }
+            });
             const title = find('#title');
 
             expect(title.nativeElement.textContent).toBe('Experience.');
@@ -53,8 +63,8 @@ describe('WorkExperienceComponent', () => {
         describe('timeline', () => {
             it('displays the company logos', async () => {
                 // arrange
-                const baseUrl = 'assets/img/company';
-                const {  instance, fixture, find  } = await shallow.render({ bind: { history } });
+                const baseUrl = 'assets/img/institution';
+                const { instance, fixture, find } = await shallow.render({ bind: { history } });
                 spyOn(instance, 'getExperiences').and.returnValue(history);
 
                 // act
@@ -64,7 +74,7 @@ describe('WorkExperienceComponent', () => {
                 const companyIconsDesktop = find('#logoDesktop');
                 const companyIconsMobile = find('#logoMobile');
                 const expectedCompanyLogos = [
-                    `${baseUrl}/k&w.png`, 
+                    `${baseUrl}/k&w.png`,
                     `${baseUrl}/unicorn.png`
                 ];
                 expect(companyIconsDesktop).toHaveFound(2);
