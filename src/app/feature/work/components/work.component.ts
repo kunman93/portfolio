@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Experience } from '../models/experience';
-import { assetsPath, workExperiences } from '../data/work-experience-data';
 
 @Component({
     selector: 'app-work',
@@ -8,10 +6,5 @@ import { assetsPath, workExperiences } from '../data/work-experience-data';
     styleUrl: './work.component.scss'
 })
 export class WorkComponent {
-    readonly assetsPath = assetsPath;
-    private readonly experiences = workExperiences;
 
-    getExperiences(): Experience[] {
-        return this.experiences;
-    }
 }
