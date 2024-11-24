@@ -1,14 +1,14 @@
 <div class="fixed w-screen z-10">
-    <div class="flex justify-between mx-5 md:mx-5 sm:mx-20">
+    <div class="flex flex-row justify-between sm:justify-around mx-5 sm:mx-20 md:mx-5">
         <div id="logoNameOccupationContainer" class="flex gap-3 items-center cursor-pointer" (click)="onLogoNameOccupationClick()">
-            <img id="logo" class="w-9 h-9" src="assets/img/noji-enterprise-high-resolution-logo.png" alt="Noji Enterprise Logo">
-            <p id="nameOccupation"class="text-white font-bold">Manu&nbsp;<span class="md:inline hidden">|&nbsp;Fullstack Software Engineer</span></p>
+            <img id="logo" class="w-10 h-10 md:w-14 md:h-14" src="assets/img/noji-enterprise-high-resolution-logo.png" alt="Noji Enterprise Logo">
+            <p id="nameOccupation"class="text-base font-bold">Manu&nbsp;<span class="md:inline hidden">|&nbsp;Full-Stack Software Engineer</span></p>
         </div>
         <nav class="sm:block hidden content-center">
             <ul class="flex gap-10 text-white font-medium">
-                <li class="hover:text-red-500"><a id="navAbout" routerLink="/" fragment="about">About</a></li>
-                <li class="hover:text-red-500"><a id="navWork" routerLink="/" fragment="work">Work</a></li>
-                <li class="hover:text-red-500"><a id="navContact" routerLink="/" fragment="contact">Contact</a></li>
+                <li class="hover:text-red-500 hover:underline hover:decoration-2 hover:underline-offset-8 hover:scale-110 transition duration-150 ease-in-out"><a id="navAbout" routerLink="/" fragment="about">About</a></li>
+                <li class="hover:text-red-500 hover:underline hover:decoration-2 hover:underline-offset-8 hover:scale-110 transition duration-150 ease-in-out"><a id="navWork" routerLink="/" fragment="work">Work</a></li>
+                <li class="hover:text-red-500 hover:underline hover:decoration-2 hover:underline-offset-8 hover:scale-110 transition duration-150 ease-in-out"><a id="navContact" routerLink="/" fragment="contact">Contact</a></li>
             </ul>
         </nav>
         <div id="dropdownMenu" class="sm:hidden flex items-center relative">
@@ -18,9 +18,9 @@
                 <i id="closeIcon" class="fa-solid fa-xmark text-white hover:text-red-500 text-2xl font-medium" (click)="onDropdownMenuClick()"></i>
                 <div class="absolute top-0 right-0 mt-10 rounded-md shadow-lg ring-1 ring-black/5" tabindex="-1">
                     <div class="flex flex-col py-1 text-white font-medium" (click)="onDropdownMenuClick()">
-                        <a routerLink="/" fragment="about" class="px-4 py-2 hover:bg-red-500" tabindex="-1" id="aboutMenuItem">About</a>
-                        <a routerLink="/" fragment="work" class="px-4 py-2 hover:bg-red-500" tabindex="-1" id="workMenuItem">Work</a>
-                        <a routerLink="/" fragment="contact" class="px-4 py-2 hover:bg-red-500" tabindex="-1" id="contactMenuItem">Contact</a>
+                        <a routerLink="/" fragment="about" class="px-4 py-2 hover:bg-red-500 transition duration-150 ease-in-out" tabindex="-1" id="aboutMenuItem">About</a>
+                        <a routerLink="/" fragment="work" class="px-4 py-2 hover:bg-red-500 transition duration-150 ease-in-out" tabindex="-1" id="workMenuItem">Work</a>
+                        <a routerLink="/" fragment="contact" class="px-4 py-2 hover:bg-red-500 transition duration-150 ease-in-out" tabindex="-1" id="contactMenuItem">Contact</a>
                     </div>
                 </div>
             }

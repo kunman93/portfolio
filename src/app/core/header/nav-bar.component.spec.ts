@@ -27,7 +27,7 @@ describe('NavBarComponent', () => {
                     const { find } = await shallow.render(`<app-nav-bar></app-nav-bar>`, { detectChanges: false });
                     const nbsp = "\u00a0";
 
-                    expect(find("#nameOccupation").nativeElement.textContent).toBe(`Manu${nbsp}|${nbsp}Fullstack Software Engineer`);
+                    expect(find("#nameOccupation").nativeElement.textContent).toBe(`Manu${nbsp}|${nbsp}Full-Stack Software Engineer`);
                     expect(find("#nameOccupation span").nativeElement.className).toBe("md:inline hidden");
                 });
 

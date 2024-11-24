@@ -7,4 +7,43 @@
     html {
         font-family: "Liberation Mono", "Courier New";
     }
+
+    h1 {
+        @apply text-2xl;
+        @apply sm:text-4xl;
+        @apply md:text-6xl;
+        @apply font-bold;
+        @apply text-white;
+        @apply mb-1;
+    }
+
+    h2 {
+        @apply text-lg;
+        @apply sm:text-2xl;
+        @apply md:text-4xl;
+        @apply font-bold;
+        @apply text-red-500;
+        @apply mt-3;
+        @apply mb-5;
+    }
+
+    h3 {
+        @apply text-base;
+        @apply sm:text-lg;
+        @apply md:text-xl;
+        @apply font-bold;
+        @apply text-white;
+    }
+
+    h4 {
+        @apply text-sm;
+        @apply sm:text-base;
+        @apply font-bold;
+        @apply text-white;
+    }
+
+    p {
+        @apply text-sm;
+        @apply text-white;
+    }
 }

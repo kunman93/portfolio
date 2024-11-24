@@ -45,7 +45,7 @@ describe('TaskSectionComponent', () => {
                 ]
             };
             const { find } = await shallow.render({ bind: { task } });
-            const title = find('p');
+            const title = find('h4');
             const tasks = find('li');
 
             // assert
