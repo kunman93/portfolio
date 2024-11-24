@@ -32,31 +32,5 @@ export const workExperiences: History[] = [
                     HTML5 / CSS with Angular.`
             ]
         }
-    },
-    {
-        profession: "Unicorn",
-        institution: "One-Man-Army",
-        logo: "unicorn.png",
-        dateFrom: new Date(2019, 8),
-        dateUntil: new Date(2022, 6),
-        projects: [
-            {
-                title: "The Art of War",
-                description: "Let your plans be dark and impenetrable as night, and when you move, fall like a thunderbolt.",
-            }
-        ]
-    },
-    {
-        profession: "Batman",
-        institution: "Batcave",
-        logo: "batman.png",
-        dateFrom: new Date(2013, 8),
-        dateUntil: new Date(2018, 6),
-        projects: [
-            {
-                title: "Gotham",
-                description: "Bruce Wayne by day, Batman at night",
-            }
-        ]
     }
 ];

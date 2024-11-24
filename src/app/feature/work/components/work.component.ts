@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { workExperiences } from '../data/work-experience-data';
+import { academicHistory } from '../data/academic-history-data';
 
 @Component({
     selector: 'app-work',
@@ -8,4 +9,5 @@ import { workExperiences } from '../data/work-experience-data';
 })
 export class WorkComponent {
     readonly workExperience = workExperiences;
+    readonly academicHistory = academicHistory;
 }
