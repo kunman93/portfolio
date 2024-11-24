@@ -45,7 +45,7 @@ describe('AboutComponent', () => {
             const cards = findComponent(CardComponent);
             
             // assert
-            const assetsPath = "assets/img";
+            const assetsPath = "assets/img/service";
             const expectedService: Service[] = [
                 {
                     title: "Web Developer",
@@ -64,7 +64,6 @@ describe('AboutComponent', () => {
                     icon: `${assetsPath}/dev-ops.png`
                 }
             ];
-
             expect(cards).toHaveFound(4);
             expect(cards.map(c => c.service)).toEqual(expectedService);
         });

@@ -52,9 +52,9 @@ describe('WorkComponent', () => {
         describe('timeline', () => {
             it('displays the company logos', async () => {
                 // arrange
-                const baseUrl = 'assets/img';
+                const baseUrl = 'assets/img/company';
                 const { instance, fixture, find } = await shallow.render(`<app-work></app-work>`);
-                const experienceSpy = spyOn(instance, 'getExperiences').and.returnValue(workExperiences);
+                spyOn(instance, 'getExperiences').and.returnValue(workExperiences);
 
                 // act
                 fixture.detectChanges();
@@ -74,7 +74,6 @@ describe('WorkComponent', () => {
 
             it('displays the working period', async () => {
                 // arrange
-                const baseUrl = 'assets/img';
                 const { instance, fixture, find } = await shallow.render(`<app-work></app-work>`);
                 spyOn(instance, 'getExperiences').and.returnValue(workExperiences);
 

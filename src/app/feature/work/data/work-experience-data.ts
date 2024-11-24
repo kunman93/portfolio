@@ -1,5 +1,6 @@
 import { Experience } from "../models/experience";
 
+export const assetsPath = "assets/img/company";
 export const workExperiences: Experience[] = [
     {
         jobTitle: "Full-Stack Software Engineer",

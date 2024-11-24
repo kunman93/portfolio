@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Service } from '../models/service';
+import { service } from '../data/service-data';
 
 @Component({
     selector: 'app-about',
@@ -7,23 +8,5 @@ import { Service } from '../models/service';
     styleUrl: './about.component.scss'
 })
 export class AboutComponent {
-    private readonly assetsPath = "assets/img";
-    readonly services: Service[] = [
-        {
-            title: "Web Developer",
-            icon: `${this.assetsPath}/web.png`
-        },
-        {
-            title: "Frontend Developer",
-            icon: `${this.assetsPath}/frontend.png`
-        },
-        {
-            title: "Backend Developer",
-            icon: `${this.assetsPath}/backend.png`
-        },
-        {
-            title: "DevOps Engineer",
-            icon: `${this.assetsPath}/dev-ops.png`
-        }
-    ];
+    readonly services: Service[] = service;
 }
