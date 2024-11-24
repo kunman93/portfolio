@@ -12,7 +12,7 @@
             </div>
             <div class="flex flex-col mt-8 gap-y-2">
                 <div id="workingPeriodMobile" class="text-white">{{ experience.dateFrom | date : 'MMMM yyyy' }} — {{ experience.dateUntil | date : 'MMMM yyyy' }}</div>
-                <app-experience-card id="experienceCardMobile" [experience]="experience"></app-experience-card>
+                <app-experience-card id="experienceCardMobile" [history]="experience"></app-experience-card>
             </div>
         }
     </div>
@@ -25,9 +25,9 @@
                         <img id="companyIconDesktop" class="w-full h-full bg-white rounded-full border-4 border-green-500" src="{{ assetsPath }}/{{ experience.companyLogo }}" alt="{{ experience.company }} logo">
                     </div>
                 </div>
-                <app-experience-card id="experienceCardDesktop" class="mt-14" [experience]="experience"></app-experience-card>
+                <app-experience-card id="experienceCardDesktop" class="mt-14" [history]="experience"></app-experience-card>
             } @else {
-                <app-experience-card id="experienceCardDesktop" class="mt-14" [experience]="experience"></app-experience-card>
+                <app-experience-card id="experienceCardDesktop" class="mt-14" [history]="experience"></app-experience-card>
                 <div class="relative bg-green-500">
                     <div class="absolute w-16 h-16 -translate-x-1/2 mt-10">
                         <img id="companyIconDesktop" class="w-full h-full bg-white rounded-full border-4 border-green-500" src="{{ assetsPath }}/{{ experience.companyLogo }}" alt="{{ experience.company }} logo">

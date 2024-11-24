@@ -1,7 +1,7 @@
 import { Project } from "./project";
 import { Task } from "./task";
 
-export interface Experience {
+export interface History {
     jobTitle: string
     company: string
     companyLogo: string

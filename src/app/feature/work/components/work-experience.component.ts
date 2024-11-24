@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Experience } from '../models/experience';
+import { History } from '../models/history';
 import { assetsPath, workExperiences } from '../data/work-experience-data';
 
 @Component({
@@ -11,7 +11,7 @@ export class WorkExperienceComponent {
     readonly assetsPath = assetsPath;
     private readonly experiences = workExperiences;
 
-    getExperiences(): Experience[] {
+    getExperiences(): History[] {
         return this.experiences;
     }
 }

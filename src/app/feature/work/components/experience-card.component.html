@@ -1,9 +1,9 @@
 <div class="flex flex-col bg-red-500 px-10 py-6 rounded-lg shadow-xl shadow-red-500/75 ring-1 ring-black/5">
-  <h3 class="text-white font-bold">{{ experience.jobTitle }}</h3>
-  <p class="text-white font-medium">{{ experience.company }}</p>
-  @for (project of experience.projects; track project) {
+  <h3 class="text-white font-bold">{{ history.jobTitle }}</h3>
+  <p class="text-white font-medium">{{ history.company }}</p>
+  @for (project of history.projects; track project) {
   <app-project-section class="mt-6" [project]="project"></app-project-section>
-  } @if (!!experience.task) {
-  <app-task-section class="mt-6" [task]="experience.task"></app-task-section>
+  } @if (!!history.task) {
+  <app-task-section class="mt-6" [task]="history.task"></app-task-section>
   }
 </div>

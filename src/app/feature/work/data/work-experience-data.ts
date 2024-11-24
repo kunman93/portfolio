@@ -1,7 +1,7 @@
-import { Experience } from "../models/experience";
+import { History } from "../models/history";
 
 export const assetsPath = "assets/img/company";
-export const workExperiences: Experience[] = [
+export const workExperiences: History[] = [
     {
         jobTitle: "Full-Stack Software Engineer",
         company: "K&W Software AG",

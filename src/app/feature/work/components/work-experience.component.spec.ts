@@ -1,11 +1,11 @@
 import { Shallow } from 'shallow-render';
 import { WorkExperienceComponent } from './work-experience.component';
 import { FeatureModule } from '../../feature.module';
-import { Experience } from '../models/experience';
+import { History } from '../models/history';
 
 describe('WorkExperienceComponent', () => {
     let shallow: Shallow<WorkExperienceComponent>;
-    let workExperiences: Experience[];
+    let workExperiences: History[];
 
     beforeEach(() => {
         shallow = new Shallow(WorkExperienceComponent, FeatureModule);
@@ -105,9 +105,9 @@ describe('WorkExperienceComponent', () => {
                 const experienceCardsDesktop = find('#experienceCardDesktop');
                 const experienceCardsMobile = find('#experienceCardMobile');
                 expect(experienceCardsDesktop).toHaveFound(2);
-                expect(experienceCardsDesktop.map(c => c.componentInstance.experience)).toEqual(workExperiences);
+                expect(experienceCardsDesktop.map(c => c.componentInstance.history)).toEqual(workExperiences);
                 expect(experienceCardsMobile).toHaveFound(2);
-                expect(experienceCardsMobile.map(c => c.componentInstance.experience)).toEqual(workExperiences);
+                expect(experienceCardsMobile.map(c => c.componentInstance.history)).toEqual(workExperiences);
             });
 
             it('hides the experience section if there is no work experience', async () => {

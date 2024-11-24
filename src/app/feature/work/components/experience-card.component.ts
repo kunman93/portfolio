@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Experience } from '../models/experience';
+import { History } from '../models/history';
 
 @Component({
     selector: 'app-experience-card',
@@ -7,10 +7,10 @@ import { Experience } from '../models/experience';
     styleUrl: './experience-card.component.scss'
 })
 export class ExperienceCardComponent implements OnInit {
-    @Input() experience!: Experience;
+    @Input() history!: History;
 
     ngOnInit(): void {
-        if (this.experience.projects.length === 0) {
+        if (this.history.projects.length === 0) {
             throw new Error('projects array is empty');
         }
     }
