@@ -75,7 +75,7 @@ export class TechnologyOrbComponent {
         const orb = new THREE.Mesh(geometry, material);
 
         // ## DecalGeometry
-        const texture = new THREE.TextureLoader().load(`/assets/img/technology/${this.technology}`);
+        const texture = new THREE.TextureLoader().load(this.technology);
 
         const position = new THREE.Vector3(0, 0, 1);
         const orientation = new THREE.Euler(2 * Math.PI);
