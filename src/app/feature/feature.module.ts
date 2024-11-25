@@ -10,6 +10,7 @@ import { ExperienceCardComponent } from './work/components/experience-card.compo
 import { ProjectSectionComponent } from './work/components/project-section.component';
 import { TaskSectionComponent } from './work/components/task-section.component';
 import { WorkComponent } from './work/components/work.component';
+import { TechnologyOrbComponent } from './work/components/technology-orb.component';
 
 
 
@@ -25,6 +26,7 @@ import { WorkComponent } from './work/components/work.component';
         ProjectSectionComponent,
         TaskSectionComponent,
         WorkComponent,
+        TechnologyOrbComponent,
     ],
     imports: [
         CommonModule
