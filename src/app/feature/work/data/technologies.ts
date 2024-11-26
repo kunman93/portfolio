@@ -1,7 +1,29 @@
 const assetsPath = "/assets/img/technology"
 
 export const technologies: string[] = [
+    "java.svg",
+    "spring.png",
+    "hibernate.png",
+    "gradle.png",
+    "maven.png",
+    "postgres.png",
+    "oracle.png",
+    "flyway.svg",
+    "node.png",
+    "npm.png",
+    "html5.png",
     "css.png",
+    "tailwind.png",
+    "bootstrap.svg",
+    "javascript.png",
+    "typescript.png",
+    "angular.png",
+    "cypress.svg",
+    "git.png",
+    "gitlab.png",
+    "jenkins.png",
+    "sonarqube.svg",
     "docker.png",
-    "javascript.png"
+    "kubernetes.png",
+    "linux.svg",
 ].map(technology => `${assetsPath}/${technology}`);

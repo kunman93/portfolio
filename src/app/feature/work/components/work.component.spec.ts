@@ -1,6 +1,8 @@
 import { Shallow } from 'shallow-render';
 import { FeatureModule } from '../../feature.module';
 import { WorkComponent } from './work.component';
+import { TechnologyOrbComponent } from './technology-orb.component';
+import { technologies } from '../data/technologies';
 
 describe('WorkComponent', () => {
     let shallow: Shallow<WorkComponent>;
@@ -27,6 +29,13 @@ describe('WorkComponent', () => {
 
             const workExperienceComponent = find('#academicHistory');
             expect(workExperienceComponent).toHaveFound(1);
+        });
+
+        it('displays technology orbs', async () => {
+            const { findComponent } = await shallow.render(`<app-work></app-work>`);
+
+            const technologyOrbs = findComponent(TechnologyOrbComponent);
+            expect(technologyOrbs).toHaveFound(technologies.length);
         });
     });
 });
