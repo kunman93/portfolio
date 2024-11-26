@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, NgZone, ViewChild } from '@angular/core';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -23,12 +23,15 @@ export class WorkstationComponent implements AfterViewInit {
     private gameboyClassicModel?: THREE.Group<THREE.Object3DEventMap>;
     private childhoodBooksModel?: THREE.Group<THREE.Object3DEventMap>;
 
+    constructor(private zone: NgZone) {
+    }
+
     private get canvas(): HTMLCanvasElement {
         return this.canvasRef.nativeElement;
     }
 
     ngAfterViewInit(): void {
-        this.createScene();
+        this.zone.runOutsideAngular(() => this.createScene());
     }
 
     private createScene(): void {

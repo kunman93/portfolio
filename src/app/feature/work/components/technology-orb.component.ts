@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, NgZone, ViewChild } from '@angular/core';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { DecalGeometry } from 'three/examples/jsm/geometries/DecalGeometry.js';
@@ -23,13 +23,15 @@ export class TechnologyOrbComponent {
     private clock!: THREE.Clock;
     private orbGroup!: THREE.Group;
 
+    constructor(private zone: NgZone) {
+    }
 
     private get canvas(): HTMLCanvasElement {
         return this.canvasRef.nativeElement;
     }
 
     ngAfterViewInit(): void {
-        this.createScene();
+        this.zone.runOutsideAngular(() => this.createScene());
     }
 
     private createScene(): void {
