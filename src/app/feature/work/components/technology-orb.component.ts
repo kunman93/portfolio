@@ -65,12 +65,12 @@ export class TechnologyOrbComponent {
 
         // ## Material
         const material = new THREE.MeshPhongMaterial({
-            color: 0x808080,
+            color: 0xFFFFFF,
             polygonOffset: true,
             polygonOffsetFactor: 1,
             flatShading: true,
-            shininess: 20,
-            specular: 0x222222,
+            shininess: 30,
+            specular: 0x808080,
         });
 
         // ## Orb Mesh 
@@ -87,8 +87,8 @@ export class TechnologyOrbComponent {
             map: texture,
             transparent: true,
             flatShading: true,
-            shininess: 20,
-            specular: 0x222222,
+            shininess: 50,
+            specular: 0x404040,
         });
         const decal = new THREE.Mesh(decalGeometry, decalMaterial);
         decal.rotation.y = -Math.PI;
@@ -103,7 +103,7 @@ export class TechnologyOrbComponent {
 
         // # Creating light
         const color = 0xFFFFFF;
-        const intensity = 250;
+        const intensity = 150;
         const lightPos = 10;
 
         const lightTop = new THREE.PointLight(color, intensity);
@@ -156,10 +156,9 @@ export class TechnologyOrbComponent {
     private animate(component: TechnologyOrbComponent): void {
         const time = component.clock.getElapsedTime();
 
-        component.orbGroup.rotation.y += Math.sin(time + 0.48 * Math.PI) * 0.009;
-        component.orbGroup.position.x = Math.sin(time) * 0.05;
-        component.orbGroup.position.y = Math.sin(time) * 0.25;
-
+        component.orbGroup.rotation.y += Math.sin(time + 0.768 * Math.PI) * 0.0003;
+        component.orbGroup.position.x = Math.sin(2.5 * time) * 0.125;
+        component.orbGroup.position.y = Math.sin(1.5 * time) * 0.25;
 
         component.onWindowResize();
         component.controls.update();
