@@ -1,12 +1,13 @@
 import { NavBarComponent } from './nav-bar.component';
 import { Shallow } from 'shallow-render';
 import { CoreModule } from '../core.module';
+import { HeaderModule } from './header.module';
 
 describe('NavBarComponent', () => {
     let shallow: Shallow<NavBarComponent>;
 
     beforeEach(() => {
-        shallow = new Shallow(NavBarComponent, CoreModule);
+        shallow = new Shallow(NavBarComponent, HeaderModule);
     });
 
     it('creates a component', async () => {
