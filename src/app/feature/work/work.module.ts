@@ -6,6 +6,7 @@ import { ProjectSectionComponent } from './components/project-section.component'
 import { TaskSectionComponent } from './components/task-section.component';
 import { TechnologyOrbComponent } from './components/technology-orb.component';
 import { WorkComponent } from './components/work.component';
+import { SharedModule } from "../../shared/shared.module";
 
 
 
@@ -20,7 +21,8 @@ import { WorkComponent } from './components/work.component';
         TechnologyOrbComponent,
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        SharedModule
     ],
     exports: [
         WorkComponent,

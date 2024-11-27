@@ -1,8 +1,10 @@
 @if (getExperiences().length > 0) {
-<div id="experienceContainer" class="flex flex-row justify-center">
-  <div class="flex flex-col w-5/6 sm:w-3/4">
+<app-section-wrapper id="experienceContainer">
     <p id="smallTitle" class="text-white">{{ smallTitle }}</p>
+
     <h2 id="title">{{ title }}</h2>
+
+    <!-- Mobile -->
     <div class="grid grid-cols-[0.1rem_1fr] gap-x-16 lg:hidden">
         @for(experience of getExperiences(); track experience) {
             <div class="relative bg-gradient-to-b from-red-500 via-red-700 to-red-500">
@@ -16,6 +18,8 @@
             </div>
         }
     </div>
+
+    <!-- Desktop -->
     <div class="hidden lg:grid grid-cols-[1fr_0.1rem_1fr] gap-x-16">
         @for(experience of getExperiences(); track experience; let odd = $odd) {
             @if (odd) {
@@ -37,6 +41,5 @@
             }
         }
     </div>
-  </div>
-</div>
+</app-section-wrapper>
 }

@@ -1,20 +1,21 @@
-<div class="flex flex-row justify-center">
-  <div class="flex flex-col w-5/6 sm:w-3/4">
-    <p id="smallTitle">INTRODUCTION</p>
-    <h2 id="title">Overview.</h2>
-    <p id="overviewText" class="md:w-3/4 lg:w-2/3 xl:w-1/2">
-      I am a Full-Stack Software Engineer with hands-on experience in developing
-      and testing scalable web applications within an agile team consisting of
-      Software Engineers, UI / UX Designers and Business Analysts. With a solid
-      foundation in software development, combined with a passion for continuous
-      learning, alongside working with a cohort of experienced professionals who
-      share my dedication and enthusiasm, I'm eager to contribute to your
-      innovative team and help drive the success of your company.
-    </p>
-    <div class="flex flex-row flex-wrap justify-center mt-5">
-        @for(service of services; track service.title) {
-            <app-card class="mx-3 mt-6" [service]="service"></app-card>
-        }
-    </div>
+<app-section-wrapper>
+  <p id="smallTitle">INTRODUCTION</p>
+
+  <h2 id="title">Overview.</h2>
+
+  <p id="overviewText" class="md:w-3/4 lg:w-2/3 xl:w-1/2">
+    I am a Full-Stack Software Engineer with hands-on experience in developing
+    and testing scalable web applications within an agile team consisting of
+    Software Engineers, UI / UX Designers and Business Analysts. With a solid
+    foundation in software development, combined with a passion for continuous
+    learning, alongside working with a cohort of experienced professionals who
+    share my dedication and enthusiasm, I'm eager to contribute to your
+    innovative team and help drive the success of your company.
+  </p>
+  
+  <div class="flex flex-row flex-wrap justify-center mt-5">
+    @for(service of services; track service.title) {
+    <app-card class="mx-3 mt-6" [service]="service"></app-card>
+    }
   </div>
-</div>
+</app-section-wrapper>
