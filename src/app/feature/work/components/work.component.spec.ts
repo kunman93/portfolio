@@ -1,14 +1,14 @@
 import { Shallow } from 'shallow-render';
-import { FeatureModule } from '../../feature.module';
 import { WorkComponent } from './work.component';
 import { TechnologyOrbComponent } from './technology-orb.component';
 import { technologies } from '../data/technologies';
+import { WorkModule } from '../work.module';
 
 describe('WorkComponent', () => {
     let shallow: Shallow<WorkComponent>;
 
     beforeEach(() => {
-        shallow = new Shallow(WorkComponent, FeatureModule);
+        shallow = new Shallow(WorkComponent, WorkModule);
     });
 
     it('creates a component', async () => {

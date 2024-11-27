@@ -1,14 +1,14 @@
 import { Shallow } from 'shallow-render';
-import { FeatureModule } from '../../feature.module';
 import { CardComponent } from './card.component';
 import { Service } from '../models/service';
+import { HomeModule } from '../../home/home.module';
 
 describe('CardComponent', () => {
     let shallow: Shallow<CardComponent>;
     let service: Service;
 
     beforeEach(() => {
-        shallow = new Shallow(CardComponent, FeatureModule);
+        shallow = new Shallow(CardComponent, HomeModule);
         service = {
             title: "title",
             icon: "icon-path"

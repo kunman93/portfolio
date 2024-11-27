@@ -1,14 +1,14 @@
 import { Shallow } from 'shallow-render';
 import { AboutComponent } from './about.component';
-import { FeatureModule } from '../../feature.module';
 import { CardComponent } from './card.component';
 import { Service } from '../models/service';
+import { AboutModule } from '../about.module';
 
 describe('AboutComponent', () => {
     let shallow: Shallow<AboutComponent>;
 
     beforeEach(() => {
-        shallow = new Shallow(AboutComponent, FeatureModule);
+        shallow = new Shallow(AboutComponent, AboutModule);
     });
 
     it('creates a component', async () => {

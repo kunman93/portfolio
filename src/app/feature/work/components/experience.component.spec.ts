@@ -1,15 +1,14 @@
 import { Shallow } from 'shallow-render';
 import { ExperienceComponent } from './experience.component';
-import { FeatureModule } from '../../feature.module';
 import { History } from '../models/history';
-import { assetsPath } from '../data/work-experience-data';
+import { WorkModule } from '../work.module';
 
 describe('WorkExperienceComponent', () => {
     let shallow: Shallow<ExperienceComponent>;
     let history: History[];
 
     beforeEach(() => {
-        shallow = new Shallow(ExperienceComponent, FeatureModule);
+        shallow = new Shallow(ExperienceComponent, WorkModule);
         history = [
             {
                 profession: "Full-Stack Software Engineer",

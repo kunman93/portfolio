@@ -1,41 +1,25 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AboutComponent } from './about/components/about.component';
-import { ExperienceComponent } from './work/components/experience.component';
-import { ContactComponent } from './contact/contact.component';
-import { HomeComponent } from './home/home.component';
-import { WorkstationComponent } from './home/workstation.component';
-import { CardComponent } from './about/components/card.component';
-import { ExperienceCardComponent } from './work/components/experience-card.component';
-import { ProjectSectionComponent } from './work/components/project-section.component';
-import { TaskSectionComponent } from './work/components/task-section.component';
-import { WorkComponent } from './work/components/work.component';
-import { TechnologyOrbComponent } from './work/components/technology-orb.component';
+import { NgModule } from '@angular/core';
+import { AboutModule } from './about/about.module';
+import { ContactModule } from './contact/contact.module';
+import { HomeModule } from './home/home.module';
+import { WorkModule } from './work/work.module';
 
 
 
 @NgModule({
-    declarations: [
-        HomeComponent,
-        AboutComponent,
-        ExperienceComponent,
-        ContactComponent,
-        WorkstationComponent,
-        CardComponent,
-        ExperienceCardComponent,
-        ProjectSectionComponent,
-        TaskSectionComponent,
-        WorkComponent,
-        TechnologyOrbComponent,
-    ],
     imports: [
-        CommonModule
+        CommonModule,
+        HomeModule,
+        AboutModule,
+        WorkModule,
+        ContactModule
     ],
     exports: [
-        HomeComponent,
-        AboutComponent,
-        WorkComponent,
-        ContactComponent,
+        HomeModule,
+        AboutModule,
+        WorkModule,
+        ContactModule
     ]
 })
 export class FeatureModule { }

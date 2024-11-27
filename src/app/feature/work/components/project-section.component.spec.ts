@@ -1,16 +1,16 @@
 import { ProjectSectionComponent } from './project-section.component';
-import { FeatureModule } from '../../feature.module';
 import { Project } from '../models/project';
 import { Shallow } from 'shallow-render';
 import { Task } from '../models/task';
 import { TaskSectionComponent } from './task-section.component';
+import { WorkModule } from '../work.module';
 
 describe('ProjectSectionComponent', () => {
     let shallow: Shallow<ProjectSectionComponent>;
     let project: Project;
 
     beforeEach(() => {
-        shallow = new Shallow(ProjectSectionComponent, FeatureModule);
+        shallow = new Shallow(ProjectSectionComponent, WorkModule);
         project = {
             title: "Project title",
             description: "project description"

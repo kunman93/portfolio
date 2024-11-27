@@ -1,16 +1,16 @@
 import { Shallow } from 'shallow-render';
-import { FeatureModule } from '../../feature.module';
 import { ExperienceCardComponent } from './experience-card.component';
 import { ProjectSectionComponent } from './project-section.component';
 import { TaskSectionComponent } from './task-section.component';
 import { History } from '../models/history';
+import { WorkModule } from '../work.module';
 
 describe('ExperienceCardComponent', () => {
     let shallow: Shallow<ExperienceCardComponent>;
     let history: History;
 
     beforeEach(() => {
-        shallow = new Shallow(ExperienceCardComponent, FeatureModule);
+        shallow = new Shallow(ExperienceCardComponent, WorkModule);
         history = {
             profession: "Unicorn",
             institution: "Unicorn Limited",
