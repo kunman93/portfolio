@@ -1,16 +1,16 @@
-import { ProjectSectionComponent } from './project-section.component';
+import { ExperienceCardProjectSectionComponent } from './experience-card-project-section.component';
 import { Project } from '../models/project';
 import { Shallow } from 'shallow-render';
 import { Task } from '../models/task';
 import { TaskSectionComponent } from './task-section.component';
 import { WorkModule } from '../work.module';
 
-describe('ProjectSectionComponent', () => {
-    let shallow: Shallow<ProjectSectionComponent>;
+describe('ExperienceCardProjectSectionComponent', () => {
+    let shallow: Shallow<ExperienceCardProjectSectionComponent>;
     let project: Project;
 
     beforeEach(() => {
-        shallow = new Shallow(ProjectSectionComponent, WorkModule);
+        shallow = new Shallow(ExperienceCardProjectSectionComponent, WorkModule);
         project = {
             title: "Project title",
             description: "project description"

@@ -1,6 +1,6 @@
 import { Shallow } from 'shallow-render';
 import { ExperienceCardComponent } from './experience-card.component';
-import { ProjectSectionComponent } from './project-section.component';
+import { ExperienceCardProjectSectionComponent } from './experience-card-project-section.component';
 import { TaskSectionComponent } from './task-section.component';
 import { History } from '../models/history';
 import { WorkModule } from '../work.module';
@@ -46,7 +46,7 @@ describe('ExperienceCardComponent', () => {
             const { find, findComponent } = await shallow.render({ bind: { history } });
             const profession = find('h3');
             const institution = find('p');
-            const projects = findComponent(ProjectSectionComponent);
+            const projects = findComponent(ExperienceCardProjectSectionComponent);
             const tasks = findComponent(TaskSectionComponent);
 
             // assert
