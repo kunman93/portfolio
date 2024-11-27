@@ -1,14 +1,14 @@
 import { Shallow } from 'shallow-render';
-import { TaskSectionComponent } from './task-section.component';
+import { ExperienceCardTaskSectionComponent } from './experience-card-task-section.component';
 import { Task } from '../models/task';
 import { WorkModule } from '../work.module';
 
-describe('TaskSectionComponent', () => {
-    let shallow: Shallow<TaskSectionComponent>;
+describe('ExperienceCardTaskSectionComponent', () => {
+    let shallow: Shallow<ExperienceCardTaskSectionComponent>;
     let task: Task;
 
     beforeEach(() => {
-        shallow = new Shallow(TaskSectionComponent, WorkModule);
+        shallow = new Shallow(ExperienceCardTaskSectionComponent, WorkModule);
         task = {
             taskTitle: "title",
             tasks: ["task 1", "task 2"]

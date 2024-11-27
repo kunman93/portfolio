@@ -1,7 +1,7 @@
 import { Shallow } from 'shallow-render';
 import { ExperienceCardComponent } from './experience-card.component';
 import { ExperienceCardProjectSectionComponent } from './experience-card-project-section.component';
-import { TaskSectionComponent } from './task-section.component';
+import { ExperienceCardTaskSectionComponent } from './experience-card-task-section.component';
 import { History } from '../models/history';
 import { WorkModule } from '../work.module';
 
@@ -47,7 +47,7 @@ describe('ExperienceCardComponent', () => {
             const profession = find('h3');
             const institution = find('p');
             const projects = findComponent(ExperienceCardProjectSectionComponent);
-            const tasks = findComponent(TaskSectionComponent);
+            const tasks = findComponent(ExperienceCardTaskSectionComponent);
 
             // assert
             expect(profession.nativeElement.textContent).toBe(history.profession);
@@ -63,7 +63,7 @@ describe('ExperienceCardComponent', () => {
                 tasks: []
             };
             const { findComponent } = await shallow.render({ bind: { history } });
-            const tasks = findComponent(TaskSectionComponent);
+            const tasks = findComponent(ExperienceCardTaskSectionComponent);
 
             // assert
             expect(tasks).toHaveFound(1);

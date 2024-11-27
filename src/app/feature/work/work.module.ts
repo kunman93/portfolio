@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ExperienceCardComponent } from './components/experience-card.component';
 import { ExperienceComponent } from './components/experience.component';
 import { ExperienceCardProjectSectionComponent } from './components/experience-card-project-section.component';
-import { TaskSectionComponent } from './components/task-section.component';
+import { ExperienceCardTaskSectionComponent } from './components/experience-card-task-section.component';
 import { TechnologyOrbComponent } from './components/technology-orb.component';
 import { WorkComponent } from './components/work.component';
 import { SharedModule } from "../../shared/shared.module";
@@ -16,7 +16,7 @@ import { SharedModule } from "../../shared/shared.module";
         ExperienceComponent,
         ExperienceCardComponent,
         ExperienceCardProjectSectionComponent,
-        TaskSectionComponent,
+        ExperienceCardTaskSectionComponent,
         WorkComponent,
         TechnologyOrbComponent,
     ],

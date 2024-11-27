@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Task } from '../models/task';
 
 @Component({
-    selector: 'app-task-section',
-    templateUrl: './task-section.component.html',
-    styleUrl: './task-section.component.scss'
+    selector: 'app-experience-card-task-section',
+    templateUrl: './experience-card-task-section.component.html',
+    styleUrl: './experience-card-task-section.component.scss'
 })
-export class TaskSectionComponent implements OnInit {
+export class ExperienceCardTaskSectionComponent implements OnInit {
     @Input() task!: Task;
 
     ngOnInit(): void {
