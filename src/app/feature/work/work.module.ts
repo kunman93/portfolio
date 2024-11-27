@@ -7,6 +7,8 @@ import { ExperienceCardTaskSectionComponent } from './components/experience-card
 import { TechnologyOrbComponent } from './components/technology-orb.component';
 import { WorkComponent } from './components/work.component';
 import { SharedModule } from "../../shared/shared.module";
+import { SkillsComponent } from './components/skills.component';
+import { ProjectComponent } from './components/project.component';
 
 
 
@@ -19,6 +21,8 @@ import { SharedModule } from "../../shared/shared.module";
         ExperienceCardTaskSectionComponent,
         WorkComponent,
         TechnologyOrbComponent,
+        SkillsComponent,
+        ProjectComponent,
     ],
     imports: [
         CommonModule,
