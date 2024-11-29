@@ -9,6 +9,7 @@ import { WorkComponent } from './components/work.component';
 import { SharedModule } from "../../shared/shared.module";
 import { SkillsComponent } from './components/skills.component';
 import { ProjectComponent } from './components/project.component';
+import { ProjectCardComponent } from './components/project-card.component';
 
 
 
@@ -23,6 +24,7 @@ import { ProjectComponent } from './components/project.component';
         TechnologyOrbComponent,
         SkillsComponent,
         ProjectComponent,
+        ProjectCardComponent,
     ],
     imports: [
         CommonModule,
