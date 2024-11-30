@@ -1,6 +1,5 @@
+import { assetsPath } from "assets/assets-path-index";
 import { Service } from "../models/service";
-
-const assetsPath = "assets/images/services";
 
 export const service: Service[] = [
     {
@@ -19,4 +18,4 @@ export const service: Service[] = [
         title: "DevOps Engineer",
         icon: `dev-ops.png`
     }
-].map(s => Object.assign(s, {icon: `${assetsPath}/${s.icon}`}));
+].map(s => Object.assign(s, {icon: `${assetsPath.services}/${s.icon}`}));

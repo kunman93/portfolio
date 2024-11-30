@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, NgZone, ViewChild } from '@angular/core';
+import { assetsPath } from 'assets/assets-path-index';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -55,7 +56,7 @@ export class WorkstationComponent implements AfterViewInit {
         this.scene = new THREE.Scene();
 
         // # Load gltf models
-        const baseUrl = "assets/gltf-models";
+        const baseUrl = assetsPath.gltfModels;
 
         let modelName = `headphone_with_stand.glb`;
         let component: WorkstationComponent = this;

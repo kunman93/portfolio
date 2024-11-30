@@ -1,6 +1,5 @@
 import { History } from "../models/history";
 
-export const assetsPath = "assets/images/institutions";
 export const workExperiences: History[] = [
     {
         profession: "Full-Stack Software Engineer",

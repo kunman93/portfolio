@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { History } from '../models/history';
-import { assetsPath } from '../data/work-experience-data';
+import { assetsPath } from '../../../../../public/assets/assets-path-index';
 
 @Component({
     selector: 'app-experience',
@@ -8,7 +8,7 @@ import { assetsPath } from '../data/work-experience-data';
     styleUrl: './experience.component.scss'
 })
 export class ExperienceComponent {
-    readonly assetsPath = assetsPath;
+    readonly assetsPath = assetsPath.institutions;
     @Input() smallTitle!: string;
     @Input() title!: string;
     @Input() history!: History[];

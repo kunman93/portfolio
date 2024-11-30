@@ -1,12 +1,13 @@
+import { assetsPath } from "../../../../../public/assets/assets-path-index";
 import { Project } from "../models/project";
 
-export const assetsPath = "assets/images/projects";
+const assetsPathProject = assetsPath.projects; 
 export const projects: Project[] = [
     {
         githubUrl: "https://github.com/kunman93/soundboard",
         img: {
-            pngUrl: `${assetsPath}/space-runner.png`,
-            gifUrl: `${assetsPath}/space-runner.gif`
+            pngUrl: `${assetsPathProject}/space-runner.png`,
+            gifUrl: `${assetsPathProject}/space-runner.gif`
         },
         title: "Space Runner",
         description: "Realisation of a two-dimensional endless runner game in which a player travels as far as possible through space in a spaceship, collecting coins and power-ups and avoiding dangers.",
@@ -16,8 +17,8 @@ export const projects: Project[] = [
     {
         githubUrl: "https://github.com/kunman93/space-runner",
         img: {
-            pngUrl: `${assetsPath}/soundboard.png`,
-            gifUrl: `${assetsPath}/soundboard.gif`
+            pngUrl: `${assetsPathProject}/soundboard.png`,
+            gifUrl: `${assetsPathProject}/soundboard.gif`
         },
         title: "Soundboard",
         description: "A sound board on which you can create your own sounds with an easy-to-use graphical user interface.",

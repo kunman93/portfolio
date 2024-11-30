@@ -1,4 +1,4 @@
-const assetsPath = "/assets/images/technologies"
+import { assetsPath } from "../../../../../public/assets/assets-path-index";
 
 export const technologies: string[] = [
     "java.svg",
@@ -26,4 +26,4 @@ export const technologies: string[] = [
     "docker.png",
     "kubernetes.png",
     "linux.svg",
-].map(technology => `${assetsPath}/${technology}`);
+].map(technology => `${assetsPath.technologies}/${technology}`);
