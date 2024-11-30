@@ -45,7 +45,7 @@ describe('AboutComponent', () => {
             const cards = findComponent(CardComponent);
             
             // assert
-            const assetsPath = "assets/img/service";
+            const assetsPath = "assets/images/services";
             const expectedService: Service[] = [
                 {
                     title: "Web Developer",

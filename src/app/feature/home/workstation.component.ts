@@ -55,7 +55,7 @@ export class WorkstationComponent implements AfterViewInit {
         this.scene = new THREE.Scene();
 
         // # Load gltf models
-        const baseUrl = "assets/gltf";
+        const baseUrl = "assets/gltf-models";
 
         let modelName = `headphone_with_stand.glb`;
         let component: WorkstationComponent = this;

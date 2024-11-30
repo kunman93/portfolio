@@ -1,6 +1,6 @@
 import { Project } from "../models/project";
 
-export const assetsPath = "assets/img/projects";
+export const assetsPath = "assets/images/projects";
 export const projects: Project[] = [
     {
         githubUrl: "https://github.com/kunman93/soundboard",

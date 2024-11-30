@@ -1,4 +1,4 @@
-const assetsPath = "/assets/img/technology"
+const assetsPath = "/assets/images/technologies"
 
 export const technologies: string[] = [
     "java.svg",

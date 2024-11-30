@@ -62,7 +62,7 @@ describe('WorkExperienceComponent', () => {
         describe('timeline', () => {
             it('displays the company logos', async () => {
                 // arrange
-                const baseUrl = 'assets/img/institution';
+                const baseUrl = 'assets/images/institutions';
                 const { instance, fixture, find } = await shallow.render({ bind: { history } });
                 spyOn(instance, 'getExperiences').and.returnValue(history);
 

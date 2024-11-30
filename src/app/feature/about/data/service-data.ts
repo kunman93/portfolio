@@ -1,6 +1,6 @@
 import { Service } from "../models/service";
 
-const assetsPath = "assets/img/service";
+const assetsPath = "assets/images/services";
 
 export const service: Service[] = [
     {
