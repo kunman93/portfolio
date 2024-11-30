@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {ScrollingModule} from '@angular/cdk/scrolling'; 
 import { ExperienceCardComponent } from './components/experience-card.component';
 import { ExperienceComponent } from './components/experience.component';
 import { ExperienceCardProjectSectionComponent } from './components/experience-card-project-section.component';
@@ -28,7 +29,8 @@ import { ProjectCardComponent } from './components/project-card.component';
     ],
     imports: [
         CommonModule,
-        SharedModule
+        SharedModule,
+        ScrollingModule
     ],
     exports: [
         WorkComponent,

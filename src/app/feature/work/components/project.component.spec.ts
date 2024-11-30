@@ -3,6 +3,7 @@ import { WorkModule } from '../work.module';
 import { ProjectComponent } from './project.component';
 import { ProjectCardComponent } from './project-card.component';
 import { projects } from '../data/projects-data';
+import { CdkFixedSizeVirtualScroll, ScrollingModule } from '@angular/cdk/scrolling';
 
 describe('ProjectComponent', () => {
     let shallow: Shallow<ProjectComponent>;
@@ -39,11 +40,13 @@ describe('ProjectComponent', () => {
             expect(overviewText.nativeElement.textContent.trim()).toBe(expectedProjectsText.trim());
         });
 
-        it('displays project cards', async () => {
+        it('displays the project cards in a scroll view', async () => {
             // arrange
-            const { findComponent } = await shallow.render(`<app-project></app-project>`);
+            const { findComponent } = await shallow.dontMock(ScrollingModule).render(`<app-project></app-project>`);
+            const scrollViewport = findComponent(CdkFixedSizeVirtualScroll);
             const projectCards = findComponent(ProjectCardComponent)
 
+            expect(scrollViewport).toHaveFound(1)
             expect(projectCards).toHaveFound(projects.length);
             expect(projectCards.map(p => p.project)).toEqual(projects);
         });
