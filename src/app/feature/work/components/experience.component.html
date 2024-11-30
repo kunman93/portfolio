@@ -1,4 +1,4 @@
-@if (getExperiences().length > 0) {
+@if (history.length > 0) {
 <app-section-wrapper id="experienceContainer">
     <p id="smallTitle" class="text-white">{{ smallTitle }}</p>
 
@@ -6,7 +6,7 @@
 
     <!-- Mobile -->
     <div class="grid grid-cols-[0.1rem_1fr] gap-x-16 lg:hidden">
-        @for(experience of getExperiences(); track experience) {
+        @for(experience of history; track experience) {
             <div class="relative bg-gradient-to-b from-red-500 via-red-700 to-red-500">
                 <div class="absolute w-16 h-16 px-2 py-2 bg-white rounded-full border-4 border-red-500 -translate-x-1/2 mt-20">
                     <img id="logoMobile" src="{{ assetsPath }}/{{ experience.logo }}" alt="{{ experience.institution }} logo">
@@ -21,7 +21,7 @@
 
     <!-- Desktop -->
     <div class="hidden lg:grid grid-cols-[1fr_0.1rem_1fr] gap-x-16">
-        @for(experience of getExperiences(); track experience; let odd = $odd) {
+        @for(experience of history; track experience; let odd = $odd) {
             @if (odd) {
                 <div id="workingPeriodDesktop" class="text-white text-right mt-24">{{ experience.dateFrom | date : 'MMMM yyyy' }} — {{ experience.dateUntil | date : 'MMMM yyyy' }}</div>
                 <div class="relative bg-gradient-to-b from-red-500 via-red-700 to-red-500">

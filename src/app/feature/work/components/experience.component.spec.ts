@@ -63,8 +63,7 @@ describe('WorkExperienceComponent', () => {
             it('displays the company logos', async () => {
                 // arrange
                 const baseUrl = 'assets/images/institutions';
-                const { instance, fixture, find } = await shallow.render({ bind: { history } });
-                spyOn(instance, 'getExperiences').and.returnValue(history);
+                const { fixture, find } = await shallow.render({ bind: { history } });
 
                 // act
                 fixture.detectChanges();
@@ -84,8 +83,7 @@ describe('WorkExperienceComponent', () => {
 
             it('displays the working period', async () => {
                 // arrange
-                const { instance, fixture, find } = await shallow.render({ bind: { history } });
-                spyOn(instance, 'getExperiences').and.returnValue(history);
+                const { fixture, find } = await shallow.render({ bind: { history } });
 
                 // act
                 fixture.detectChanges();
@@ -105,8 +103,7 @@ describe('WorkExperienceComponent', () => {
 
             it('displays the experience cards for desktop and mobile', async () => {
                 // arrange
-                const { instance, fixture, find } = await shallow.render({ bind: { history } });
-                spyOn(instance, 'getExperiences').and.returnValue(history);
+                const { fixture, find } = await shallow.render({ bind: { history } });
 
                 // act
                 fixture.detectChanges();
@@ -122,8 +119,7 @@ describe('WorkExperienceComponent', () => {
 
             it('hides the experience section if there is no work experience', async () => {
                 // arrange
-                const { instance, fixture, find } = await shallow.render({ bind: { history } });
-                spyOn(instance, 'getExperiences').and.returnValue([]);
+                const { fixture, find } = await shallow.render({ bind: { history: [] } });
 
                 // act
                 fixture.detectChanges();

@@ -12,8 +12,4 @@ export class ExperienceComponent {
     @Input() smallTitle!: string;
     @Input() title!: string;
     @Input() history!: History[];
-
-    getExperiences(): History[] {
-        return this.history;
-    }
 }
