@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Project } from '../models/project';
+import { Image } from '../models/image';
 
 @Component({
     selector: 'app-project-card',
@@ -14,7 +15,7 @@ export class ProjectCardComponent implements OnInit {
         if (!this.arePropertiesValid()) {
             throw new Error('project has falsy properties');
         }
-        this.imageSource = this.project.img?.pngUrl;
+        this.imageSource = this.project.img?.srcImage;
     }
 
     private arePropertiesValid(): boolean {
@@ -25,10 +26,10 @@ export class ProjectCardComponent implements OnInit {
     }
 
     onMouseOver(): void {
-        this.imageSource = this.project.img?.gifUrl;
+        this.imageSource = this.project.img?.srcGif;
     }
 
     onMouseLeave(): void {
-        this.imageSource = this.project.img?.pngUrl;
+        this.imageSource = this.project.img?.srcImage;
     }
 }

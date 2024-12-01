@@ -1,4 +1,5 @@
 export interface Image {
-    pngUrl: string
-    gifUrl: string
+    srcImage: string
+    srcGif?: string
+    alt: string
 }

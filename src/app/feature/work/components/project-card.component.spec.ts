@@ -11,7 +11,7 @@ describe('ProjectCardComponent', () => {
         shallow = new Shallow(ProjectCardComponent, WorkModule);
         project = {
             githubUrl: "githubUrl",
-            img: { pngUrl: "project-img.png", gifUrl: "project-img.gif" },
+            img: { srcImage: "project-img.png", srcGif: "project-img.gif", alt: "project alt" },
             title: "Front-end Project",
             description: "lorem ipsum",
             technologies: ["Angular", "Tailwind"],
@@ -35,7 +35,7 @@ describe('ProjectCardComponent', () => {
             },            
             {
                 githubUrl: undefined,
-                img: { pngUrl: "project-img.png", gifUrl: "project-img.png" },
+                img: { srcImage: "project-img.png", srcGif: "project-img.png", alt: "alt" },
                 title: "title",
                 description: "description",
                 technologies: ["Angular", "Tailwind"]
@@ -48,21 +48,21 @@ describe('ProjectCardComponent', () => {
             },
             {
                 githubUrl: "github url",
-                img: { pngUrl: "project-img.png", gifUrl: "project-img.png" },
+                img: { srcImage: "project-img.png", srcGif: "project-img.png", alt: "alt" },
                 title: "",
                 description: "description",
                 technologies: ["Angular", "Tailwind"]
             },
             {
                 githubUrl: "github url",
-                img: { pngUrl: "project-img.png", gifUrl: "project-img.png" },
+                img: { srcImage: "project-img.png", srcGif: "project-img.png", alt: "alt" },
                 title: "title",
                 description: "",
                 technologies: ["Angular", "Tailwind"]
             },
             {
                 githubUrl: "github url",
-                img: { pngUrl: "project-img.png", gifUrl: "project-img.png" },
+                img: { srcImage: "project-img.png", srcGif: "project-img.png", alt: "alt" },
                 title: "title",
                 description: "description",
                 technologies: undefined
@@ -96,7 +96,7 @@ describe('ProjectCardComponent', () => {
         const technologies = find('#technology');
 
         // assert
-        expect(img.nativeElement.src).toContain(project.img?.pngUrl);
+        expect(img.nativeElement.src).toContain(project.img?.srcImage);
         expect(gitHubIcon.nativeElement.className).toContain("fa-brands fa-square-github");
         expect(title.nativeElement.textContent).toBe(project.title);
         expect(description.nativeElement.textContent).toBe(project.description);
@@ -114,7 +114,7 @@ describe('ProjectCardComponent', () => {
             fixture.detectChanges();
 
             // assert
-            expect(img.nativeElement.src).toContain(project.img?.gifUrl);
+            expect(img.nativeElement.src).toContain(project.img?.srcGif);
         });
 
         it('displays png image on mouse leave', async () => {
@@ -127,7 +127,7 @@ describe('ProjectCardComponent', () => {
             fixture.detectChanges();
 
             // assert
-            expect(img.nativeElement.src).toContain(project.img?.pngUrl);
+            expect(img.nativeElement.src).toContain(project.img?.srcImage);
         });
     });
 
