@@ -11,6 +11,8 @@ import { SharedModule } from "../../shared/shared.module";
 import { SkillsComponent } from './components/skills.component';
 import { ProjectComponent } from './components/project.component';
 import { ProjectCardComponent } from './components/project-card.component';
+import { EmploymentReferenceComponent } from './components/employment-reference.component';
+import { EmploymentReferenceCarouselComponent } from './components/employment-reference-carousel.component';
 
 
 
@@ -26,6 +28,8 @@ import { ProjectCardComponent } from './components/project-card.component';
         SkillsComponent,
         ProjectComponent,
         ProjectCardComponent,
+        EmploymentReferenceComponent,
+        EmploymentReferenceCarouselComponent,
     ],
     imports: [
         CommonModule,

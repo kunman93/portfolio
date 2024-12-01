@@ -2,6 +2,7 @@ import { Shallow } from 'shallow-render';
 import { WorkComponent } from './work.component';
 import { WorkModule } from '../work.module';
 import { ProjectComponent } from './project.component';
+import { EmploymentReferenceComponent } from './employment-reference.component';
 
 describe('WorkComponent', () => {
     let shallow: Shallow<WorkComponent>;
@@ -16,18 +17,25 @@ describe('WorkComponent', () => {
     });
 
     describe('template', () => {
-        it('display the work experience', async () => {
+        it('displays the work experience', async () => {
             const { find } = await shallow.render(`<app-work></app-work>`);
 
-            const workExperienceComponent = find('#workExperience');
-            expect(workExperienceComponent).toHaveFound(1);
+            const experienceComponent = find('#workExperience');
+            expect(experienceComponent).toHaveFound(1);
         });
 
-        it('display the academic history', async () => {
+        it('displays the employment reference', async () => {
+            const { findComponent } = await shallow.render(`<app-work></app-work>`);
+
+            const employmentReferenceComponent = findComponent(EmploymentReferenceComponent);
+            expect(employmentReferenceComponent).toHaveFound(1);
+        });
+
+        it('displays the academic history', async () => {
             const { find } = await shallow.render(`<app-work></app-work>`);
 
-            const workExperienceComponent = find('#academicHistory');
-            expect(workExperienceComponent).toHaveFound(1);
+            const experienceComponent = find('#academicHistory');
+            expect(experienceComponent).toHaveFound(1);
         });
 
         it('displays the project section', async () => {
