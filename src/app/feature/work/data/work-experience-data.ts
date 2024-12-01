@@ -4,7 +4,10 @@ export const workExperiences: History[] = [
     {
         profession: "Full-Stack Software Engineer",
         institution: "K&W Software AG",
-        logo: "k&w.png",
+        logo: {
+            srcImage: "k&w.png",
+            alt: "K&W Logo"
+        },
         dateFrom: new Date(2022, 10),
         dateUntil: new Date(2024, 7),
         projects: [

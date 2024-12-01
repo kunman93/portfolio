@@ -11,7 +11,10 @@ describe('CardComponent', () => {
         shallow = new Shallow(CardComponent, HomeModule);
         service = {
             title: "title",
-            icon: "icon-path"
+            icon: {
+                srcImage: "srcIcon",
+                alt: "altIcon"
+            }
         };
     });
 
@@ -28,7 +31,8 @@ describe('CardComponent', () => {
             const title = find('p');
 
             // assert
-            expect(icon.nativeElement.src).toContain(service.icon);
+            expect(icon.nativeElement.src).toContain(service.icon.srcImage);
+            expect(icon.nativeElement.alt).toContain(service.icon.alt);
             expect(title.nativeElement.textContent).toBe(service.title);
         });
     });

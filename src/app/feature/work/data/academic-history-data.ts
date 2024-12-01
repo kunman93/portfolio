@@ -4,7 +4,10 @@ export const academicHistory: History[] = [
     {
         profession: "Bachelor of Science",
         institution: "ZHAW School of Engineering",
-        logo: "zhaw.png",
+        logo: {
+            srcImage: "zhaw.png",
+            alt: "ZHAW Logo"
+        },
         dateFrom: new Date(2019, 8),
         dateUntil: new Date(2022, 6),
         projects: [
@@ -20,7 +23,10 @@ export const academicHistory: History[] = [
     {
         profession: "Bachelor of Science",
         institution: "ZHAW School of Engineering",
-        logo: "zhaw.png",
+        logo: {
+            srcImage: "zhaw.png",
+            alt: "ZHAW Logo"
+        },
         dateFrom: new Date(2013, 8),
         dateUntil: new Date(2018, 6),
         projects: [

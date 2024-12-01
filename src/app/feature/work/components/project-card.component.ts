@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Project } from '../models/project';
-import { Image } from '../models/image';
 
 @Component({
     selector: 'app-project-card',

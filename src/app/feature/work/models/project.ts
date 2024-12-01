@@ -1,5 +1,5 @@
 import { Task } from "./task";
-import { Image } from "./image";
+import { Image } from "shared/models/image"
 
 export interface Project {
     githubUrl?: string,

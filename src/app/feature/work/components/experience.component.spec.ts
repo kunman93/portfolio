@@ -2,6 +2,7 @@ import { Shallow } from 'shallow-render';
 import { ExperienceComponent } from './experience.component';
 import { History } from '../models/history';
 import { WorkModule } from '../work.module';
+import { assetsPath } from 'assets/assets-path-index';
 
 describe('WorkExperienceComponent', () => {
     let shallow: Shallow<ExperienceComponent>;
@@ -13,7 +14,10 @@ describe('WorkExperienceComponent', () => {
             {
                 profession: "Full-Stack Software Engineer",
                 institution: "K&W Software AG",
-                logo: "k&w.png",
+                logo: {
+                    srcImage: "k&w.png",
+                    alt: "k&w.png alt",
+                },
                 dateFrom: new Date(2022, 10),
                 dateUntil: new Date(2024, 7),
                 projects: []
@@ -21,7 +25,10 @@ describe('WorkExperienceComponent', () => {
             {
                 profession: "Unicorn",
                 institution: "Unicorn Land",
-                logo: "unicorn.png",
+                logo: {
+                    srcImage: "unicorn.png",
+                    alt: "unicorn.png alt",
+                },
                 dateFrom: new Date(2019, 8),
                 dateUntil: new Date(2022, 6),
                 projects: []
@@ -62,7 +69,7 @@ describe('WorkExperienceComponent', () => {
         describe('timeline', () => {
             it('displays the company logos', async () => {
                 // arrange
-                const baseUrl = 'assets/images/institutions';
+                const baseUrl = assetsPath.institutions;
                 const { fixture, find } = await shallow.render({ bind: { history } });
 
                 // act
@@ -71,14 +78,20 @@ describe('WorkExperienceComponent', () => {
                 // assert
                 const companyIconsDesktop = find('#logoDesktop');
                 const companyIconsMobile = find('#logoMobile');
-                const expectedCompanyLogos = [
+                const expectedCompanyLogoSrcs = [
                     `${baseUrl}/k&w.png`,
                     `${baseUrl}/unicorn.png`
                 ];
+                const expectedCompanyLogoAlts = [
+                    'k&w.png alt',
+                    'unicorn.png alt'
+                ];
                 expect(companyIconsDesktop).toHaveFound(2);
-                expect(companyIconsDesktop.map(c => c.attributes['src'])).toEqual(expectedCompanyLogos);
+                expect(companyIconsDesktop.map(c => c.attributes['src'])).toEqual(expectedCompanyLogoSrcs);
+                expect(companyIconsDesktop.map(c => c.attributes['alt'])).toEqual(expectedCompanyLogoAlts);
                 expect(companyIconsMobile).toHaveFound(2);
-                expect(companyIconsMobile.map(c => c.attributes['src'])).toEqual(expectedCompanyLogos);
+                expect(companyIconsMobile.map(c => c.attributes['src'])).toEqual(expectedCompanyLogoSrcs);
+                expect(companyIconsMobile.map(c => c.attributes['alt'])).toEqual(expectedCompanyLogoAlts);
             });
 
             it('displays the working period', async () => {

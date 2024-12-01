@@ -3,6 +3,7 @@ import { AboutComponent } from './about.component';
 import { CardComponent } from './card.component';
 import { Service } from '../models/service';
 import { AboutModule } from '../about.module';
+import { assetsPath } from 'assets/assets-path-index';
 
 describe('AboutComponent', () => {
     let shallow: Shallow<AboutComponent>;
@@ -43,27 +44,43 @@ describe('AboutComponent', () => {
             // arrange
             const { findComponent } = await shallow.render(`<app-about></app-about>`);
             const cards = findComponent(CardComponent);
-            
+
             // assert
-            const assetsPath = "assets/images/services";
             const expectedService: Service[] = [
                 {
-                    title: "Web Developer",
-                    icon: `${assetsPath}/web.png`
+                    title: 'Web Developer',
+                    icon: {
+                        srcImage: 'web.png',
+                        alt: 'Web Icon'
+                    }
                 },
                 {
                     title: "Frontend Developer",
-                    icon: `${assetsPath}/frontend.png`
+                    icon: {
+                        srcImage: 'frontend.png',
+                        alt: 'Frontend Icon'
+                    }
                 },
                 {
-                    title: "Backend Developer",
-                    icon: `${assetsPath}/backend.png`
+                    title: 'Backend Developer',
+                    icon: {
+                        srcImage: 'backend.png',
+                        alt: 'Backend Icon'
+                    }
                 },
                 {
                     title: "DevOps Engineer",
-                    icon: `${assetsPath}/dev-ops.png`
+                    icon: {
+                        srcImage: 'dev-ops.png',
+                        alt: 'DevOps Icon'
+                    }
+
                 }
-            ];
+            ].map(s => Object.assign(s, {
+                icon: {
+                    srcImage: `${assetsPath.services}/${s.icon.srcImage}`
+                }
+            }));
             expect(cards).toHaveFound(4);
             expect(cards.map(c => c.service)).toEqual(expectedService);
         });

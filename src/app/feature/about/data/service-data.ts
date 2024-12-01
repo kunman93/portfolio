@@ -3,19 +3,36 @@ import { Service } from "../models/service";
 
 export const service: Service[] = [
     {
-        title: "Web Developer",
-        icon: `web.png`
+        title: 'Web Developer',
+        icon: {
+            srcImage: 'web.png',
+            alt: 'Web Icon'
+        }
     },
     {
         title: "Frontend Developer",
-        icon: `frontend.png`
+        icon: {
+            srcImage: 'frontend.png',
+            alt: 'Frontend Icon'
+        }
     },
     {
-        title: "Backend Developer",
-        icon: `backend.png`
+        title: 'Backend Developer',
+        icon: {
+            srcImage: 'backend.png',
+            alt: 'Backend Icon'
+        }
     },
     {
         title: "DevOps Engineer",
-        icon: `dev-ops.png`
+        icon: {
+            srcImage: 'dev-ops.png',
+            alt: 'DevOps Icon'
+        }
+
     }
-].map(s => Object.assign(s, {icon: `${assetsPath.services}/${s.icon}`}));
+].map(s => Object.assign(s, {
+    icon: {
+        srcImage: `${assetsPath.services}/${s.icon.srcImage}`
+    }
+}));

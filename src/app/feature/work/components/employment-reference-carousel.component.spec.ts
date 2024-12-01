@@ -85,8 +85,10 @@ describe('EmploymentReferenceCarouselComponent', () => {
                             ...employmentReferences,
                             {
                                 institution: "Unicorn AG",
-                                logoSrc: "unicorn.png",
-                                logoAlt: "Unicorn AG Logo",
+                                logo: {
+                                    srcImage: "unicorn.png",
+                                    alt: "Unicorn AG Logo",
+                                },
                                 reference: "He wants to be a unicorn",
                             }
                         ];
@@ -131,8 +133,10 @@ describe('EmploymentReferenceCarouselComponent', () => {
                             ...employmentReferences,
                             {
                                 institution: "Unicorn AG",
-                                logoSrc: "unicorn.png",
-                                logoAlt: "unicorn.png Logo",
+                                logo: {
+                                    srcImage: "unicorn.png",
+                                    alt: "Unicorn AG Logo",
+                                },
                                 reference: "He wants to become a unicorn",
                             }
                         ];
@@ -160,8 +164,10 @@ describe('EmploymentReferenceCarouselComponent', () => {
                     ...employmentReferences,
                     {
                         institution: "Unicorn AG",
-                        logoSrc: "unicorn.png",
-                        logoAlt: "unicorn.png Logo",
+                        logo: {
+                            srcImage: "unicorn.png",
+                            alt: "Unicorn AG Logo",
+                        },
                         reference: "He wants to become a unicorn",
                     }
                 ];
