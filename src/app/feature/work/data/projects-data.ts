@@ -1,4 +1,4 @@
-import { assetsPath } from "../../../../../public/assets/assets-path-index";
+import { assetsPath } from "assets/assets-path-index";
 import { Project } from "../models/project";
 
 const assetsPathProject = assetsPath.projects; 
