@@ -1,6 +1,6 @@
 import { History } from "../models/history";
 
-export const workExperiences: History[] = [
+export const workHistory: History[] = [
     {
         title: "Full-Stack Software Engineer",
         institution: "K&W Software AG",

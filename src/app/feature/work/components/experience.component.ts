@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { History } from '../models/history';
-import { assetsPath } from '../../../../../public/assets/assets-path-index';
+import { assetsPath } from 'assets/assets-path-index';
 
 @Component({
     selector: 'app-experience',

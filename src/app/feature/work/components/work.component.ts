@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { workExperiences } from '../data/work-experience-data';
 import { academicHistory } from '../data/academic-history-data';
+import { workHistory } from '../data/work-history-data';
 
 @Component({
     selector: 'app-work',
@@ -8,6 +8,6 @@ import { academicHistory } from '../data/academic-history-data';
     styleUrl: './work.component.scss'
 })
 export class WorkComponent {
-    readonly workExperience = workExperiences;
+    readonly workHistory = workHistory;
     readonly academicHistory = academicHistory;
 }

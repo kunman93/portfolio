@@ -27,7 +27,7 @@ describe('WorkComponent', () => {
 
             it('hides the work experience', async () => {
                 const { find, instance, fixture } = await shallow.render(`<app-work></app-work>`);
-                Object.defineProperty(instance, 'workExperience', { value: [], writable: false });
+                Object.defineProperty(instance, 'workHistory', { value: [], writable: false });
 
                 fixture.detectChanges();
 
@@ -46,7 +46,7 @@ describe('WorkComponent', () => {
 
             it('hides the employment reference', async () => {
                 const { findComponent, instance, fixture } = await shallow.render(`<app-work></app-work>`);
-                Object.defineProperty(instance, 'workExperience', { value: [], writable: false });
+                Object.defineProperty(instance, 'workHistory', { value: [], writable: false });
 
                 fixture.detectChanges();
 
