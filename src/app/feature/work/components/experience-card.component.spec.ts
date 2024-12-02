@@ -12,7 +12,7 @@ describe('ExperienceCardComponent', () => {
     beforeEach(() => {
         shallow = new Shallow(ExperienceCardComponent, WorkModule);
         history = {
-            profession: "Unicorn",
+            title: "Unicorn",
             institution: "Unicorn Limited",
             logo: {
                 srcImage: "some unicorn logo",
@@ -49,13 +49,13 @@ describe('ExperienceCardComponent', () => {
         it('displays the experience card without tasks', async () => {
             // arrange
             const { find, findComponent } = await shallow.render({ bind: { history } });
-            const profession = find('h3');
+            const title = find('h3');
             const institution = find('p');
             const projects = findComponent(ExperienceCardProjectSectionComponent);
             const tasks = findComponent(ExperienceCardTaskSectionComponent);
 
             // assert
-            expect(profession.nativeElement.textContent).toBe(history.profession);
+            expect(title.nativeElement.textContent).toBe(history.title);
             expect(institution.nativeElement.textContent).toBe(history.institution);
             expect(projects).toHaveFound(1);
             expect(tasks).toHaveFound(0);

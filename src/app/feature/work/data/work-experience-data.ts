@@ -2,7 +2,7 @@ import { History } from "../models/history";
 
 export const workExperiences: History[] = [
     {
-        profession: "Full-Stack Software Engineer",
+        title: "Full-Stack Software Engineer",
         institution: "K&W Software AG",
         logo: {
             srcImage: "k&w.png",

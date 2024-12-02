@@ -12,7 +12,7 @@ describe('ExperienceComponent', () => {
         shallow = new Shallow(ExperienceComponent, WorkModule);
         history = [
             {
-                profession: "Full-Stack Software Engineer",
+                title: "Full-Stack Software Engineer",
                 institution: "K&W Software AG",
                 logo: {
                     srcImage: "k&w.png",
@@ -25,7 +25,7 @@ describe('ExperienceComponent', () => {
                 projects: []
             },
             {
-                profession: "Unicorn",
+                title: "Unicorn",
                 institution: "Unicorn Land",
                 logo: {
                     srcImage: "unicorn.png",

@@ -4,7 +4,7 @@ import { Image } from "shared/models/image"
 import { TimePeriod } from "./time-period";
 
 export interface History {
-    profession: string;
+    title: string;
     institution: string;
     logo: Image;
     timePeriod: TimePeriod;
