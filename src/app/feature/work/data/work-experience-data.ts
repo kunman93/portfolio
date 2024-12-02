@@ -8,8 +8,10 @@ export const workExperiences: History[] = [
             srcImage: "k&w.png",
             alt: "K&W Logo"
         },
-        dateFrom: new Date(2022, 10),
-        dateUntil: new Date(2024, 7),
+        timePeriod: {
+            dateFrom: new Date(2022, 10),
+            dateUntil: new Date(2024, 7)
+        },
         projects: [
             {
                 title: "ELA Kredit",

@@ -15,11 +15,13 @@ describe('ExperienceCardComponent', () => {
             profession: "Unicorn",
             institution: "Unicorn Limited",
             logo: {
-               srcImage: "some unicorn logo",
-               alt: "some unicorn alt",
+                srcImage: "some unicorn logo",
+                alt: "some unicorn alt",
             },
-            dateFrom: new Date(2019, 8),
-            dateUntil: new Date(2022, 6),
+            timePeriod: {
+                dateFrom: new Date(2019, 8),
+                dateUntil: new Date(2022, 6)
+            },
             projects: [{ title: "title", description: "description" }]
         };
     });

@@ -8,8 +8,10 @@ export const academicHistory: History[] = [
             srcImage: "zhaw.png",
             alt: "ZHAW Logo"
         },
-        dateFrom: new Date(2019, 8),
-        dateUntil: new Date(2022, 6),
+        timePeriod: {
+            dateFrom: new Date(2019, 8),
+            dateUntil: new Date(2022, 6)
+        },
         projects: [
             {
                 title: "Bachelors in Computer Science",
@@ -27,8 +29,10 @@ export const academicHistory: History[] = [
             srcImage: "zhaw.png",
             alt: "ZHAW Logo"
         },
-        dateFrom: new Date(2013, 8),
-        dateUntil: new Date(2018, 6),
+        timePeriod: {
+            dateFrom: new Date(2013, 8),
+            dateUntil: new Date(2018, 6)
+        },
         projects: [
             {
                 title: "Bachelors in Mechatronics",

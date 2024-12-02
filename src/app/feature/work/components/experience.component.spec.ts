@@ -4,7 +4,7 @@ import { History } from '../models/history';
 import { WorkModule } from '../work.module';
 import { assetsPath } from 'assets/assets-path-index';
 
-describe('WorkExperienceComponent', () => {
+describe('ExperienceComponent', () => {
     let shallow: Shallow<ExperienceComponent>;
     let history: History[];
 
@@ -18,8 +18,10 @@ describe('WorkExperienceComponent', () => {
                     srcImage: "k&w.png",
                     alt: "k&w.png alt",
                 },
-                dateFrom: new Date(2022, 10),
-                dateUntil: new Date(2024, 7),
+                timePeriod: {
+                    dateFrom: new Date(2022, 10),
+                    dateUntil: new Date(2024, 7)
+                },
                 projects: []
             },
             {
@@ -29,8 +31,10 @@ describe('WorkExperienceComponent', () => {
                     srcImage: "unicorn.png",
                     alt: "unicorn.png alt",
                 },
-                dateFrom: new Date(2019, 8),
-                dateUntil: new Date(2022, 6),
+                timePeriod: {
+                    dateFrom: new Date(2019, 8),
+                    dateUntil: new Date(2022, 6)
+                },
                 projects: []
             }
         ];
