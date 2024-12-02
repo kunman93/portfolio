@@ -17,18 +17,42 @@ describe('WorkComponent', () => {
     });
 
     describe('template', () => {
-        it('displays the work experience', async () => {
-            const { find } = await shallow.render(`<app-work></app-work>`);
+        describe('work experience', () => {
+            it('displays the work experience', async () => {
+                const { find } = await shallow.render(`<app-work></app-work>`);
 
-            const experienceComponent = find('#workExperience');
-            expect(experienceComponent).toHaveFound(1);
+                const experienceComponent = find('#workExperience');
+                expect(experienceComponent).toHaveFound(1);
+            });
+
+            it('hides the work experience', async () => {
+                const { find, instance, fixture } = await shallow.render(`<app-work></app-work>`);
+                Object.defineProperty(instance, 'workExperience', { value: [], writable: false });
+
+                fixture.detectChanges();
+
+                const experienceComponent = find('#workExperience');
+                expect(experienceComponent).toHaveFound(0);
+            });
         });
 
-        it('displays the employment reference', async () => {
-            const { findComponent } = await shallow.render(`<app-work></app-work>`);
+        describe('employment reference', () => {
+            it('displays the employment reference', async () => {
+                const { findComponent } = await shallow.render(`<app-work></app-work>`);
 
-            const employmentReferenceComponent = findComponent(EmploymentReferenceComponent);
-            expect(employmentReferenceComponent).toHaveFound(1);
+                const employmentReferenceComponent = findComponent(EmploymentReferenceComponent);
+                expect(employmentReferenceComponent).toHaveFound(1);
+            });
+
+            it('hides the employment reference', async () => {
+                const { findComponent, instance, fixture } = await shallow.render(`<app-work></app-work>`);
+                Object.defineProperty(instance, 'workExperience', { value: [], writable: false });
+
+                fixture.detectChanges();
+
+                const employmentReferenceComponent = findComponent(EmploymentReferenceComponent);
+                expect(employmentReferenceComponent).toHaveFound(0);
+            });
         });
 
         it('displays the academic history', async () => {
