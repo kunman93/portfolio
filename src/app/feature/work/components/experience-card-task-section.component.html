@@ -1,0 +1,7 @@
+<h4>{{ task.taskTitle }}</h4>
+
+<ul class="list-disc list-inside">
+  @for(task of task.tasks; track task) {
+  <li class="text-white text-sm">{{ task }}</li>
+  }
+</ul>

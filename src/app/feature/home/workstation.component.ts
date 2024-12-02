@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, NgZone, ViewChild } from '@angular/core';
+import { GLTF_MODELS } from 'assets/assets.constants';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -18,17 +19,21 @@ export class WorkstationComponent implements AfterViewInit {
     private scene!: THREE.Scene;
     private controls!: OrbitControls;
 
-    private retroComputerModel?: THREE.Group<THREE.Object3DEventMap>;
+    private headPhoneWithStand?: THREE.Group<THREE.Object3DEventMap>;
     private commodore64ComputerModel?: THREE.Group<THREE.Object3DEventMap>;
     private gameboyClassicModel?: THREE.Group<THREE.Object3DEventMap>;
     private childhoodBooksModel?: THREE.Group<THREE.Object3DEventMap>;
+    private clipboard?: THREE.Group<THREE.Object3DEventMap>;
+
+    constructor(private zone: NgZone) {
+    }
 
     private get canvas(): HTMLCanvasElement {
         return this.canvasRef.nativeElement;
     }
 
     ngAfterViewInit(): void {
-        this.createScene();
+        this.zone.runOutsideAngular(() => this.createScene());
     }
 
     private createScene(): void {
@@ -51,65 +56,70 @@ export class WorkstationComponent implements AfterViewInit {
         this.scene = new THREE.Scene();
 
         // # Load gltf models
-        const baseUrl = "assets/gltf";
-
-        let modelName = `1970s_retro_computer.glb`;
         let component: WorkstationComponent = this;
         const gltfLoader = new GLTFLoader();
-        let url = `${baseUrl}/${modelName}`;
-        gltfLoader.load(url, async (gltf) => {
-            component.retroComputerModel = gltf.scene;
-            component.retroComputerModel.position.x = -4.5;
-            component.retroComputerModel.position.z = 0.5;
-            component.retroComputerModel.rotation.y += (Math.PI / 8);
+        gltfLoader.load(GLTF_MODELS.headphoneWithStand, async (gltf) => {
+            component.headPhoneWithStand = gltf.scene;
+            component.headPhoneWithStand.scale.set(7, 7, 7);
+            component.headPhoneWithStand.position.x = -6.5;
+            component.headPhoneWithStand.position.y = -0.75;
+            component.headPhoneWithStand.position.z = -1.25;
+            component.headPhoneWithStand.rotation.y += (Math.PI / 4);
 
             // wait until the model can be added to the scene without blocking due to shader compilation
-            await component.renderer.compileAsync(component.retroComputerModel, component.camera, component.scene);
-            component.scene.add(component.retroComputerModel);
+            await component.renderer.compileAsync(component.headPhoneWithStand, component.camera, component.scene);
+            component.scene.add(component.headPhoneWithStand);
         });
 
-        modelName = `commodore_64__computer_full_pack.glb`;
-        url = `${baseUrl}/${modelName}`;
-        gltfLoader.load(url, async (gltf) => {
+        gltfLoader.load(GLTF_MODELS.commodore64ComputerFullPack, async (gltf) => {
             component.commodore64ComputerModel = gltf.scene;
-            component.commodore64ComputerModel.position.x = 4;
+            component.commodore64ComputerModel.position.x = 1;
             component.commodore64ComputerModel.position.y = -0.75;
-            component.commodore64ComputerModel.rotation.y -= (Math.PI / 8);
+            component.commodore64ComputerModel.position.z = 0.5;
 
             // wait until the model can be added to the scene without blocking due to shader compilation
             await component.renderer.compileAsync(component.commodore64ComputerModel, component.camera, component.scene);
             component.scene.add(component.commodore64ComputerModel);
         });
 
-        modelName = `game_boy_classic.glb`;
-        url = `${baseUrl}/${modelName}`;
-        gltfLoader.load(url, async (gltf) => {
+        gltfLoader.load(GLTF_MODELS.gameBoyClassic, async (gltf) => {
             component.gameboyClassicModel = gltf.scene;
-            component.gameboyClassicModel.scale.set(8, 8, 8);
+            component.gameboyClassicModel.scale.set(7, 7, 7);
             component.gameboyClassicModel.rotation.y -= (Math.PI / 4);
             component.gameboyClassicModel.rotation.z += (Math.PI / 2);
-            component.gameboyClassicModel.position.x = 0.25;
+            component.gameboyClassicModel.position.x = -5;
             component.gameboyClassicModel.position.y = -0.5;
-            component.gameboyClassicModel.position.z = 5;
+            component.gameboyClassicModel.position.z = 4;
 
             // wait until the model can be added to the scene without blocking due to shader compilation
             await component.renderer.compileAsync(component.gameboyClassicModel, component.camera, component.scene);
             component.scene.add(component.gameboyClassicModel);
         });
 
-        modelName = `childhood_books.glb`;
-        url = `${baseUrl}/${modelName}`;
-        gltfLoader.load(url, async (gltf) => {
+        gltfLoader.load(GLTF_MODELS.childhoodBooks, async (gltf) => {
             component.childhoodBooksModel = gltf.scene;
-            component.childhoodBooksModel.scale.set(9, 9, 9);
-            component.childhoodBooksModel.rotation.y -= Math.PI;
-            component.childhoodBooksModel.position.x = -6;
+            component.childhoodBooksModel.scale.set(8, 8, 8);
+            component.childhoodBooksModel.rotation.y -= 4 * Math.PI / 6;
+            component.childhoodBooksModel.position.x = 8;
             component.childhoodBooksModel.position.y = -0.65;
-            component.childhoodBooksModel.position.z = -4;
+            component.childhoodBooksModel.position.z = -2;
 
             // wait until the model can be added to the scene without blocking due to shader compilation
             await component.renderer.compileAsync(component.childhoodBooksModel, component.camera, component.scene);
             component.scene.add(component.childhoodBooksModel);
+        });
+
+        gltfLoader.load(GLTF_MODELS.clipboard, async (gltf) => {
+            component.clipboard = gltf.scene;
+            component.clipboard.scale.set(10, 10, 10);
+            component.clipboard.rotation.y -= Math.PI / 6;
+            component.clipboard.position.x = 8.2;
+            component.clipboard.position.y = -0.65;
+            component.clipboard.position.z = 3.5;
+
+            // wait until the model can be added to the scene without blocking due to shader compilation
+            await component.renderer.compileAsync(component.clipboard, component.camera, component.scene);
+            component.scene.add(component.clipboard);
         });
 
         // # Create a desk and add it to the scene
@@ -133,11 +143,11 @@ export class WorkstationComponent implements AfterViewInit {
 
         // # Creating light
         const color = 0xFFFFFF;
-        const intensity = 150;
+        const intensity = 250;
         const lightPos = 5;
 
         const light = new THREE.PointLight(color, intensity);
-        light.position.set(0, lightPos, 0);
+        light.position.set(0, lightPos, lightPos);
 
         // ## Add light to the scene
         this.scene.add(light);

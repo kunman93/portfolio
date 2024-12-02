@@ -1,13 +1,13 @@
 import { Shallow } from 'shallow-render';
 import { HomeComponent } from './home.component';
-import { FeatureModule } from '../feature.module';
 import { WorkstationComponent } from './workstation.component';
+import { HomeModule } from './home.module';
 
 describe("HomeComponent", () => {
     let shallow: Shallow<HomeComponent>;
 
     beforeEach(() => {
-        shallow = new Shallow(HomeComponent, FeatureModule);
+        shallow = new Shallow(HomeComponent, HomeModule);
     });
 
     it("creates a component", async () => {
