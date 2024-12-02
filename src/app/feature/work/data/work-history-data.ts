@@ -1,3 +1,4 @@
+import { INSTITUTIONS } from "assets/assets.constants";
 import { History } from "../models/history";
 
 export const workHistory: History[] = [
@@ -5,7 +6,7 @@ export const workHistory: History[] = [
         title: "Full-Stack Software Engineer",
         institution: "K&W Software AG",
         logo: {
-            srcImage: "k&w.png",
+            srcImage: INSTITUTIONS.kwsoft,
             alt: "K&W Logo"
         },
         timePeriod: {

@@ -49,7 +49,7 @@ describe('EmploymentReferenceCarouselComponent', () => {
                 expect(institutions[0].nativeElement.textContent).toBe('@K&W Software AG');
                 expect(institutions[1].nativeElement.textContent).toBe('@Keller AG');
                 expect(logos).toHaveFound(2);
-                expect(logos[0].nativeElement.src).toContain('k&w.png');
+                expect(logos[0].nativeElement.src).toContain('kwsoft.png');
                 expect(logos[0].nativeElement.alt).toContain('K&W Software AG Logo');
                 expect(logos[1].nativeElement.src).toContain('keller-ag.png');
                 expect(logos[1].nativeElement.alt).toContain('Keller AG Logo');

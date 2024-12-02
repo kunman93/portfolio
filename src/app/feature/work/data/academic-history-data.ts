@@ -1,3 +1,4 @@
+import { INSTITUTIONS } from "assets/assets.constants";
 import { History } from "../models/history";
 
 export const academicHistory: History[] = [
@@ -5,7 +6,7 @@ export const academicHistory: History[] = [
         title: "Bachelor of Science in Computer Science",
         institution: "ZHAW School of Engineering",
         logo: {
-            srcImage: "zhaw.png",
+            srcImage: INSTITUTIONS.zhaw,
             alt: "ZHAW Logo"
         },
         timePeriod: {
@@ -26,7 +27,7 @@ export const academicHistory: History[] = [
         title: "Bachelor of Science in Mechatronics",
         institution: "ZHAW School of Engineering",
         logo: {
-            srcImage: "zhaw.png",
+            srcImage: INSTITUTIONS.zhaw,
             alt: "ZHAW Logo"
         },
         timePeriod: {

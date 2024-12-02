@@ -2,7 +2,7 @@ import { Shallow } from 'shallow-render';
 import { ExperienceComponent } from './experience.component';
 import { History } from '../models/history';
 import { WorkModule } from '../work.module';
-import { assetsPath } from 'assets/assets-path-index';
+import { ASSET_PATHS } from 'assets/assets.constants';
 
 describe('ExperienceComponent', () => {
     let shallow: Shallow<ExperienceComponent>;
@@ -15,8 +15,8 @@ describe('ExperienceComponent', () => {
                 title: "Full-Stack Software Engineer",
                 institution: "K&W Software AG",
                 logo: {
-                    srcImage: "k&w.png",
-                    alt: "k&w.png alt",
+                    srcImage: "kwsoft.png",
+                    alt: "kwsoft.png alt",
                 },
                 timePeriod: {
                     dateFrom: new Date(2022, 10),
@@ -73,7 +73,6 @@ describe('ExperienceComponent', () => {
         describe('timeline', () => {
             it('displays the company logos', async () => {
                 // arrange
-                const baseUrl = assetsPath.institutions;
                 const { fixture, find } = await shallow.render({ bind: { history } });
 
                 // act
@@ -83,11 +82,11 @@ describe('ExperienceComponent', () => {
                 const companyIconsDesktop = find('#logoDesktop');
                 const companyIconsMobile = find('#logoMobile');
                 const expectedCompanyLogoSrcs = [
-                    `${baseUrl}/k&w.png`,
-                    `${baseUrl}/unicorn.png`
+                    'kwsoft.png',
+                    'unicorn.png'
                 ];
                 const expectedCompanyLogoAlts = [
-                    'k&w.png alt',
+                    'kwsoft.png alt',
                     'unicorn.png alt'
                 ];
                 expect(companyIconsDesktop).toHaveFound(2);

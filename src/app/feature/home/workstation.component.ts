@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, NgZone, ViewChild } from '@angular/core';
-import { assetsPath } from 'assets/assets-path-index';
+import { GLTF_MODELS } from 'assets/assets.constants';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -56,13 +56,9 @@ export class WorkstationComponent implements AfterViewInit {
         this.scene = new THREE.Scene();
 
         // # Load gltf models
-        const baseUrl = assetsPath.gltfModels;
-
-        let modelName = `headphone_with_stand.glb`;
         let component: WorkstationComponent = this;
         const gltfLoader = new GLTFLoader();
-        let url = `${baseUrl}/${modelName}`;
-        gltfLoader.load(url, async (gltf) => {
+        gltfLoader.load(GLTF_MODELS.headphoneWithStand, async (gltf) => {
             component.headPhoneWithStand = gltf.scene;
             component.headPhoneWithStand.scale.set(7, 7, 7);
             component.headPhoneWithStand.position.x = -6.5;
@@ -75,9 +71,7 @@ export class WorkstationComponent implements AfterViewInit {
             component.scene.add(component.headPhoneWithStand);
         });
 
-        modelName = `commodore_64__computer_full_pack.glb`;
-        url = `${baseUrl}/${modelName}`;
-        gltfLoader.load(url, async (gltf) => {
+        gltfLoader.load(GLTF_MODELS.commodore64ComputerFullPack, async (gltf) => {
             component.commodore64ComputerModel = gltf.scene;
             component.commodore64ComputerModel.position.x = 1;
             component.commodore64ComputerModel.position.y = -0.75;
@@ -88,9 +82,7 @@ export class WorkstationComponent implements AfterViewInit {
             component.scene.add(component.commodore64ComputerModel);
         });
 
-        modelName = `game_boy_classic.glb`;
-        url = `${baseUrl}/${modelName}`;
-        gltfLoader.load(url, async (gltf) => {
+        gltfLoader.load(GLTF_MODELS.gameBoyClassic, async (gltf) => {
             component.gameboyClassicModel = gltf.scene;
             component.gameboyClassicModel.scale.set(7, 7, 7);
             component.gameboyClassicModel.rotation.y -= (Math.PI / 4);
@@ -104,9 +96,7 @@ export class WorkstationComponent implements AfterViewInit {
             component.scene.add(component.gameboyClassicModel);
         });
 
-        modelName = `childhood_books.glb`;
-        url = `${baseUrl}/${modelName}`;
-        gltfLoader.load(url, async (gltf) => {
+        gltfLoader.load(GLTF_MODELS.childhoodBooks, async (gltf) => {
             component.childhoodBooksModel = gltf.scene;
             component.childhoodBooksModel.scale.set(8, 8, 8);
             component.childhoodBooksModel.rotation.y -= 4 * Math.PI / 6;
@@ -119,9 +109,7 @@ export class WorkstationComponent implements AfterViewInit {
             component.scene.add(component.childhoodBooksModel);
         });
 
-        modelName = `clipboard.glb`;
-        url = `${baseUrl}/${modelName}`;
-        gltfLoader.load(url, async (gltf) => {
+        gltfLoader.load(GLTF_MODELS.clipboard, async (gltf) => {
             component.clipboard = gltf.scene;
             component.clipboard.scale.set(10, 10, 10);
             component.clipboard.rotation.y -= Math.PI / 6;

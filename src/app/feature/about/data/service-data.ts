@@ -1,38 +1,34 @@
-import { assetsPath } from "assets/assets-path-index";
+import { SERVICES } from "assets/assets.constants";
 import { Service } from "../models/service";
 
 export const service: Service[] = [
     {
         title: 'Web Developer',
         icon: {
-            srcImage: 'web.png',
+            srcImage: SERVICES.web,
             alt: 'Web Icon'
         }
     },
     {
         title: "Frontend Developer",
         icon: {
-            srcImage: 'frontend.png',
+            srcImage: SERVICES.frontend,
             alt: 'Frontend Icon'
         }
     },
     {
         title: 'Backend Developer',
         icon: {
-            srcImage: 'backend.png',
+            srcImage: SERVICES.backend,
             alt: 'Backend Icon'
         }
     },
     {
         title: "DevOps Engineer",
         icon: {
-            srcImage: 'dev-ops.png',
+            srcImage: SERVICES.devOps,
             alt: 'DevOps Icon'
         }
 
     }
-].map(s => Object.assign(s, {
-    icon: {
-        srcImage: `${assetsPath.services}/${s.icon.srcImage}`
-    }
-}));
+];

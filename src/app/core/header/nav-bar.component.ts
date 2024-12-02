@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NOJI_LOGO } from 'assets/assets.constants';
 
 @Component({
     selector: 'app-nav-bar',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
     styleUrl: './nav-bar.component.scss'
 })
 export class NavBarComponent {
+    readonly NOJI_LOGO = NOJI_LOGO;
     isSelected = false;
 
     onDropdownMenuClick(): void {

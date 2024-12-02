@@ -1,13 +1,12 @@
-import { assetsPath } from "assets/assets-path-index";
 import { Project } from "../models/project";
+import { PROJECTS } from "assets/assets.constants";
 
-const assetsPathProject = assetsPath.projects; 
 export const projects: Project[] = [
     {
         githubUrl: "https://github.com/kunman93/soundboard",
         img: {
-            srcImage: `${assetsPathProject}/space-runner.png`,
-            srcGif: `${assetsPathProject}/space-runner.gif`,
+            srcImage: PROJECTS.spaceRunner.img,
+            srcGif: PROJECTS.spaceRunner.gif,
             alt: "Space Runner Image"
         },
         title: "Space Runner",
@@ -18,8 +17,8 @@ export const projects: Project[] = [
     {
         githubUrl: "https://github.com/kunman93/space-runner",
         img: {
-            srcImage: `${assetsPathProject}/soundboard.png`,
-            srcGif: `${assetsPathProject}/soundboard.gif`,
+            srcImage: PROJECTS.soundboard.img,
+            srcGif: PROJECTS.soundboard.gif,
             alt: "Soundboard Image"
         },
         title: "Soundboard",
