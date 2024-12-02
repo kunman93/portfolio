@@ -1,4 +1,4 @@
 export interface Task {
-    taskTitle: string
-    tasks: string[]
+    taskTitle: string;
+    tasks: string[];
 }
