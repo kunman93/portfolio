@@ -2,6 +2,7 @@ import { Shallow } from 'shallow-render';
 import { ContactComponent } from './contact.component';
 import { ContactModule } from '../contact.module';
 import { ContactEditorComponent } from './contact-editor.component';
+import { PlanetEarthComponent } from './planet-earth.component';
 
 describe('ContactComponent', () => {
     let shallow: Shallow<ContactComponent>;
@@ -19,6 +20,11 @@ describe('ContactComponent', () => {
         it('displays the contact editor component', async () => {
             const { findComponent } = await shallow.render(`<app-contact></app-contact>`);
             expect(findComponent(ContactEditorComponent)).toHaveFound(1);
+        });
+
+        it('displays the planet earth component', async () => {
+            const { findComponent } = await shallow.render(`<app-contact></app-contact>`);
+            expect(findComponent(PlanetEarthComponent)).toHaveFound(1);
         });
     });
 });
