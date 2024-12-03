@@ -9,6 +9,7 @@ import { Project } from '../models/project';
 export class ProjectCardComponent implements OnInit {
     @Input() project!: Project;
     imageSource?: string;
+    private toggle = true;
 
     ngOnInit(): void {
         if (!this.arePropertiesValid()) {
@@ -24,11 +25,21 @@ export class ProjectCardComponent implements OnInit {
             .every(prop => prop);
     }
 
+    onClick(): void {
+        this.imageSource = this.toggle
+            ? this.project.img?.srcGif
+            : this.project.img?.srcImage;
+
+        this.toggle = !this.toggle;
+    }
+
     onMouseOver(): void {
         this.imageSource = this.project.img?.srcGif;
+        this.toggle = false;
     }
 
     onMouseLeave(): void {
         this.imageSource = this.project.img?.srcImage;
+        this.toggle = true;
     }
 }
