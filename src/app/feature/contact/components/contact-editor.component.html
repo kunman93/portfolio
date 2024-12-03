@@ -39,8 +39,11 @@
 
             <div class="flex flex-row justify-end">
                 <button id="submitButton" type="submit" 
-                    class="mt-8 text-base font-bold text-white transition duration-150 ease-in-out rounded-lg ring-1 ring-black/5 px-5 py-5" 
-                    [ngClass]="getButtonColor(contactEditorForm.formGroup.valid)"
+                    class="mt-8 text-base font-bold text-white transition duration-150 ease-in-out bg-gradient-to-b rounded-lg ring-1 ring-black/5 px-5 py-5" 
+                    [ngClass]="{
+                            'hover:scale-110 from-emerald-800 to-emerald-900':contactEditorForm.formGroup.valid, 
+                            'opacity-80 from-stone-800 to-stone-900': contactEditorForm.formGroup.invalid
+                        }"
                     [disabled]="!contactEditorForm.formGroup.valid">Send message</button>
             </div>
         </form>

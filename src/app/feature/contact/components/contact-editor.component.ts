@@ -62,11 +62,4 @@ export class ContactEditorComponent implements OnInit {
         this.contactEditorForm.updateModel(this.sender);
         this.contactEditorForm.formGroup.reset();
     }
-
-    getButtonColor(isFormValid: boolean) {
-        const buttonStyleValid = { 'hover:scale-110 bg-gradient-to-b from-emerald-800 to-emerald-900': isFormValid };
-        const buttonStyleInvalid = { 'opacity-80 bg-gradient-to-b from-stone-800 to-stone-900': !isFormValid };
-
-        return isFormValid ? buttonStyleValid : buttonStyleInvalid;
-    }
 }
