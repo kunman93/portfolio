@@ -46,4 +46,12 @@
         @apply text-sm;
         @apply text-white;
     }
+
+    input {
+        @apply text-sm;
+        @apply ps-3;
+        @apply py-3;
+        @apply rounded-md;
+        @apply text-black;
+    }
 }

@@ -1,0 +1,46 @@
+<div class="bg-gradient-to-b from-red-500 to-red-700 px-10 py-14 rounded-lg ring-1 ring-black/5">
+    <p id="smallTitle" class="text-white">LET'S CHAT</p>
+
+    <h2 id="title" class="text-white">Contact Me.</h2>
+
+    <form [formGroup]="contactEditorForm.formGroup" (ngSubmit)="onSubmit()">
+        <div class="flex flex-col space-y-5 bg-gradient-to-b from-stone-800 to-stone-900 rounded-lg ring-1 ring-black/5 px-10 py-10">
+
+            <div class="flex flex-col space-y-1">
+                <label id="labelName" data-test="label-name" class="text-white font-bold" for="name">Name</label>
+                <input [ngClass]="{'ring ring-red-500': contactEditorForm.isControlInvalid(contactEditorForm.name)}" 
+                    id="name" type="text" placeholder="John Doe" formControlName="name"/>
+                    @if(contactEditorForm.isControlInvalid(contactEditorForm.name)) {
+                        <div class="ps-2 my-1 text-sm text-red-500" role="alert" *ngIf="contactEditorForm.name?.hasError('required')">Name is required.</div>
+                    }
+            </div>
+
+            <div class="flex flex-col space-y-1">
+                <label id="labelEmail" class="text-white font-bold" for="email">Email</label>
+                <input [ngClass]="{'ring ring-red-500': contactEditorForm.isControlInvalid(contactEditorForm.email)}" 
+                    id="email" type="text" placeholder="john.doe@example.org" formControlName="email"/>
+                @if(contactEditorForm.isControlInvalid(contactEditorForm.email)) {
+                    <div class="ps-2 my-1 text-sm text-red-500" role="alert" *ngIf="contactEditorForm.email?.hasError('required')">Email is required.</div>
+                    <div class="ps-2 my-1 text-sm text-red-500" role="alert" *ngIf="contactEditorForm.email?.hasError('email')">Please enter a valid email.</div>
+                }
+            </div>
+
+            <div class="flex flex-col space-y-1">
+                <label id="labelMessage" class="text-white font-bold" for="message">Message</label>
+                <textarea class="ps-3 py-3 rounded-md bg-stone-200 text-sm" 
+                    [ngClass]="{'ring ring-red-500': contactEditorForm.isControlInvalid(contactEditorForm.message)}" 
+                    id="message" type="text" rows="10" placeholder="What do you want to say?" formControlName="message"></textarea>
+                @if(contactEditorForm.isControlInvalid(contactEditorForm.message)) {
+                    <div class="ps-2 my-1 text-sm text-red-500" role="alert" *ngIf="contactEditorForm.message?.hasError('required')">Message is required.</div>
+                }
+            </div>
+        </div>
+
+        <div class="flex flex-row justify-end">
+            <button id="submitButton" type="submit" 
+                class="mt-8 text-base font-bold text-white transition duration-150 ease-in-out rounded-lg ring-1 ring-black/5 px-5 py-5" 
+                [ngClass]="getButtonColor(contactEditorForm.formGroup.valid)"
+                [disabled]="!contactEditorForm.formGroup.valid">Send message</button>
+        </div>
+    </form>
+</div>
