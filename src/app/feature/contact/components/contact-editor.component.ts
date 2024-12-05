@@ -53,7 +53,10 @@ class ContactEditorForm implements AbstractForm<Sender> {
 })
 export class ContactEditorComponent implements OnInit {
     @Input() sender: Sender = { name: '', email: '', message: '' };
+
     contactEditorForm = new ContactEditorForm();
+
+    isSending = false;
 
     constructor(private emailService: EmailService) {
     }
@@ -63,14 +66,14 @@ export class ContactEditorComponent implements OnInit {
     }
 
     onSubmit(): void {
+        this.isSending = true;
         this.contactEditorForm.updateModel(this.sender);
         this.emailService.sendEmail(this.sender)
             .then(() => {
-                    this.contactEditorForm.formGroup.reset();
-                },
-                (error) => {
-                    console.log('FAILED...', error);
-                }
-            );
+                this.contactEditorForm.formGroup.reset();
+                this.isSending = false;
+            }, (error) => {
+                console.log('FAILED...', error);
+            });
     }
 }

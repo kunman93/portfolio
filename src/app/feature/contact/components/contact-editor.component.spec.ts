@@ -3,12 +3,23 @@ import { ContactEditorComponent } from './contact-editor.component';
 import { ContactModule } from '../contact.module';
 import { Sender } from '../models/sender';
 import { EmailService } from '../services/email-service';
+import { fakeAsync, tick } from '@angular/core/testing';
 
 describe('ContactEditorComponent', () => {
     let shallow: Shallow<ContactEditorComponent>;
 
     beforeEach(() => {
-        shallow = new Shallow(ContactEditorComponent, ContactModule);
+        shallow = new Shallow(ContactEditorComponent, ContactModule)
+            .mock(EmailService, {
+                sendEmail: () => new Promise(resolve =>
+                    setTimeout(() =>
+                        resolve({
+                            status: 200,
+                            text: 'OK'
+                        }),
+                        3000
+                    ))
+            });
     });
 
     it('creates a component', async () => {
@@ -32,11 +43,7 @@ describe('ContactEditorComponent', () => {
         it('updates the model', async () => {
             // arrange
             const sender: Sender = { name: '', email: '', message: '' };
-            const { instance, fixture } = await shallow
-                .mock(EmailService, {
-                    sendEmail: () => Promise.resolve({ status: 200, text: 'OK' })
-                })
-                .render({ bind: { sender } });
+            const { instance, fixture } = await shallow.render({ bind: { sender } });
             await fixture.whenStable(); // Waits for all promises to resolve
 
             const updateModelSpy = spyOn(instance.contactEditorForm, 'updateModel').and.callThrough();
@@ -58,16 +65,11 @@ describe('ContactEditorComponent', () => {
             expect(sender).toEqual(expectedSender);
         });
 
-        it('sends an email and resets the form', async () => {
+        it('sends an email and resets the form', fakeAsync(async () => {
             // arrange
             const sender: Sender = { name: '', email: '', message: '' };
 
-            const { inject, instance, fixture } = await shallow
-                .mock(EmailService, {
-                    sendEmail: () => Promise.resolve({ status: 200, text: 'OK' })
-                })
-                .render({ bind: { sender } });
-            await fixture.whenStable(); // Waits for all promises to resolve
+            const { inject, instance } = await shallow.render({ bind: { sender } });
 
             const emailServiceMock = inject(EmailService);
 
@@ -75,12 +77,12 @@ describe('ContactEditorComponent', () => {
 
             // act
             instance.onSubmit();
-            await Promise.resolve();
+            tick(3000);
 
             // assert
             expect(emailServiceMock.sendEmail).toHaveBeenCalled();
             expect(resetSpy).toHaveBeenCalled();
-        });
+        }));
     });
 
     describe('template', () => {
@@ -201,6 +203,52 @@ describe('ContactEditorComponent', () => {
                     expect(submitButton.nativeElement.type).toBe('submit');
                     expect(submitButton.nativeElement.disabled).toBeFalse();
                 });
+
+                it('displays the spinner during sending after send message button is clicked', async () => {
+                    // arrange
+                    const { fixture, find } = await shallow.render(`<app-contact-editor></app-contact-editor>`);
+
+                    const inputFieldName = find('#name');
+                    const inputFieldEmail = find('#email');
+                    const textAreaMessage = find('#message');
+
+                    const submitButton = find('#submitButton');
+
+                    // -- enter some values so that the form is valid
+                    inputFieldName.nativeElement.value = 'John Doe';
+                    inputFieldEmail.nativeElement.value = 'john.doe@example.org';
+                    textAreaMessage.nativeElement.value = 'The message';
+
+                    inputFieldName.triggerEventHandler('input', { target: inputFieldName.nativeElement });
+                    inputFieldEmail.triggerEventHandler('input', { target: inputFieldEmail.nativeElement });
+                    textAreaMessage.triggerEventHandler('input', { target: textAreaMessage.nativeElement });
+
+                    // act, assert
+                    // -- when the form is valid, the button is enabled
+                    fixture.detectChanges();
+                    submitButton.nativeElement.click();
+                    fixture.detectChanges();
+
+                    // -- after clicking the button it is disabled, the loading spinner is displayed and the fields are read-only
+                    expect(inputFieldName.nativeElement.readOnly).toBeTrue();
+                    expect(inputFieldEmail.nativeElement.readOnly).toBeTrue();
+                    expect(textAreaMessage.nativeElement.readOnly).toBeTrue();
+
+                    expect(submitButton.nativeElement.disabled).toBeTrue();
+                    let loadingSpinner = find('#loadingSpinner');
+                    expect(loadingSpinner).toHaveFound(1)
+                    expect(submitButton.nativeElement.textContent).toBe('Send message');
+
+                    await fixture.whenStable(); // Waits for all promises to resolve
+
+                    // -- once the promise is resolved, the spinner is hidden and hte input fields are editable
+                    fixture.detectChanges();
+                    loadingSpinner = find('#loadingSpinner');
+                    expect(loadingSpinner).toHaveFound(0)
+                    expect(inputFieldName.nativeElement.readOnly).toBeFalse();
+                    expect(inputFieldEmail.nativeElement.readOnly).toBeFalse();
+                    expect(textAreaMessage.nativeElement.readOnly).toBeFalse();
+                });
             });
 
             describe('form validations', () => {
@@ -223,9 +271,6 @@ describe('ContactEditorComponent', () => {
                         const { find, instance } = await shallow.render(`<app-contact-editor></app-contact-editor>`);
                         const form = instance.contactEditorForm;
                         const inputField = find(params.inputFieldId);
-
-                        // act
-                        inputField.triggerEventHandler('click', inputField.nativeElement);
 
                         // assert
                         expect(inputField.nativeElement.textContent).toBe('');
