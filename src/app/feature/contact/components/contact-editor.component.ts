@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Sender } from '../models/sender';
 import { AbstractForm } from 'shared/models/abstract-form';
+import { EmailService } from '../services/email-service';
 
 class ContactEditorForm implements AbstractForm<Sender> {
     private form: FormGroup = new FormGroup({
@@ -51,8 +52,11 @@ class ContactEditorForm implements AbstractForm<Sender> {
     styleUrl: './contact-editor.component.scss'
 })
 export class ContactEditorComponent implements OnInit {
-    @Input() sender!: Sender;
+    @Input() sender: Sender = { name: '', email: '', message: '' };
     contactEditorForm = new ContactEditorForm();
+
+    constructor(private emailService: EmailService) {
+    }
 
     ngOnInit(): void {
         this.contactEditorForm.initForm(this.sender);
@@ -60,6 +64,13 @@ export class ContactEditorComponent implements OnInit {
 
     onSubmit(): void {
         this.contactEditorForm.updateModel(this.sender);
-        this.contactEditorForm.formGroup.reset();
+        this.emailService.sendEmail(this.sender)
+            .then(() => {
+                    this.contactEditorForm.formGroup.reset();
+                },
+                (error) => {
+                    console.log('FAILED...', error);
+                }
+            );
     }
 }

@@ -2,6 +2,7 @@ import { Shallow } from 'shallow-render';
 import { ContactEditorComponent } from './contact-editor.component';
 import { ContactModule } from '../contact.module';
 import { Sender } from '../models/sender';
+import { EmailService } from '../services/email-service';
 
 describe('ContactEditorComponent', () => {
     let shallow: Shallow<ContactEditorComponent>;
@@ -31,7 +32,12 @@ describe('ContactEditorComponent', () => {
         it('updates the model', async () => {
             // arrange
             const sender: Sender = { name: '', email: '', message: '' };
-            const { instance } = await shallow.render({ bind: { sender } });
+            const { instance, fixture } = await shallow
+                .mock(EmailService, {
+                    sendEmail: () => Promise.resolve({ status: 200, text: 'OK' })
+                })
+                .render({ bind: { sender } });
+            await fixture.whenStable(); // Waits for all promises to resolve
 
             const updateModelSpy = spyOn(instance.contactEditorForm, 'updateModel').and.callThrough();
 
@@ -52,15 +58,27 @@ describe('ContactEditorComponent', () => {
             expect(sender).toEqual(expectedSender);
         });
 
-        it('resets the form', async () => {
+        it('sends an email and resets the form', async () => {
+            // arrange
             const sender: Sender = { name: '', email: '', message: '' };
-            const { instance } = await shallow.render({ bind: { sender } });
+
+            const { inject, instance, fixture } = await shallow
+                .mock(EmailService, {
+                    sendEmail: () => Promise.resolve({ status: 200, text: 'OK' })
+                })
+                .render({ bind: { sender } });
+            await fixture.whenStable(); // Waits for all promises to resolve
+
+            const emailServiceMock = inject(EmailService);
+
             const resetSpy = spyOn(instance.contactEditorForm.formGroup, 'reset').and.callThrough();
 
             // act
             instance.onSubmit();
+            await Promise.resolve();
 
             // assert
+            expect(emailServiceMock.sendEmail).toHaveBeenCalled();
             expect(resetSpy).toHaveBeenCalled();
         });
     });
