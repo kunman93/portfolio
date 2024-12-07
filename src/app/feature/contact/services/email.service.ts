@@ -1,8 +1,8 @@
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 import { Sender } from "../models/sender";
-import { EMAILJS_CONFIG } from 'environments/environment';
 import { Injectable } from '@angular/core';
 import { EmailJsData } from '../models/email-js-data';
+import { EMAILJS_CONFIG } from 'src/app/configs/emailjs.config';
 
 @Injectable({ providedIn: 'root' })
 export class EmailService {

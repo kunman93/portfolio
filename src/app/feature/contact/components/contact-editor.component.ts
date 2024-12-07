@@ -2,7 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Sender } from '../models/sender';
 import { AbstractForm } from 'shared/models/abstract-form';
-import { EmailService } from '../services/email-service';
+import { ToastService } from 'src/app/core/notification/services/toast.service';
+import { ToastType } from 'src/app/core/notification/models/toast-type';
+import { EmailService } from '../services/email.service';
 
 class ContactEditorForm implements AbstractForm<Sender> {
     private form: FormGroup = new FormGroup({
@@ -58,7 +60,10 @@ export class ContactEditorComponent implements OnInit {
 
     isSending = false;
 
-    constructor(private emailService: EmailService) {
+    constructor(
+        private emailService: EmailService,
+        private toastService: ToastService
+    ) {
     }
 
     ngOnInit(): void {
@@ -72,8 +77,17 @@ export class ContactEditorComponent implements OnInit {
             .then(() => {
                 this.contactEditorForm.formGroup.reset();
                 this.isSending = false;
-            }, (error) => {
-                console.log('FAILED...', error);
-            });
+                this.toastService.add({
+                    type: ToastType.SUCCESS,
+                    message: "Your message has been sent."
+                });
+            },
+                () => {
+                    this.toastService.add({
+                        type: ToastType.ERROR,
+                        message: "Something went wrong, try again later."
+                    });
+                }
+            );
     }
 }

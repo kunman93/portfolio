@@ -24,7 +24,7 @@
                         <label id="labelEmail" class="text-white font-bold" for="email">Email</label>
                         <input [ngClass]="{
                                 'opacity-80': isSending, 
-                                'ring ring-red-500': contactEditorForm.isControlInvalid(contactEditorForm.name)
+                                'ring ring-red-500': contactEditorForm.isControlInvalid(contactEditorForm.email)
                             }" 
                             [readOnly]="isSending"
                             id="email" type="text" placeholder="john.doe@example.org" formControlName="email"/>

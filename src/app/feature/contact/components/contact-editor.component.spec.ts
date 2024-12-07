@@ -2,8 +2,10 @@ import { Shallow } from 'shallow-render';
 import { ContactEditorComponent } from './contact-editor.component';
 import { ContactModule } from '../contact.module';
 import { Sender } from '../models/sender';
-import { EmailService } from '../services/email-service';
 import { fakeAsync, tick } from '@angular/core/testing';
+import { ToastService } from 'src/app/core/notification/services/toast.service';
+import { ToastType } from 'src/app/core/notification/models/toast-type';
+import { EmailService } from '../services/email.service';
 
 describe('ContactEditorComponent', () => {
     let shallow: Shallow<ContactEditorComponent>;
@@ -19,6 +21,9 @@ describe('ContactEditorComponent', () => {
                         }),
                         3000
                     ))
+            })
+            .mock(ToastService, {
+                add: () => { return }
             });
     });
 
@@ -65,13 +70,14 @@ describe('ContactEditorComponent', () => {
             expect(sender).toEqual(expectedSender);
         });
 
-        it('sends an email and resets the form', fakeAsync(async () => {
+        it('sends an email, resets the form and prompts the toast service to add a success toast', fakeAsync(async () => {
             // arrange
             const sender: Sender = { name: '', email: '', message: '' };
 
             const { inject, instance } = await shallow.render({ bind: { sender } });
 
             const emailServiceMock = inject(EmailService);
+            const toastServiceMock = inject(ToastService);
 
             const resetSpy = spyOn(instance.contactEditorForm.formGroup, 'reset').and.callThrough();
 
@@ -82,6 +88,45 @@ describe('ContactEditorComponent', () => {
             // assert
             expect(emailServiceMock.sendEmail).toHaveBeenCalled();
             expect(resetSpy).toHaveBeenCalled();
+            expect(toastServiceMock.add).toHaveBeenCalledWith({
+                type: ToastType.SUCCESS,
+                message: "Your message has been sent."
+            });
+        }));
+
+        it('fails to send an email which prompts the toast service to add an error toast', fakeAsync(async () => {
+            // arrange
+            const sender: Sender = { name: '', email: '', message: '' };
+
+            const { inject, instance } = await shallow
+                .mock(EmailService, {
+                    sendEmail: () => new Promise((_resolve, reject) =>
+                        setTimeout(() =>
+                            reject({
+                                status: 500,
+                                text: 'NOK'
+                            }),
+                            3000
+                        ))
+                })
+                .render({ bind: { sender } });
+
+            const emailServiceMock = inject(EmailService);
+            const toastServiceMock = inject(ToastService);
+
+            const resetSpy = spyOn(instance.contactEditorForm.formGroup, 'reset');
+
+            // act
+            instance.onSubmit();
+            tick(3000);
+
+            // assert
+            expect(emailServiceMock.sendEmail).toHaveBeenCalled();
+            expect(resetSpy).not.toHaveBeenCalled();
+            expect(toastServiceMock.add).toHaveBeenCalledWith({
+                type: ToastType.ERROR,
+                message: "Something went wrong, try again later."
+            });
         }));
     });
 

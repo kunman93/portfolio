@@ -1,7 +1,7 @@
 import { Shallow } from "shallow-render";
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 import { ContactModule } from "../contact.module";
-import { EmailService } from "./email-service";
+import { EmailService } from "./email.service";
 import { Sender } from "../models/sender";
 
 describe('EmailService', () => {
