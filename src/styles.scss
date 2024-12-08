@@ -5,7 +5,7 @@
 
 @layer base {
     :root {
-        @apply bg-gradient-to-b from-stone-800 via-stone-900 via-75% xl:via-85% to-stone-950;
+        @apply bg-gradient-to-b from-stone-800 via-stone-900 via-75% to-black;
         font-family: "Liberation Mono", "Courier New";
     }
 

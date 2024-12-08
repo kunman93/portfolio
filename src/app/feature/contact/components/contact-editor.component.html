@@ -1,12 +1,12 @@
-<app-card-primary-wrapper>
-    <div class="px-10 py-14">
+<app-card-primary-wrapper class="opacity-90">
+    <div class="px-5 py-7 sm:px-10 sm:py-14">
         <p id="smallTitle" class="text-white">LET'S CHAT</p>
 
         <h2 id="title" class="text-white">Contact Me.</h2>
 
         <form [formGroup]="contactEditorForm.formGroup" (ngSubmit)="onSubmit()">
             <app-card-secondary-wrapper>
-                <div class="flex flex-col space-y-5 px-10 py-10">
+                <div class="flex flex-col space-y-5 p-5 sm:p-10">
                     <div class="flex flex-col space-y-1">
                         <label id="labelName" class="text-white font-bold" for="name">Name</label>
                         <input [ngClass]="{
@@ -51,7 +51,7 @@
             </app-card-secondary-wrapper>
             <div class="flex flex-row justify-end">
                 <button id="submitButton" type="submit" 
-                    class="flex flex-row justify-center items-center mt-8 text-base font-bold text-white transition duration-150 ease-in-out bg-gradient-to-b rounded-lg ring-1 ring-black/5 px-5 py-5" 
+                    class="flex flex-row justify-center items-center mt-8 text-sm sm:text-base font-bold text-white transition duration-150 ease-in-out bg-gradient-to-b rounded-lg ring-1 ring-black/5 px-5 py-5" 
                     [ngClass]="{
                             'scale-110 opacity-80 from-emerald-800 to-emerald-900': isSending, 
                             'hover:scale-110 from-emerald-800 to-emerald-900':contactEditorForm.formGroup.valid, 

@@ -39,7 +39,7 @@ export class PlanetEarthComponent implements AfterViewInit {
 
         // # Setting up the camera
         // ## Setting for the camera
-        const fov = 75; // field of view, 75 degree
+        const fov = 90; // field of view, 75 degree
         const aspect = 2;  // it is the display aspect of the canvas, the default canvas is 300x150 pixel, which makes the aspect 300/150 or 2.
         // near and far represent the space in front of the the camera that will be rendered. Anything before or after that range will be clipped (not drawn)
         const near = 1;
