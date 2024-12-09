@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, ElementRef, NgZone, ViewChild } from '@angular/core';
-import { GLTF_MODELS } from 'assets/assets.constants';
+import { ASSET_PATHS, GLTF_MODELS } from 'assets/assets.constants';
 import { ThreejsEngineComponent } from 'src/app/core/engine/threejs-engine.component';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
 @Component({
     selector: 'app-planet-earth',
@@ -53,7 +54,12 @@ export class PlanetEarthComponent extends ThreejsEngineComponent implements Afte
 
         // # Load gltf model
         let component: PlanetEarthComponent = this;
+
+        const dracoLoader = new DRACOLoader();
+        dracoLoader.setDecoderPath(ASSET_PATHS.gltfModels);
+
         const gltfLoader = new GLTFLoader();
+        gltfLoader.setDRACOLoader(dracoLoader);
         gltfLoader.load(GLTF_MODELS.planetEarth, async (gltf) => {
             component.planetEarthModel = gltf.scene;
 
