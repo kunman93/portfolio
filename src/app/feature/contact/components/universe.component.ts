@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, NgZone, ViewChild } from '@angular/core';
-import { ThreejsEngineComponent } from 'src/app/core/engine/threejs-engine.component';
+import { ThreejsBaseComponent } from 'src/app/shared/components/threejs-base.component';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
@@ -8,7 +8,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
     templateUrl: './universe.component.html',
     styleUrl: './universe.component.scss'
 })
-export class UniverseComponent extends ThreejsEngineComponent implements AfterViewInit {
+export class UniverseComponent extends ThreejsBaseComponent implements AfterViewInit {
     @ViewChild('canvasUniverse')
     private canvasRef!: ElementRef;
 

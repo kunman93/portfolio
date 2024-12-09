@@ -1,17 +1,17 @@
 import { AfterViewInit, Component, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { ASSET_PATHS, GLTF_MODELS } from 'assets/assets.constants';
-import { ThreejsEngineComponent } from 'src/app/core/engine/threejs-engine.component';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import { ThreejsBaseComponent } from 'src/app/shared/components/threejs-base.component';
 
 @Component({
     selector: 'app-workstation',
     templateUrl: './workstation.component.html',
     styleUrl: './workstation.component.scss'
 })
-export class WorkstationComponent extends ThreejsEngineComponent implements AfterViewInit {
+export class WorkstationComponent extends ThreejsBaseComponent implements AfterViewInit {
     @ViewChild('canvasWorkingStation')
     private canvasRef!: ElementRef;
 
