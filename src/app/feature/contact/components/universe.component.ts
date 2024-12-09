@@ -45,7 +45,7 @@ export class UniverseComponent extends ThreejsEngineComponent implements AfterVi
 
         // # Setting up the scene
         this.scene = new THREE.Scene();
-        this.scene.fog = new THREE.FogExp2(0x00061a, 0.0002);
+        this.scene.fog = new THREE.FogExp2(0x000000, 0.0002);
 
         // # Creating stars
         const vertices = [];
