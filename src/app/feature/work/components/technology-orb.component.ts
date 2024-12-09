@@ -154,41 +154,36 @@ export class TechnologyOrbComponent {
     }
 
     private animate(component: TechnologyOrbComponent): void {
-        const time = component.clock.getElapsedTime();
+        component.onWindowResize(component);
 
+        const time = component.clock.getElapsedTime();
         component.orbGroup.rotation.y += Math.sin(time + 0.768 * Math.PI) * 0.0003;
         component.orbGroup.position.x = Math.sin(2.5 * time) * 0.125;
         component.orbGroup.position.y = Math.sin(1.5 * time) * 0.25;
 
-        component.onWindowResize();
         component.controls.update();
-        component.render();
+        component.renderer.render(component.scene, component.camera);
     }
 
-    // the below code block was added to fix the low resolution or blocky and blurry problems
-    private onWindowResize(): void {
-        if (this.resizeRendererToDisplaySize()) {
-            const canvas = this.renderer.domElement;
-            this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
-            this.camera.updateProjectionMatrix();
+    private onWindowResize(component: TechnologyOrbComponent): void {
+        if (component.resizeRendererToDisplaySize(component)) {
+            const canvas = component.renderer.domElement;
+            component.camera.aspect = canvas.clientWidth / canvas.clientHeight;
+            component.camera.updateProjectionMatrix();
         }
     }
 
-    private resizeRendererToDisplaySize(): boolean {
-        const canvas = this.renderer.domElement;
+    private resizeRendererToDisplaySize(component: TechnologyOrbComponent): boolean {
+        const canvas = component.renderer.domElement;
         const pixelRatio = window.devicePixelRatio; // for handling HD-DPI
         const width = Math.floor(canvas.clientWidth * pixelRatio);
         const height = Math.floor(canvas.clientHeight * pixelRatio);
         const needResize = canvas.width !== width || canvas.height !== height;
 
         if (needResize) {
-            this.renderer.setSize(width, height, false); // Setting updateStyle to false prevents any style changes to the output canvas. 
+            component.renderer.setSize(width, height, false); // Setting updateStyle to false prevents any style changes to the output canvas. 
         }
 
         return needResize;
-    }
-
-    private render(): void {
-        this.renderer.render(this.scene, this.camera);
     }
 }
