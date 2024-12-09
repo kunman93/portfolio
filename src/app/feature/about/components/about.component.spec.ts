@@ -1,9 +1,9 @@
 import { Shallow } from 'shallow-render';
 import { AboutComponent } from './about.component';
-import { CardComponent } from './card.component';
+import { ServiceCardComponent } from './service-card.component';
 import { Service } from '../models/service';
 import { AboutModule } from '../about.module';
-import { ASSET_PATHS, SERVICES } from 'assets/assets.constants';
+import { SERVICES } from 'assets/assets.constants';
 
 describe('AboutComponent', () => {
     let shallow: Shallow<AboutComponent>;
@@ -40,10 +40,10 @@ describe('AboutComponent', () => {
             expect(overviewText.nativeElement.textContent.trim()).toBe(expectedOverviewText);
         });
 
-        it('displays four cards', async () => {
+        it('displays four service cards', async () => {
             // arrange
             const { findComponent } = await shallow.render(`<app-about></app-about>`);
-            const cards = findComponent(CardComponent);
+            const cards = findComponent(ServiceCardComponent);
 
             // assert
             const expectedService: Service[] = [

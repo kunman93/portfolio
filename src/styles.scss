@@ -4,7 +4,8 @@
 @tailwind utilities;
 
 @layer base {
-    html {
+    :root {
+        @apply bg-gradient-to-b from-stone-800 via-stone-900 via-75% to-black;
         font-family: "Liberation Mono", "Courier New";
     }
 
@@ -45,5 +46,13 @@
     p {
         @apply text-sm;
         @apply text-white;
+    }
+
+    input {
+        @apply text-sm;
+        @apply ps-3;
+        @apply py-3;
+        @apply rounded-md;
+        @apply text-black;
     }
 }

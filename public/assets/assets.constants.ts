@@ -12,6 +12,7 @@ export const GLTF_MODELS = {
     gameBoyClassic: `${ASSET_PATHS.gltfModels}/game_boy_classic.glb`,
     childhoodBooks: `${ASSET_PATHS.gltfModels}/childhood_books.glb`,
     clipboard: `${ASSET_PATHS.gltfModels}/clipboard.glb`,
+    planetEarth: `${ASSET_PATHS.gltfModels}/planet_earth.glb`,
 };
 
 export const INSTITUTIONS = {

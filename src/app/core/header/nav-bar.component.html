@@ -1,4 +1,4 @@
-<div class="fixed w-screen z-10 bg-gradient-to-b from-stone-800 to-stone-900 opacity-95">
+<div class="fixed w-screen z-20 bg-gradient-to-b from-stone-800 to-stone-900 opacity-95">
     <div class="flex flex-row justify-between sm:justify-around mx-5 sm:mx-20 md:mx-5">
         <div id="logoNameOccupationContainer" class="flex gap-3 items-center cursor-pointer" (click)="onLogoNameOccupationClick()">
             <img id="logo" class="w-12 h-12 md:w-14 md:h-14" src="{{ NOJI_LOGO }}" alt="Noji Enterprise Logo">
@@ -13,14 +13,14 @@
         </nav>
         <div id="dropdownMenu" class="sm:hidden flex items-center relative">
             @if(!isSelected) {
-                <i id="menuIcon" class="fa-solid fa-bars text-white hover:text-red-500 hover:scale-110 transition duration-150 ease-in-out text-2xl font-medium" (click)="onDropdownMenuClick()"></i>
+                <i id="menuIcon" class="fa-solid fa-bars text-white hover:text-red-500 hover:scale-110 transition duration-150 ease-in-out text-2xl font-medium cursor-pointer" (click)="onDropdownMenuClick()"></i>
             } @else {
-                <i id="closeIcon" class="fa-solid fa-xmark text-white hover:text-red-500 hover:scale-110 transition duration-150 ease-in-out text-2xl font-medium" (click)="onDropdownMenuClick()"></i>
-                <div class="absolute top-0 right-0 mt-10 rounded-md shadow-lg ring-1 ring-black/5" tabindex="-1">
+                <i id="closeIcon" class="fa-solid fa-xmark text-white hover:text-red-500 hover:scale-110 transition duration-150 ease-in-out text-2xl font-medium cursor-pointer" (click)="onDropdownMenuClick()"></i>
+                <div class="absolute top-0 right-0 mt-14 bg-gradient-to-b from-stone-800 to-stone-900 opacity-95 rounded-md shadow-lg ring-1 ring-black/5" tabindex="-1">
                     <div class="flex flex-col py-1 text-white font-medium" (click)="onDropdownMenuClick()">
-                        <a routerLink="/" fragment="about" class="px-4 py-2 hover:bg-red-500 hover:scale-110 transition duration-150 ease-in-out" tabindex="-1" id="aboutMenuItem">About</a>
-                        <a routerLink="/" fragment="work" class="px-4 py-2 hover:bg-red-500 hover:scale-110 transition duration-150 ease-in-out" tabindex="-1" id="workMenuItem">Work</a>
-                        <a routerLink="/" fragment="contact" class="px-4 py-2 hover:bg-red-500 hover:scale-110 transition duration-150 ease-in-out" tabindex="-1" id="contactMenuItem">Contact</a>
+                        <a routerLink="/" fragment="about" class="px-6 py-3 hover:bg-red-500 hover:scale-110 transition duration-150 ease-in-out" tabindex="-1" id="aboutMenuItem">About</a>
+                        <a routerLink="/" fragment="work" class="px-6 py-3 hover:bg-red-500 hover:scale-110 transition duration-150 ease-in-out" tabindex="-1" id="workMenuItem">Work</a>
+                        <a routerLink="/" fragment="contact" class="px-6 py-3 hover:bg-red-500 hover:scale-110 transition duration-150 ease-in-out" tabindex="-1" id="contactMenuItem">Contact</a>
                     </div>
                 </div>
             }

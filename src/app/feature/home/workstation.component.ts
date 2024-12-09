@@ -1,23 +1,19 @@
 import { AfterViewInit, Component, ElementRef, NgZone, ViewChild } from '@angular/core';
-import { GLTF_MODELS } from 'assets/assets.constants';
+import { ASSET_PATHS, GLTF_MODELS } from 'assets/assets.constants';
+import { ThreejsEngineComponent } from 'src/app/core/engine/threejs-engine.component';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
 @Component({
     selector: 'app-workstation',
     templateUrl: './workstation.component.html',
     styleUrl: './workstation.component.scss'
 })
-export class WorkstationComponent implements AfterViewInit {
+export class WorkstationComponent extends ThreejsEngineComponent implements AfterViewInit {
     @ViewChild('canvasWorkingStation')
     private canvasRef!: ElementRef;
-
-    // --- Helper properties ----
-    private renderer!: THREE.WebGLRenderer;
-    private camera!: THREE.PerspectiveCamera;
-    private scene!: THREE.Scene;
-    private controls!: OrbitControls;
 
     private headPhoneWithStand?: THREE.Group<THREE.Object3DEventMap>;
     private commodore64ComputerModel?: THREE.Group<THREE.Object3DEventMap>;
@@ -26,6 +22,7 @@ export class WorkstationComponent implements AfterViewInit {
     private clipboard?: THREE.Group<THREE.Object3DEventMap>;
 
     constructor(private zone: NgZone) {
+        super();
     }
 
     private get canvas(): HTMLCanvasElement {
@@ -36,7 +33,7 @@ export class WorkstationComponent implements AfterViewInit {
         this.zone.runOutsideAngular(() => this.createScene());
     }
 
-    private createScene(): void {
+    override createScene(): void {
         // # Initialising the canvas and the renderer
         this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas: this.canvas });
 
@@ -57,7 +54,12 @@ export class WorkstationComponent implements AfterViewInit {
 
         // # Load gltf models
         let component: WorkstationComponent = this;
+
+        const dracoLoader = new DRACOLoader();
+        dracoLoader.setDecoderPath(ASSET_PATHS.gltfModels);
+
         const gltfLoader = new GLTFLoader();
+        gltfLoader.setDRACOLoader(dracoLoader);
         gltfLoader.load(GLTF_MODELS.headphoneWithStand, async (gltf) => {
             component.headPhoneWithStand = gltf.scene;
             component.headPhoneWithStand.scale.set(7, 7, 7);
@@ -170,38 +172,5 @@ export class WorkstationComponent implements AfterViewInit {
         // # Set an animation loop on the renderer
         // ## The function will be called every available frame.
         this.renderer.setAnimationLoop(() => this.animate(component));
-    }
-
-    private animate(component: WorkstationComponent): void {
-        component.onWindowResize();
-        component.controls.update();
-        component.render();
-    }
-
-    // the below code block was added to fix the low resolution or blocky and blurry problems
-    private onWindowResize(): void {
-        if (this.resizeRendererToDisplaySize()) {
-            const canvas = this.renderer.domElement;
-            this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
-            this.camera.updateProjectionMatrix();
-        }
-    }
-
-    private resizeRendererToDisplaySize(): boolean {
-        const canvas = this.renderer.domElement;
-        const pixelRatio = window.devicePixelRatio; // for handling HD-DPI
-        const width = Math.floor(canvas.clientWidth * pixelRatio);
-        const height = Math.floor(canvas.clientHeight * pixelRatio);
-        const needResize = canvas.width !== width || canvas.height !== height;
-
-        if (needResize) {
-            this.renderer.setSize(width, height, false); // Setting updateStyle to false prevents any style changes to the output canvas. 
-        }
-
-        return needResize;
-    }
-
-    private render(): void {
-        this.renderer.render(this.scene, this.camera);
     }
 }

@@ -1,0 +1,64 @@
+<app-card-primary-wrapper class="opacity-90">
+    <div class="px-5 py-7 sm:px-10 sm:py-14">
+        <p id="smallTitle" class="text-white">LET'S CHAT</p>
+
+        <h2 id="title" class="text-white">Contact Me.</h2>
+
+        <form [formGroup]="contactEditorForm.formGroup" (ngSubmit)="onSubmit()">
+            <app-card-secondary-wrapper>
+                <div class="flex flex-col space-y-5 p-5 sm:p-10">
+                    <div class="flex flex-col space-y-1">
+                        <label id="labelName" class="text-white font-bold" for="name">Name</label>
+                        <input [ngClass]="{
+                                'opacity-80': isSending, 
+                                'ring ring-red-500': contactEditorForm.isControlInvalid(contactEditorForm.name)
+                            }" 
+                            [readOnly]="isSending"
+                            id="name" type="text" placeholder="John Doe" formControlName="name"/>
+                        @if(contactEditorForm.isControlInvalid(contactEditorForm.name)) {
+                            <div class="ps-2 py-1 my-1 text-sm text-red-500" role="alert" *ngIf="contactEditorForm.name?.hasError('required')">Name is required.</div>
+                        }
+                    </div>
+
+                    <div class="flex flex-col space-y-1">
+                        <label id="labelEmail" class="text-white font-bold" for="email">Email</label>
+                        <input [ngClass]="{
+                                'opacity-80': isSending, 
+                                'ring ring-red-500': contactEditorForm.isControlInvalid(contactEditorForm.email)
+                            }" 
+                            [readOnly]="isSending"
+                            id="email" type="text" placeholder="john.doe@example.org" formControlName="email"/>
+                        @if(contactEditorForm.isControlInvalid(contactEditorForm.email)) {
+                            <div class="ps-2 py-1 my-1 text-sm text-red-500" role="alert" *ngIf="contactEditorForm.email?.hasError('required')">Email is required.</div>
+                            <div class="ps-2 py-1 my-1 text-sm text-red-500" role="alert" *ngIf="contactEditorForm.email?.hasError('email')">Please enter a valid email.</div>
+                        }
+                    </div>
+
+                    <div class="flex flex-col space-y-1">
+                        <label id="labelMessage" class="text-white font-bold" for="message">Message</label>
+                        <textarea class="ps-3 py-3 rounded-md bg-stone-200 text-sm" 
+                            [ngClass]="{
+                                    'opacity-80': isSending, 
+                                    'ring ring-red-500': contactEditorForm.isControlInvalid(contactEditorForm.message)
+                                }" 
+                            [readOnly]="isSending"
+                            id="message" type="text" rows="10" placeholder="What do you want to say?" formControlName="message"></textarea>
+                        @if(contactEditorForm.isControlInvalid(contactEditorForm.message)) {
+                            <div class="ps-2 py-1 my-1 text-sm text-red-500" role="alert" *ngIf="contactEditorForm.message?.hasError('required')">Message is required.</div>
+                        }
+                    </div>
+                </div>
+            </app-card-secondary-wrapper>
+            <div class="flex flex-row justify-end">
+                <button id="submitButton" type="submit" 
+                    class="flex flex-row justify-center items-center mt-8 text-sm sm:text-base font-bold text-white transition duration-150 ease-in-out bg-gradient-to-b rounded-lg ring-1 ring-black/5 px-5 py-5" 
+                    [ngClass]="{
+                            'scale-110 opacity-80 from-emerald-800 to-emerald-900': isSending, 
+                            'hover:scale-110 from-emerald-800 to-emerald-900':contactEditorForm.formGroup.valid, 
+                            'opacity-80 from-stone-800 to-stone-900': contactEditorForm.formGroup.invalid
+                        }"
+                    [disabled]="!contactEditorForm.formGroup.valid || isSending"><i id="loadingSpinner" *ngIf="isSending" class="fa-solid fa-spinner fa-spin mr-2 text-2xl"></i>Send message</button>
+            </div>
+        </form>
+    </div>
+</app-card-primary-wrapper>

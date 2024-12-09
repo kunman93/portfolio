@@ -1,5 +1,8 @@
-<div class="flex flex-col bg-gradient-to-b from-stone-800 to-stone-900 space-y-20 md:space-y-36">
-  <app-nav-bar></app-nav-bar>
+<div class="relative flex flex-col space-y-20 md:space-y-48">
+  <app-nav-bar class="absolute"></app-nav-bar>
+  @for(toastData of toastDatas; track toastData) {
+    <app-toast class="absolute" [toastData]="toastData"></app-toast>
+  }
   <app-home></app-home>
   <app-about id="about"></app-about>
   <app-work id="work"></app-work>

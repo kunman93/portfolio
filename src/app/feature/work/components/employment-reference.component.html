@@ -1,11 +1,13 @@
 <app-section-wrapper>
     <div class="flex flex-row justify-center">
-        <div class="w-full lg:w-8/12 bg-gradient-to-b from-red-500 to-red-700 px-10 py-14 rounded-lg ring-1 ring-black/5">
-            <p id="smallTitle" class="text-white">WHAT OTHERS SAY</p>
+        <app-card-primary-wrapper class="w-full lg:w-8/12">
+            <div class="px-5 py-7 sm:px-10 sm:py-14">
+                <p id="smallTitle" class="text-white">WHAT OTHERS SAY</p>
 
-            <h2 id="title" class="text-white">Employment References.</h2>
+                <h2 id="title" class="text-white">Employment References.</h2>
 
-            <app-employment-reference-carousel></app-employment-reference-carousel>
-        </div>
+                <app-employment-reference-carousel></app-employment-reference-carousel>
+            </div>
+        </app-card-primary-wrapper>
     </div>
 </app-section-wrapper>

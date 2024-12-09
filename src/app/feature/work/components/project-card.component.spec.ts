@@ -32,14 +32,14 @@ describe('ProjectCardComponent', () => {
                 title: "title",
                 description: "description",
                 technologies: ["Angular", "Tailwind"]
-            },            
+            },
             {
                 githubUrl: undefined,
                 img: { srcImage: "project-img.png", srcGif: "project-img.png", alt: "alt" },
                 title: "title",
                 description: "description",
                 technologies: ["Angular", "Tailwind"]
-            },            
+            },
             {
                 img: undefined,
                 title: "title",
@@ -104,6 +104,26 @@ describe('ProjectCardComponent', () => {
     });
 
     describe('image', () => {
+        it('toggles gif and image on click', async () => {
+            // arrange
+            const { find, fixture } = await shallow.render({ bind: { project } });
+            const img = find('#image');
+
+            // act
+            img.triggerEventHandler("click", {});
+            fixture.detectChanges();
+
+            // assert
+            expect(img.nativeElement.src).toContain(project.img?.srcGif);
+
+            // act
+            img.triggerEventHandler("click", {});
+            fixture.detectChanges();
+
+            // assert
+            expect(img.nativeElement.src).toContain(project.img?.srcImage);
+        });
+
         it('displays gif on mouse over', async () => {
             // arrange
             const { find, fixture } = await shallow.render({ bind: { project } });
@@ -121,7 +141,7 @@ describe('ProjectCardComponent', () => {
             // arrange
             const { find, fixture } = await shallow.render({ bind: { project } });
             const img = find('#image');
-            
+
             // act
             img.triggerEventHandler("mouseleave", {});
             fixture.detectChanges();
@@ -135,7 +155,7 @@ describe('ProjectCardComponent', () => {
     it('open a new tab with the repo, when the github icon is clicked', async () => {
         const { find } = await shallow.render({ bind: { project } });
         const gitHubIconLink = find('a');
-    
+
         expect(gitHubIconLink.nativeElement.target).toContain("_blank");
         expect(gitHubIconLink.nativeElement.href).toContain(project.githubUrl);
     });
