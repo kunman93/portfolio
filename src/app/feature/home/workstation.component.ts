@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { GLTF_MODELS } from 'assets/assets.constants';
+import { ThreejsEngineComponent } from 'src/app/core/engine/threejs-engine.component';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -9,15 +10,9 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
     templateUrl: './workstation.component.html',
     styleUrl: './workstation.component.scss'
 })
-export class WorkstationComponent implements AfterViewInit {
+export class WorkstationComponent extends ThreejsEngineComponent implements AfterViewInit {
     @ViewChild('canvasWorkingStation')
     private canvasRef!: ElementRef;
-
-    // --- Helper properties ----
-    private renderer!: THREE.WebGLRenderer;
-    private camera!: THREE.PerspectiveCamera;
-    private scene!: THREE.Scene;
-    private controls!: OrbitControls;
 
     private headPhoneWithStand?: THREE.Group<THREE.Object3DEventMap>;
     private commodore64ComputerModel?: THREE.Group<THREE.Object3DEventMap>;
@@ -26,6 +21,7 @@ export class WorkstationComponent implements AfterViewInit {
     private clipboard?: THREE.Group<THREE.Object3DEventMap>;
 
     constructor(private zone: NgZone) {
+        super();
     }
 
     private get canvas(): HTMLCanvasElement {
@@ -36,7 +32,7 @@ export class WorkstationComponent implements AfterViewInit {
         this.zone.runOutsideAngular(() => this.createScene());
     }
 
-    private createScene(): void {
+    override createScene(): void {
         // # Initialising the canvas and the renderer
         this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas: this.canvas });
 
@@ -170,33 +166,5 @@ export class WorkstationComponent implements AfterViewInit {
         // # Set an animation loop on the renderer
         // ## The function will be called every available frame.
         this.renderer.setAnimationLoop(() => this.animate(component));
-    }
-
-    private animate(component: WorkstationComponent) {
-        component.onWindowResize(component);
-        component.controls.update();
-        component.renderer.render(component.scene, component.camera);
-    }
-
-    private onWindowResize(component: WorkstationComponent): void {
-        if (component.resizeRendererToDisplaySize(component)) {
-            const canvas = component.renderer.domElement;
-            component.camera.aspect = canvas.clientWidth / canvas.clientHeight;
-            component.camera.updateProjectionMatrix();
-        }
-    }
-
-    private resizeRendererToDisplaySize(component: WorkstationComponent): boolean {
-        const canvas = component.renderer.domElement;
-        const pixelRatio = window.devicePixelRatio; // for handling HD-DPI
-        const width = Math.floor(canvas.clientWidth * pixelRatio);
-        const height = Math.floor(canvas.clientHeight * pixelRatio);
-        const needResize = canvas.width !== width || canvas.height !== height;
-
-        if (needResize) {
-            component.renderer.setSize(width, height, false); // Setting updateStyle to false prevents any style changes to the output canvas. 
-        }
-
-        return needResize;
     }
 }

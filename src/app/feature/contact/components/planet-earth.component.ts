@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { GLTF_MODELS } from 'assets/assets.constants';
+import { ThreejsEngineComponent } from 'src/app/core/engine/threejs-engine.component';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -9,20 +10,15 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
     templateUrl: './planet-earth.component.html',
     styleUrl: './planet-earth.component.scss'
 })
-export class PlanetEarthComponent implements AfterViewInit {
+export class PlanetEarthComponent extends ThreejsEngineComponent implements AfterViewInit {
     @ViewChild('canvasPlanetEarth')
     private canvasRef!: ElementRef;
-
-    // --- Helper properties ----
-    private renderer!: THREE.WebGLRenderer;
-    private camera!: THREE.PerspectiveCamera;
-    private scene!: THREE.Scene;
-    private controls!: OrbitControls;
 
     private clock!: THREE.Clock;
     private planetEarthModel!: THREE.Group<THREE.Object3DEventMap>;
 
     constructor(private zone: NgZone) {
+        super();
     }
 
     private get canvas(): HTMLCanvasElement {
@@ -33,7 +29,7 @@ export class PlanetEarthComponent implements AfterViewInit {
         this.zone.runOutsideAngular(() => this.createScene());
     }
 
-    private createScene(): void {
+    override createScene(): void {
         // # Initialising the canvas and the renderer
         this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas: this.canvas });
 
@@ -94,41 +90,12 @@ export class PlanetEarthComponent implements AfterViewInit {
 
         // # Set an animation loop on the renderer
         // ## The function will be called every available frame.
-        this.renderer.setAnimationLoop(() => this.animate(component));
-    }
-
-    private animate(component: PlanetEarthComponent): void {
-        component.onWindowResize(component);
-
-        const time = component.clock.getElapsedTime();
-        if (this.planetEarthModel) {
-            component.planetEarthModel.rotation.y += Math.PI / 360;
-            component.planetEarthModel.position.y = Math.sin(2.5 * time) * 0.125;
-        }
-
-        component.controls.update();
-        component.renderer.render(component.scene, component.camera);
-    }
-
-    private onWindowResize(component: PlanetEarthComponent): void {
-        if (component.resizeRendererToDisplaySize(component)) {
-            const canvas = component.renderer.domElement;
-            component.camera.aspect = canvas.clientWidth / canvas.clientHeight;
-            component.camera.updateProjectionMatrix();
-        }
-    }
-
-    private resizeRendererToDisplaySize(component: PlanetEarthComponent): boolean {
-        const canvas = component.renderer.domElement;
-        const pixelRatio = window.devicePixelRatio; // for handling HD-DPI
-        const width = Math.floor(canvas.clientWidth * pixelRatio);
-        const height = Math.floor(canvas.clientHeight * pixelRatio);
-        const needResize = canvas.width !== width || canvas.height !== height;
-
-        if (needResize) {
-            component.renderer.setSize(width, height, false); // Setting updateStyle to false prevents any style changes to the output canvas. 
-        }
-
-        return needResize;
+        this.renderer.setAnimationLoop(() => this.animate(component, () => {
+            const time = component.clock.getElapsedTime();
+            if (this.planetEarthModel) {
+                component.planetEarthModel.rotation.y += Math.PI / 360;
+                component.planetEarthModel.position.y = Math.sin(2.5 * time) * 0.125;
+            }
+        }));
     }
 }

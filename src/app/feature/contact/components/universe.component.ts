@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, NgZone, ViewChild } from '@angular/core';
+import { ThreejsEngineComponent } from 'src/app/core/engine/threejs-engine.component';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
@@ -7,20 +8,15 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
     templateUrl: './universe.component.html',
     styleUrl: './universe.component.scss'
 })
-export class UniverseComponent implements AfterViewInit {
+export class UniverseComponent extends ThreejsEngineComponent implements AfterViewInit {
     @ViewChild('canvasUniverse')
     private canvasRef!: ElementRef;
 
     private readonly NUMBER_OF_STARS = 2500;
     private readonly COLOR = '#ffff00';
 
-    // --- Helper properties ----
-    private renderer!: THREE.WebGLRenderer;
-    private camera!: THREE.PerspectiveCamera;
-    private scene!: THREE.Scene;
-    private controls!: OrbitControls;
-
     constructor(private zone: NgZone) {
+        super();
     }
 
     private get canvas(): HTMLCanvasElement {
@@ -31,7 +27,7 @@ export class UniverseComponent implements AfterViewInit {
         this.zone.runOutsideAngular(() => this.createScene());
     }
 
-    private createScene(): void {
+    override createScene(): void {
         // # Initialising the canvas and the renderer
         this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas: this.canvas });
 
@@ -87,33 +83,5 @@ export class UniverseComponent implements AfterViewInit {
         // # Set an animation loop on the renderer
         // ## The function will be called every available frame.
         this.renderer.setAnimationLoop(() => this.animate(this));
-    }
-
-    private animate(component: UniverseComponent) {
-        component.onWindowResize(component);
-        component.controls.update();
-        component.renderer.render(component.scene, component.camera);
-    }
-
-    private onWindowResize(component: UniverseComponent): void {
-        if (component.resizeRendererToDisplaySize(component)) {
-            const canvas = component.renderer.domElement;
-            component.camera.aspect = canvas.clientWidth / canvas.clientHeight;
-            component.camera.updateProjectionMatrix();
-        }
-    }
-
-    private resizeRendererToDisplaySize(component: UniverseComponent): boolean {
-        const canvas = component.renderer.domElement;
-        const pixelRatio = window.devicePixelRatio; // for handling HD-DPI
-        const width = Math.floor(canvas.clientWidth * pixelRatio);
-        const height = Math.floor(canvas.clientHeight * pixelRatio);
-        const needResize = canvas.width !== width || canvas.height !== height;
-
-        if (needResize) {
-            component.renderer.setSize(width, height, false); // Setting updateStyle to false prevents any style changes to the output canvas. 
-        }
-
-        return needResize;
     }
 }

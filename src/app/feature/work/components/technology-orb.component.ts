@@ -1,4 +1,5 @@
-import { Component, ElementRef, Input, NgZone, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, NgZone, ViewChild } from '@angular/core';
+import { ThreejsEngineComponent } from 'src/app/core/engine/threejs-engine.component';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { DecalGeometry } from 'three/examples/jsm/geometries/DecalGeometry.js';
@@ -8,22 +9,17 @@ import { DecalGeometry } from 'three/examples/jsm/geometries/DecalGeometry.js';
     templateUrl: './technology-orb.component.html',
     styleUrl: './technology-orb.component.scss'
 })
-export class TechnologyOrbComponent {
+export class TechnologyOrbComponent extends ThreejsEngineComponent implements AfterViewInit {
     @Input() technology!: string;
 
     @ViewChild('canvasTechnologyOrb')
     private canvasRef!: ElementRef;
 
-    // --- Helper properties ----
-    private renderer!: THREE.WebGLRenderer;
-    private camera!: THREE.PerspectiveCamera;
-    private scene!: THREE.Scene;
-    private controls!: OrbitControls;
-
     private clock!: THREE.Clock;
     private orbGroup!: THREE.Group;
 
     constructor(private zone: NgZone) {
+        super();
     }
 
     private get canvas(): HTMLCanvasElement {
@@ -34,7 +30,7 @@ export class TechnologyOrbComponent {
         this.zone.runOutsideAngular(() => this.createScene());
     }
 
-    private createScene(): void {
+    override createScene(): void {
         // # Initialising the canvas and the renderer
         this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas: this.canvas });
 
@@ -150,40 +146,11 @@ export class TechnologyOrbComponent {
 
         // # Set an animation loop on the renderer
         // ## The function will be called every available frame.
-        this.renderer.setAnimationLoop(() => this.animate(this));
-    }
-
-    private animate(component: TechnologyOrbComponent): void {
-        component.onWindowResize(component);
-
-        const time = component.clock.getElapsedTime();
-        component.orbGroup.rotation.y += Math.sin(time + 0.768 * Math.PI) * 0.0003;
-        component.orbGroup.position.x = Math.sin(2.5 * time) * 0.125;
-        component.orbGroup.position.y = Math.sin(1.5 * time) * 0.25;
-
-        component.controls.update();
-        component.renderer.render(component.scene, component.camera);
-    }
-
-    private onWindowResize(component: TechnologyOrbComponent): void {
-        if (component.resizeRendererToDisplaySize(component)) {
-            const canvas = component.renderer.domElement;
-            component.camera.aspect = canvas.clientWidth / canvas.clientHeight;
-            component.camera.updateProjectionMatrix();
-        }
-    }
-
-    private resizeRendererToDisplaySize(component: TechnologyOrbComponent): boolean {
-        const canvas = component.renderer.domElement;
-        const pixelRatio = window.devicePixelRatio; // for handling HD-DPI
-        const width = Math.floor(canvas.clientWidth * pixelRatio);
-        const height = Math.floor(canvas.clientHeight * pixelRatio);
-        const needResize = canvas.width !== width || canvas.height !== height;
-
-        if (needResize) {
-            component.renderer.setSize(width, height, false); // Setting updateStyle to false prevents any style changes to the output canvas. 
-        }
-
-        return needResize;
+        this.renderer.setAnimationLoop(() => this.animate(this, () => {
+            const time = this.clock.getElapsedTime();
+            this.orbGroup.rotation.y += Math.sin(time + 0.768 * Math.PI) * 0.0003;
+            this.orbGroup.position.x = Math.sin(2.5 * time) * 0.125;
+            this.orbGroup.position.y = Math.sin(1.5 * time) * 0.25;
+        }));
     }
 }
