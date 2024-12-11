@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ToastData } from '../models/toast-data';
 import { TOASTER_CONFIG } from 'src/app/configs/toaster.config';
-import { Timer } from 'src/app/shared/utils/timer';
+import { Timer } from 'src/app/core/utils/timer';
 
 @Injectable({
     providedIn: 'root',
