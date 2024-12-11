@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, NgZone } from '@angular/core';
-import { gsap } from 'gsap'
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { GsapAnimationService } from 'src/app/core/services/gsap-animation.service';
 
 @Component({
     selector: 'app-home',
@@ -8,14 +7,15 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
     styleUrl: './home.component.scss'
 })
 export class HomeComponent implements AfterViewInit {
-    constructor(private zone: NgZone) { }
+
+    constructor(
+        private zone: NgZone,
+        private gsapAnimationService: GsapAnimationService
+    ) { }
 
     ngAfterViewInit(): void {
         this.zone.runOutsideAngular(() => {
-            gsap.registerPlugin(ScrollTrigger);
-
-            // -- Home Section --
-            gsap.from("app-nav-bar, #homeTitle, #homeDescription, app-workstation", {
+            this.gsapAnimationService.gsap.from("app-nav-bar, #homeTitle, #homeDescription, app-workstation", {
                 opacity: 0,
                 duration: 2,
                 ease: "power2.inOut",
@@ -25,5 +25,4 @@ export class HomeComponent implements AfterViewInit {
             });
         })
     }
-
 }

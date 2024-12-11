@@ -1,8 +1,7 @@
 import { AfterViewInit, Component, NgZone } from '@angular/core';
 import { Service } from '../models/service';
 import { service } from '../data/service-data';
-import { gsap } from 'gsap'
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { GsapAnimationService } from 'src/app/core/services/gsap-animation.service';
 
 @Component({
     selector: 'app-about',
@@ -12,19 +11,19 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 export class AboutComponent implements AfterViewInit {
     readonly services: Service[] = service;
 
-    constructor(private zone: NgZone) { }
+    constructor(
+        private zone: NgZone,
+        private gsapAnimationService: GsapAnimationService
+    ) { }
 
     ngAfterViewInit(): void {
         this.zone.runOutsideAngular(() => {
-            gsap.registerPlugin(ScrollTrigger);
-
-            // -- About Section --
-            this.animateSmallTitleAndTitle(
+            this.gsapAnimationService.animateSmallTitleAndTitle(
                 "#overviewSmallTitle, #overviewTitle",
                 "app-about #overviewText"
             );
 
-            gsap.from("#overviewText", {
+            this.gsapAnimationService.gsap.from("#overviewText", {
                 opacity: 0,
                 ease: "power2.inOut",
                 scrollTrigger: {
@@ -34,7 +33,7 @@ export class AboutComponent implements AfterViewInit {
                 }
             });
 
-            gsap.from("app-service-card", {
+            this.gsapAnimationService.gsap.from("app-service-card", {
                 opacity: 0,
                 x: -100,
                 ease: "power2.inOut",
@@ -47,22 +46,6 @@ export class AboutComponent implements AfterViewInit {
                     end: "top 100%"
                 }
             });
-        });
-    }
-
-    private animateSmallTitleAndTitle(
-        target: string, 
-        trigger: string
-    ): void {
-        gsap.from(target, {
-            opacity: 0,
-            y: -100,
-            ease: "power2.inOut",
-            scrollTrigger: {
-                trigger: trigger,
-                end: "top 100%",
-                scrub: 4
-            }
         });
     }
 }

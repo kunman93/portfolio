@@ -2,12 +2,18 @@ import { Shallow } from 'shallow-render';
 import { HomeComponent } from './home.component';
 import { WorkstationComponent } from './workstation.component';
 import { HomeModule } from './home.module';
+import { GsapAnimationService } from 'src/app/core/services/gsap-animation.service';
 
 describe("HomeComponent", () => {
     let shallow: Shallow<HomeComponent>;
 
     beforeEach(() => {
-        shallow = new Shallow(HomeComponent, HomeModule);
+        shallow = new Shallow(HomeComponent, HomeModule)
+            .mock(GsapAnimationService, {
+                gsap: {
+                    from: () => { }
+                }
+            });
     });
 
     it("creates a component", async () => {
@@ -17,7 +23,8 @@ describe("HomeComponent", () => {
 
     describe("template", () => {
         it("displays title and description", async () => {
-            const { find } = await shallow.render(`<app-home></app-home>`);
+            const { find, instance } = await shallow.render(`<app-home></app-home>`);
+            spyOn(instance, 'ngAfterViewInit');
             const title = find("#homeTitle");
             const description = find("#homeDescription");
 

@@ -3,12 +3,17 @@ import { WorkComponent } from './work.component';
 import { WorkModule } from '../work.module';
 import { ProjectComponent } from './project.component';
 import { EmploymentReferenceComponent } from './employment-reference.component';
+import { GsapAnimationService } from 'src/app/core/services/gsap-animation.service';
 
 describe('WorkComponent', () => {
     let shallow: Shallow<WorkComponent>;
 
     beforeEach(() => {
-        shallow = new Shallow(WorkComponent, WorkModule);
+        shallow = new Shallow(WorkComponent, WorkModule)
+            .mock(GsapAnimationService, {
+                animateSmallTitleAndTitle: () => { },
+                animateTimelineIcon: () => {}
+            });
     });
 
     it('creates a component', async () => {
