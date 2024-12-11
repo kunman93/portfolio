@@ -1,12 +1,12 @@
 <app-section-wrapper>
-    <p id="smallTitle">THE TECHNOLOGIES I HAVE WORKED WITH SO FAR</p>
+    <p id="skillsSmallTitle">THE TECHNOLOGIES I HAVE WORKED WITH SO FAR</p>
 
-    <h2 id="title">Skills.</h2>
+    <h2 id="skillsTitle">Skills.</h2>
 
-    <div class="flex flex-row justify-center">
+    <div id="technologyOrbsContainer" class="flex flex-row justify-center">
         <div class="flex flex-row flex-wrap justify-center gap-x-10 gap-y-10 w-5/6 sm:w-3/4">
-            @for(technology of technologies; track technology) {
-                <app-technology-orb [technology]="technology" class="w-28 h-28 lg:w-32 lg:h-32"></app-technology-orb>
+            @for(technology of technologies; track technology; let idx = $index) {
+                <app-technology-orb id="{{ 'technologyOrb' + idx }}" [technology]="technology" class="w-28 h-28 lg:w-32 lg:h-32"></app-technology-orb>
             }
         </div>
     </div>

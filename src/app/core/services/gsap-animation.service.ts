@@ -32,6 +32,7 @@ export class GsapAnimationService {
     ): void {
         gsap.from(target, {
             opacity: 0,
+            scale: 0.5,
             ease: "power2.inOut",
             scrollTrigger: {
                 trigger,

@@ -19,14 +19,14 @@ describe('SkillsComponent', () => {
     describe('template', () => {
         it('displays the small title', async () => {
             const { find } = await shallow.render(`<app-skills></app-skills>`);
-            const smallTitle = find('#smallTitle');
+            const smallTitle = find('#skillsSmallTitle');
 
             expect(smallTitle.nativeElement.textContent).toBe('THE TECHNOLOGIES I HAVE WORKED WITH SO FAR');
         });
 
         it('displays the overview title', async () => {
             const { find } = await shallow.render(`<app-skills></app-skills>`);
-            const title = find('#title');
+            const title = find('#skillsTitle');
 
             expect(title.nativeElement.textContent).toBe('Skills.');
         });

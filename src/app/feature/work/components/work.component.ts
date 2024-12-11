@@ -3,6 +3,7 @@ import { academicHistory } from '../data/academic-history-data';
 import { workHistory } from '../data/work-history-data';
 import { History } from "../models/history";
 import { GsapAnimationService } from 'src/app/core/services/gsap-animation.service';
+import { technologies } from '../data/technologies';
 
 @Component({
     selector: 'app-work',
@@ -12,6 +13,7 @@ import { GsapAnimationService } from 'src/app/core/services/gsap-animation.servi
 export class WorkComponent implements AfterViewInit {
     readonly workHistory = workHistory;
     readonly academicHistory = academicHistory;
+    private readonly technologies = technologies;
 
     constructor(
         private zone: NgZone,
@@ -22,6 +24,7 @@ export class WorkComponent implements AfterViewInit {
         this.zone.runOutsideAngular(() => {
             this.animateExperienceSection();
             this.animateAcademicHistorySection();
+            this.animateSkillsSection();
         });
     }
 
@@ -30,6 +33,7 @@ export class WorkComponent implements AfterViewInit {
 
         this.gsapAnimationService.gsap.from("app-employment-reference", {
             opacity: 0,
+            scale: 0.8,
             ease: "power2.inOut",
             scrollTrigger: {
                 trigger: "app-employment-reference",
@@ -86,6 +90,26 @@ export class WorkComponent implements AfterViewInit {
                 `${sectionId} #workingPeriodDesktop${idx}`,
                 idx % 2 === 0 ? 100 : -100
             );
+        });
+    }
+
+    private animateSkillsSection(): void {
+        this.gsapAnimationService.animateSmallTitleAndTitle(
+            `app-skills #skillsSmallTitle, app-skills #skillsTitle`,
+            `app-skills #technologyOrbsContainer`
+        );
+
+        this.technologies.forEach((_value, idx) => {
+            this.gsapAnimationService.gsap.from(`app-skills #technologyOrb${idx}`, {
+                opacity: 0,
+                scale: 0.5,
+                ease: "power2.inOut",
+                scrollTrigger: {
+                    trigger: `app-skills #technologyOrb${idx}`,
+                    scrub: 4,
+                    end: "top 50%"
+                }
+            });
         });
     }
 }
