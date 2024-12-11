@@ -2,7 +2,6 @@ import { Shallow } from 'shallow-render';
 import { ExperienceComponent } from './experience.component';
 import { History } from '../models/history';
 import { WorkModule } from '../work.module';
-import { ASSET_PATHS } from 'assets/assets.constants';
 
 describe('ExperienceComponent', () => {
     let shallow: Shallow<ExperienceComponent>;
@@ -53,7 +52,7 @@ describe('ExperienceComponent', () => {
                     history
                 }
             });
-            const smallTitle = find('#smallTitle');
+            const smallTitle = find('#experienceSmallTitle');
 
             expect(smallTitle.nativeElement.textContent).toBe('WHAT I HAVE DONE SO FAR');
         });
@@ -65,7 +64,7 @@ describe('ExperienceComponent', () => {
                     history
                 }
             });
-            const title = find('#title');
+            const title = find('#experienceTitle');
 
             expect(title.nativeElement.textContent).toBe('Experience.');
         });
@@ -109,12 +108,15 @@ describe('ExperienceComponent', () => {
                     'November 2022 — August 2024',
                     'September 2019 — July 2022'
                 ];
-                const workingPeriodDesktop = find('#workingPeriodDesktop');
-                const workingPeriodMobile = find('#workingPeriodMobile');
-                expect(workingPeriodDesktop).toHaveFound(2);
-                expect(workingPeriodDesktop.map(w => w.nativeElement.innerText)).toEqual(expectedPeriod);
-                expect(workingPeriodMobile).toHaveFound(2);
-                expect(workingPeriodMobile.map(w => w.nativeElement.innerText)).toEqual(expectedPeriod);
+                const workingPeriodsDesktopRight = find('#workingPeriodDesktopRight');
+                const workingPeriodsDesktopLeft = find('#workingPeriodDesktopLeft');
+                const workingPeriodsMobile = find('#workingPeriodMobile');
+                expect(workingPeriodsDesktopRight).toHaveFound(1);
+                expect(workingPeriodsDesktopLeft).toHaveFound(1);
+                expect(workingPeriodsDesktopRight.map(w => w.nativeElement.innerText)).toContain(expectedPeriod[0]);
+                expect(workingPeriodsDesktopLeft.map(w => w.nativeElement.innerText)).toContain(expectedPeriod[1]);
+                expect(workingPeriodsMobile).toHaveFound(2);
+                expect(workingPeriodsMobile.map(w => w.nativeElement.innerText)).toEqual(expectedPeriod);
             });
 
             it('displays the experience cards for desktop and mobile', async () => {
@@ -125,10 +127,13 @@ describe('ExperienceComponent', () => {
                 fixture.detectChanges();
 
                 // assert
-                const experienceCardsDesktop = find('#experienceCardDesktop');
+                const experienceCardsDesktopLeft = find('#experienceCardDesktopLeft');
+                const experienceCardsDesktopRight = find('#experienceCardDesktopRight');
                 const experienceCardsMobile = find('#experienceCardMobile');
-                expect(experienceCardsDesktop).toHaveFound(2);
-                expect(experienceCardsDesktop.map(c => c.componentInstance.history)).toEqual(history);
+                expect(experienceCardsDesktopLeft).toHaveFound(1);
+                expect(experienceCardsDesktopRight).toHaveFound(1);
+                expect(experienceCardsDesktopLeft.map(c => c.componentInstance.history)).toContain(history[0]);
+                expect(experienceCardsDesktopRight.map(c => c.componentInstance.history)).toContain(history[1]);
                 expect(experienceCardsMobile).toHaveFound(2);
                 expect(experienceCardsMobile.map(c => c.componentInstance.history)).toEqual(history);
             });

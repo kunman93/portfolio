@@ -1,14 +1,14 @@
 @if (history.length > 0) {
 <app-section-wrapper id="experienceContainer">
-    <p id="smallTitle" class="text-white">{{ smallTitle }}</p>
+    <p id="experienceSmallTitle" class="text-white">{{ smallTitle }}</p>
 
-    <h2 id="title">{{ title }}</h2>
+    <h2 id="experienceTitle">{{ title }}</h2>
 
     <!-- Mobile -->
-    <div class="grid grid-cols-[0.1rem_1fr] gap-x-16 lg:hidden">
-        @for(experience of history; track experience) {
+    <div id="timelineContainer" class="grid grid-cols-[0.1rem_1fr] gap-x-16 lg:hidden">
+        @for(experience of history; track experience; let idx = $index) {
             <div class="relative bg-gradient-to-b from-red-500 via-red-700 to-red-500">
-                <div class="absolute -translate-x-1/2 mt-20">
+                <div id="{{ 'logoContainerMobile' + idx }}" class="absolute -translate-x-1/2 mt-20">
                     <div class="flex flex-row justify-center items-center w-16 h-16 px-2 py-2 bg-white rounded-full border-4 border-red-500">
                         <img id="logoMobile" src="{{ experience.logo.srcImage }}" alt="{{ experience.logo.alt }}">
                     </div>
@@ -22,28 +22,28 @@
     </div>
 
     <!-- Desktop -->
-    <div class="hidden lg:grid grid-cols-[1fr_0.1rem_1fr] gap-x-16">
-        @for(experience of history; track experience; let odd = $odd) {
+    <div id="timelineContainer" class="hidden lg:grid grid-cols-[1fr_0.1rem_1fr] gap-x-16">
+        @for(experience of history; track experience; let odd = $odd; let idx = $index) {
             @if (odd) {
-                <div id="workingPeriodDesktop" class="text-white text-right mt-24">{{ experience.timePeriod.dateFrom | date : 'MMMM yyyy' }} — {{ experience.timePeriod.dateUntil | date : 'MMMM yyyy' }}</div>
+                <div id="workingPeriodDesktopLeft" class="text-white text-right mt-24">{{ experience.timePeriod.dateFrom | date : 'MMMM yyyy' }} — {{ experience.timePeriod.dateUntil | date : 'MMMM yyyy' }}</div>
                 <div class="relative bg-gradient-to-b from-red-500 via-red-700 to-red-500">
-                    <div class="absolute -translate-x-1/2 mt-20">
+                    <div id="{{ 'logoContainerDesktop' + idx }}" class="absolute -translate-x-1/2 mt-20">
                         <div class="flex flex-row justify-center items-center w-16 h-16 px-2 py-2 bg-white rounded-full border-4 border-red-500">
                             <img id="logoDesktop" src="{{ experience.logo.srcImage }}" alt="{{ experience.logo.alt }}">
                         </div>
                     </div>
                 </div>
-                <app-experience-card id="experienceCardDesktop" class="mt-24" [history]="experience"></app-experience-card>
+                <app-experience-card id="experienceCardDesktopRight" class="mt-24" [history]="experience"></app-experience-card>
             } @else {
-                <app-experience-card id="experienceCardDesktop" class="mt-24" [history]="experience"></app-experience-card>
+                <app-experience-card id="experienceCardDesktopLeft" class="mt-24" [history]="experience"></app-experience-card>
                 <div class="relative bg-gradient-to-b from-red-500 via-red-700 to-red-500">
-                    <div class="absolute -translate-x-1/2 mt-20">
+                    <div id="{{ 'logoContainerDesktop' + idx }}" class="absolute -translate-x-1/2 mt-20">
                         <div class="flex flex-row justify-center items-center w-16 h-16 px-2 py-2 bg-white rounded-full border-4 border-red-500">
                             <img id="logoDesktop" src="{{ experience.logo.srcImage }}" alt="{{ experience.logo.alt }}">
                         </div>
                     </div>
                 </div>
-                <div id="workingPeriodDesktop" class="text-white mt-24">{{ experience.timePeriod.dateFrom| date : 'MMMM yyyy' }} — {{ experience.timePeriod.dateUntil | date : 'MMMM yyyy' }}</div>
+                <div id="workingPeriodDesktopRight" class="text-white mt-24">{{ experience.timePeriod.dateFrom| date : 'MMMM yyyy' }} — {{ experience.timePeriod.dateUntil | date : 'MMMM yyyy' }}</div>
             }
         }
     </div>
