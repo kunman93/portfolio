@@ -15,8 +15,8 @@
                 </div>
             </div>
             <div class="flex flex-col mt-20 gap-y-2">
-                <div id="workingPeriodMobile" class="text-white">{{ experience.timePeriod.dateFrom | date : 'MMMM yyyy' }} — {{ experience.timePeriod.dateUntil| date : 'MMMM yyyy' }}</div>
-                <app-experience-card id="experienceCardMobile" [history]="experience"></app-experience-card>
+                <div id="{{ 'workingPeriodMobile' + idx }}" class="text-white">{{ experience.timePeriod.dateFrom | date : 'MMMM yyyy' }} — {{ experience.timePeriod.dateUntil| date : 'MMMM yyyy' }}</div>
+                <app-experience-card id="{{ 'experienceCardMobile' + idx }}" [history]="experience"></app-experience-card>
             </div>
         }
     </div>
@@ -25,7 +25,7 @@
     <div id="timelineContainer" class="hidden lg:grid grid-cols-[1fr_0.1rem_1fr] gap-x-16">
         @for(experience of history; track experience; let odd = $odd; let idx = $index) {
             @if (odd) {
-                <div id="workingPeriodDesktopLeft" class="text-white text-right mt-24">{{ experience.timePeriod.dateFrom | date : 'MMMM yyyy' }} — {{ experience.timePeriod.dateUntil | date : 'MMMM yyyy' }}</div>
+                <div id="{{ 'workingPeriodDesktop' + idx }}" class="text-white text-right mt-24">{{ experience.timePeriod.dateFrom | date : 'MMMM yyyy' }} — {{ experience.timePeriod.dateUntil | date : 'MMMM yyyy' }}</div>
                 <div class="relative bg-gradient-to-b from-red-500 via-red-700 to-red-500">
                     <div id="{{ 'logoContainerDesktop' + idx }}" class="absolute -translate-x-1/2 mt-20">
                         <div class="flex flex-row justify-center items-center w-16 h-16 px-2 py-2 bg-white rounded-full border-4 border-red-500">
@@ -33,9 +33,9 @@
                         </div>
                     </div>
                 </div>
-                <app-experience-card id="experienceCardDesktopRight" class="mt-24" [history]="experience"></app-experience-card>
+                <app-experience-card id="{{ 'experienceCardDesktop' + idx }}" class="mt-24" [history]="experience"></app-experience-card>
             } @else {
-                <app-experience-card id="experienceCardDesktopLeft" class="mt-24" [history]="experience"></app-experience-card>
+                <app-experience-card id="{{ 'experienceCardDesktop' + idx }}" class="mt-24" [history]="experience"></app-experience-card>
                 <div class="relative bg-gradient-to-b from-red-500 via-red-700 to-red-500">
                     <div id="{{ 'logoContainerDesktop' + idx }}" class="absolute -translate-x-1/2 mt-20">
                         <div class="flex flex-row justify-center items-center w-16 h-16 px-2 py-2 bg-white rounded-full border-4 border-red-500">
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="workingPeriodDesktopRight" class="text-white mt-24">{{ experience.timePeriod.dateFrom| date : 'MMMM yyyy' }} — {{ experience.timePeriod.dateUntil | date : 'MMMM yyyy' }}</div>
+                <div id="{{ 'workingPeriodDesktop' + idx }}" class="text-white mt-24">{{ experience.timePeriod.dateFrom| date : 'MMMM yyyy' }} — {{ experience.timePeriod.dateUntil | date : 'MMMM yyyy' }}</div>
             }
         }
     </div>

@@ -3,7 +3,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class GsapAnimationService {
     constructor() {
@@ -28,14 +28,44 @@ export class GsapAnimationService {
 
     public animateTimelineIcon(
         target: string,
-        trigger: string,
+        trigger: string
     ): void {
         gsap.from(target, {
             opacity: 0,
             ease: "power2.inOut",
-            stagger: {
-                each: 1
-            },
+            scrollTrigger: {
+                trigger,
+                scrub: 4,
+                end: "top 50%",
+            }
+        });
+    }
+
+    public animateExperienceCard(
+        target: string,
+        trigger: string,
+        x: number
+    ): void {
+        this.animateExperienceCardOrPeriod(target, trigger, x);
+    }
+
+    public animateWorkingPeriod(
+        target: string,
+        trigger: string,
+        x: number
+    ): void {
+        this.animateExperienceCardOrPeriod(target, trigger, x);
+    }
+
+    private animateExperienceCardOrPeriod(
+        target: string,
+        trigger: string,
+        x: number
+    ): void {
+        gsap.from(target, {
+            opacity: 0,
+            x,
+            ease: "power2.inOut",
             scrollTrigger: {
                 trigger,
                 scrub: 4,

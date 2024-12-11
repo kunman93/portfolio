@@ -108,15 +108,18 @@ describe('ExperienceComponent', () => {
                     'November 2022 — August 2024',
                     'September 2019 — July 2022'
                 ];
-                const workingPeriodsDesktopRight = find('#workingPeriodDesktopRight');
-                const workingPeriodsDesktopLeft = find('#workingPeriodDesktopLeft');
-                const workingPeriodsMobile = find('#workingPeriodMobile');
+                const workingPeriodsDesktopRight = find('#workingPeriodDesktop0');
+                const workingPeriodsDesktopLeft = find('#workingPeriodDesktop1');
+                const workingPeriodsMobileRight = find('#workingPeriodMobile0');
+                const workingPeriodsMobileLeft = find('#workingPeriodMobile1');
                 expect(workingPeriodsDesktopRight).toHaveFound(1);
                 expect(workingPeriodsDesktopLeft).toHaveFound(1);
                 expect(workingPeriodsDesktopRight.map(w => w.nativeElement.innerText)).toContain(expectedPeriod[0]);
                 expect(workingPeriodsDesktopLeft.map(w => w.nativeElement.innerText)).toContain(expectedPeriod[1]);
-                expect(workingPeriodsMobile).toHaveFound(2);
-                expect(workingPeriodsMobile.map(w => w.nativeElement.innerText)).toEqual(expectedPeriod);
+                expect(workingPeriodsMobileRight).toHaveFound(1);
+                expect(workingPeriodsMobileLeft).toHaveFound(1);
+                expect(workingPeriodsMobileRight.map(w => w.nativeElement.innerText)).toContain(expectedPeriod[0]);
+                expect(workingPeriodsMobileLeft.map(w => w.nativeElement.innerText)).toContain(expectedPeriod[1]);
             });
 
             it('displays the experience cards for desktop and mobile', async () => {
@@ -127,15 +130,18 @@ describe('ExperienceComponent', () => {
                 fixture.detectChanges();
 
                 // assert
-                const experienceCardsDesktopLeft = find('#experienceCardDesktopLeft');
-                const experienceCardsDesktopRight = find('#experienceCardDesktopRight');
-                const experienceCardsMobile = find('#experienceCardMobile');
+                const experienceCardsDesktopLeft = find('#experienceCardDesktop0');
+                const experienceCardsDesktopRight = find('#experienceCardDesktop1');
+                const experienceCardsMobile0 = find('#experienceCardMobile0');
+                const experienceCardsMobile1 = find('#experienceCardMobile1');
                 expect(experienceCardsDesktopLeft).toHaveFound(1);
                 expect(experienceCardsDesktopRight).toHaveFound(1);
                 expect(experienceCardsDesktopLeft.map(c => c.componentInstance.history)).toContain(history[0]);
                 expect(experienceCardsDesktopRight.map(c => c.componentInstance.history)).toContain(history[1]);
-                expect(experienceCardsMobile).toHaveFound(2);
-                expect(experienceCardsMobile.map(c => c.componentInstance.history)).toEqual(history);
+                expect(experienceCardsMobile0).toHaveFound(1);
+                expect(experienceCardsMobile1).toHaveFound(1);
+                expect(experienceCardsMobile0.map(c => c.componentInstance.history)).toContain(history[0]);
+                expect(experienceCardsMobile1.map(c => c.componentInstance.history)).toContain(history[1]);
             });
 
             it('hides the experience section if there is no work experience', async () => {

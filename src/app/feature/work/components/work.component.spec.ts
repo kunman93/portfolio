@@ -12,7 +12,12 @@ describe('WorkComponent', () => {
         shallow = new Shallow(WorkComponent, WorkModule)
             .mock(GsapAnimationService, {
                 animateSmallTitleAndTitle: () => { },
-                animateTimelineIcon: () => {}
+                animateTimelineIcon: () => { },
+                animateExperienceCard: () => { },
+                animateWorkingPeriod: () => { },
+                gsap: {
+                    from: () => { }
+                }
             });
     });
 
