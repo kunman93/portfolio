@@ -25,6 +25,7 @@ export class WorkComponent implements AfterViewInit {
             this.animateExperienceSection();
             this.animateAcademicHistorySection();
             this.animateSkillsSection();
+            this.animateProjectsSection();
         });
     }
 
@@ -110,6 +111,34 @@ export class WorkComponent implements AfterViewInit {
                     end: "top 50%"
                 }
             });
+        });
+    }
+
+    private animateProjectsSection(): void {
+        this.gsapAnimationService.animateSmallTitleAndTitle(
+            "#projectsSmallTitle, #projectsTitle",
+            "app-project #projectsText"
+        );
+
+        this.gsapAnimationService.gsap.from("#projectsText", {
+            opacity: 0,
+            ease: "power2.inOut",
+            scrollTrigger: {
+                trigger: "app-project #projectsContainer",
+                end: "top 100%",
+                scrub: 4
+            }
+        });
+
+        this.gsapAnimationService.gsap.from("#projectsContainer", {
+            opacity: 0,
+            scale: 0.8,
+            ease: "power2.inOut",
+            scrollTrigger: {
+                trigger: "#projectsContainer",
+                end: "top 50%",
+                scrub: 4
+            }
         });
     }
 }
