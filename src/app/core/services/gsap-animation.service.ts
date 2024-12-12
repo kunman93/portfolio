@@ -74,8 +74,6 @@ export class GsapAnimationService {
         this.animateHorizontalTransitionWithFadeIn(target, trigger, x);
     }
 
-
-
     private animateHorizontalTransitionWithFadeIn(
         target: string,
         trigger: string,
@@ -84,7 +82,7 @@ export class GsapAnimationService {
         gsap.from(target, {
             opacity: 0,
             x,
-            ease: "power2.inOut",
+            ease: "back.inOut(4)",
             scrollTrigger: {
                 trigger,
                 scrub: 4,

@@ -35,7 +35,7 @@ export class WorkComponent implements AfterViewInit {
         this.gsapAnimationService.gsap.from("app-employment-reference", {
             opacity: 0,
             scale: 0.8,
-            ease: "power2.inOut",
+            ease: "back.inOut(4)",
             scrollTrigger: {
                 trigger: "app-employment-reference",
                 endTrigger: "#academicHistory",

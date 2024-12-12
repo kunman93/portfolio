@@ -36,12 +36,14 @@ export class AboutComponent implements AfterViewInit {
             this.gsapAnimationService.gsap.from("app-service-card", {
                 opacity: 0,
                 x: -100,
-                ease: "power2.inOut",
+                skewX: '40deg',
+                ease: "back.inOut(3)",
                 stagger: {
                     each: 1
                 },
                 scrollTrigger: {
-                    trigger: "app-work",
+                    trigger: "app-service-card",
+                    endTrigger: "app-work",
                     scrub: 4,
                     end: "top 100%"
                 }
