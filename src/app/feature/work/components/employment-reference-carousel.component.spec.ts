@@ -3,12 +3,18 @@ import { WorkModule } from '../work.module';
 import { employmentReferences } from '../data/employment-reference-data';
 import { EmploymentReference } from '../models/employment-reference';
 import { EmploymentReferenceCarouselComponent } from './employment-reference-carousel.component';
+import { GsapAnimationService } from 'src/app/core/services/gsap-animation.service';
 
 describe('EmploymentReferenceCarouselComponent', () => {
     let shallow: Shallow<EmploymentReferenceCarouselComponent>;
 
     beforeEach(() => {
-        shallow = new Shallow(EmploymentReferenceCarouselComponent, WorkModule);
+        shallow = new Shallow(EmploymentReferenceCarouselComponent, WorkModule)
+            .mock(GsapAnimationService, {
+                gsap: {
+                    from: () => Promise.resolve(true)
+                }
+            });
     });
 
     it('creates a component', async () => {
@@ -60,10 +66,10 @@ describe('EmploymentReferenceCarouselComponent', () => {
             describe('previous button', () => {
                 it('displays the previous button', async () => {
                     const { find } = await shallow.render(`<app-employment-reference-carousel></app-employment-reference-carousel>`);
-                    const previousButton = find('#previousButton');
+                    const previousIcon = find('#previousIcon');
 
-                    expect(previousButton).toHaveFound(1);
-                    expect(previousButton.attributes['class']).toContain('fa-solid fa-circle-arrow-left');
+                    expect(previousIcon).toHaveFound(1);
+                    expect(previousIcon.attributes['class']).toContain('fa-solid fa-circle-arrow-left');
                 });
 
                 [
@@ -97,7 +103,7 @@ describe('EmploymentReferenceCarouselComponent', () => {
                         instance.currentIndex = params.currentIndex;
 
                         // act
-                        previousButton.triggerEventHandler('click', {});
+                        previousButton.nativeElement.click();
 
                         // assert
                         expect(instance.currentIndex).toEqual(params.expectedCurrentIndex);
@@ -108,10 +114,10 @@ describe('EmploymentReferenceCarouselComponent', () => {
             describe('next button', () => {
                 it('displays the next button', async () => {
                     const { find } = await shallow.render(`<app-employment-reference-carousel></app-employment-reference-carousel>`);
-                    const nextButton = find('#nextButton');
+                    const nextIcon = find('#nextIcon');
 
-                    expect(nextButton).toHaveFound(1);
-                    expect(nextButton.attributes['class']).toContain('fa-solid fa-circle-arrow-right');
+                    expect(nextIcon).toHaveFound(1);
+                    expect(nextIcon.attributes['class']).toContain('fa-solid fa-circle-arrow-right');
                 });
 
                 [
@@ -145,7 +151,7 @@ describe('EmploymentReferenceCarouselComponent', () => {
                         instance.currentIndex = params.currentIndex;
 
                         // act
-                        nextButton.triggerEventHandler('click', {});
+                        nextButton.nativeElement.click();
 
                         // assert
                         expect(instance.currentIndex).toEqual(params.expectedCurrentIndex);
@@ -183,6 +189,32 @@ describe('EmploymentReferenceCarouselComponent', () => {
                 expect(dots[0].nativeElement.attributes.class.value).toContain('bg-stone-900');
                 expect(dots[1].nativeElement.attributes.class.value).toContain('bg-stone-900');
                 expect(dots[2].nativeElement.attributes.class.value).toContain('bg-white');
+            });
+
+            it('updates the index on click', async () => {
+                // arrange
+                const { find, instance } = await shallow.render(`<app-employment-reference-carousel></app-employment-reference-carousel>`);
+                const dot = find('#dot');
+
+                const references: EmploymentReference[] = [
+                    ...employmentReferences,
+                    {
+                        institution: "Unicorn AG",
+                        logo: {
+                            srcImage: "unicorn.png",
+                            alt: "Unicorn AG Logo",
+                        },
+                        reference: "He wants to become a unicorn",
+                    }
+                ];
+                Object.defineProperty(instance, 'employmentReferences', { value: references, writable: false });
+                instance.currentIndex = 3;
+
+                // act
+                dot[0].nativeElement.click();
+
+                // assert
+                expect(instance.currentIndex).toEqual(0);
             });
         });
     });
