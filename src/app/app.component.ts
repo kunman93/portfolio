@@ -14,7 +14,6 @@ export class AppComponent implements OnInit {
     constructor(
         viewport: ViewportScroller,
         private toastService: ToastService,
-        private zone: NgZone
     ) {
         viewport.setOffset([0, 50]);
     }

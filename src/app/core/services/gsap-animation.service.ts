@@ -47,7 +47,7 @@ export class GsapAnimationService {
         trigger: string,
         x: number
     ): void {
-        this.animateExperienceCardOrPeriod(target, trigger, x);
+        this.animateHorizontalTransitionWithFadeIn(target, trigger, x);
     }
 
     public animateWorkingPeriod(
@@ -55,10 +55,28 @@ export class GsapAnimationService {
         trigger: string,
         x: number
     ): void {
-        this.animateExperienceCardOrPeriod(target, trigger, x);
+        this.animateHorizontalTransitionWithFadeIn(target, trigger, x);
     }
 
-    private animateExperienceCardOrPeriod(
+    public animateContactEditor(
+        target: string,
+        trigger: string,
+        x: number
+    ): void {
+        this.animateHorizontalTransitionWithFadeIn(target, trigger, x);
+    }
+
+    public animatePlanetEarth(
+        target: string,
+        trigger: string,
+        x: number
+    ): void {
+        this.animateHorizontalTransitionWithFadeIn(target, trigger, x);
+    }
+
+
+
+    private animateHorizontalTransitionWithFadeIn(
         target: string,
         trigger: string,
         x: number

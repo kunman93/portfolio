@@ -1,4 +1,4 @@
-<div class="relative flex flex-col space-y-20 md:space-y-48">
+<div class="relative flex flex-col space-y-20 md:space-y-48 overflow-hidden 2xl:overflow-auto">
   <app-nav-bar class="absolute"></app-nav-bar>
   @for(toastData of toastDatas; track toastData) {
     <app-toast class="absolute" [toastData]="toastData"></app-toast>
