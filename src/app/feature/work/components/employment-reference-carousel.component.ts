@@ -62,7 +62,7 @@ export class EmploymentReferenceCarouselComponent implements OnInit {
                 x,
                 duration: this.ANIMATION_DURATION_IN_SECONDS,
                 ease: "back.out(2.5)"
-            }).then(() => this.isButtonDisabled = false);
+            }).then(() => this.zone.run(() => this.isButtonDisabled = false));
         });
     }
 }
