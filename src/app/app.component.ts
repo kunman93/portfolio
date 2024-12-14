@@ -37,20 +37,28 @@ export class AppComponent implements OnInit, AfterViewInit {
                 this.zone.runOutsideAngular(() => {
                     const toastId = `#${toasts.first.nativeElement.id}`;
 
-                    const tweenParams = {
+                    const tweenParamsFrom = {
                         opacity: 0,
                         x: 100,
                         duration: 1,
                         ease: "back.inOut(4)"
                     };
 
+                    const tweenParamsTo = {
+                        opacity: tweenParamsFrom.opacity,
+                        x: tweenParamsFrom.x,
+                        duration: tweenParamsFrom.duration,
+                        delay: 5,
+                        ease: tweenParamsFrom.ease
+                    };
+
                     const tl = this.gsapAnimationService.gsap.timeline();
                     tl.from(
                         toastId,
-                        tweenParams
+                        tweenParamsFrom
                     ).to(
                         toastId,
-                        Object.assign(tweenParams, { delay: 5 })
+                        tweenParamsTo
                     );
                 });
             }
