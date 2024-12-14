@@ -4,19 +4,12 @@ import { ServiceCardComponent } from './service-card.component';
 import { Service } from '../models/service';
 import { AboutModule } from '../about.module';
 import { SERVICES } from 'assets/assets.constants';
-import { GsapAnimationService } from 'src/app/core/services/gsap-animation.service';
 
 describe('AboutComponent', () => {
     let shallow: Shallow<AboutComponent>;
 
     beforeEach(() => {
-        shallow = new Shallow(AboutComponent, AboutModule)
-            .mock(GsapAnimationService, {
-                animateSmallTitleAndTitle: () => {},
-                gsap: {
-                    from: () => { }
-                }
-            });
+        shallow = new Shallow(AboutComponent, AboutModule);
     });
 
     it('creates a component', async () => {

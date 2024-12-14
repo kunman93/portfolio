@@ -9,12 +9,7 @@ describe('EmploymentReferenceCarouselComponent', () => {
     let shallow: Shallow<EmploymentReferenceCarouselComponent>;
 
     beforeEach(() => {
-        shallow = new Shallow(EmploymentReferenceCarouselComponent, WorkModule)
-            .mock(GsapAnimationService, {
-                gsap: {
-                    from: () => Promise.resolve(true)
-                }
-            });
+        shallow = new Shallow(EmploymentReferenceCarouselComponent, WorkModule);
     });
 
     it('creates a component', async () => {

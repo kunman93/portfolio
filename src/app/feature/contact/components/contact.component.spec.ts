@@ -4,21 +4,12 @@ import { ContactModule } from '../contact.module';
 import { ContactEditorComponent } from './contact-editor.component';
 import { PlanetEarthComponent } from './planet-earth.component';
 import { UniverseComponent } from './universe.component';
-import { GsapAnimationService } from 'src/app/core/services/gsap-animation.service';
 
 describe('ContactComponent', () => {
     let shallow: Shallow<ContactComponent>;
 
     beforeEach(() => {
-        shallow = new Shallow(ContactComponent, ContactModule)
-            .mock(GsapAnimationService, {
-                animatePlanetEarth: () => { },
-                animateContactEditor: () => { },
-                gsap: {
-                    from: () => { }
-                }
-            });
-        ;
+        shallow = new Shallow(ContactComponent, ContactModule); 
     });
 
     it('creates a component', async () => {

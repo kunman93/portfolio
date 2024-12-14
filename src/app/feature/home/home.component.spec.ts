@@ -2,14 +2,12 @@ import { Shallow } from 'shallow-render';
 import { HomeComponent } from './home.component';
 import { WorkstationComponent } from './workstation.component';
 import { HomeModule } from './home.module';
-import { GsapAnimationService } from 'src/app/core/services/gsap-animation.service';
 
 describe("HomeComponent", () => {
     let shallow: Shallow<HomeComponent>;
 
     beforeEach(() => {
-        shallow = new Shallow(HomeComponent, HomeModule)
-            .dontMock(GsapAnimationService);
+        shallow = new Shallow(HomeComponent, HomeModule);
     });
 
     it("creates a component", async () => {
