@@ -1,0 +1,84 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#menuButton {
+  position: relative;
+  width: 4rem;
+  height: 3rem;
+  cursor: pointer;
+}
+
+#menuButton:hover {
+    @apply bg-red-500;
+}
+
+#icon {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  left: 1rem;
+  width: auto;
+  height: 100%;
+}
+
+/* MENU ICON */
+
+.lines,
+.lines:before,
+.lines:after {
+  position: absolute;
+  display: block;
+  width: 100%;
+  left: 0;
+  background: #FFFFFF;
+  transition: 0.3s;
+}
+
+.lines {
+  height: 3px;
+  margin-top: -2px;
+  top: 50%;
+}
+
+.lines:before,
+.lines:after {
+  content: '';
+  height: 100%;
+
+  /* Try different values here: .25rem, .5rem, .2rem, 5rem, 10rem... */
+  transform-origin: 5rem center;
+}
+
+.lines:before {
+  top: 8px;
+}
+
+.lines:after {
+  top: -8px;
+}
+
+/* CLOSE ICON */
+
+.close {
+  transform: scale3d(0.8, 0.8, 0.8);
+}
+
+.close .lines {
+	background: transparent;
+}
+
+.close .lines:before,
+.close .lines:after {
+  top: 0;
+  transform-origin: 50% 50%;
+}
+
+.close .lines:before {
+  transform: rotate3d(0, 0, 1, 45deg);
+}
+
+.close .lines:after {
+  transform: rotate3d(0, 0, 1, -45deg);
+}

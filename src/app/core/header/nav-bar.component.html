@@ -12,18 +12,19 @@
             </ul>
         </nav>
         <div id="dropdownMenu" class="sm:hidden flex items-center relative">
-            @if(!isSelected) {
-                <i id="menuIcon" class="fa-solid fa-bars text-white hover:text-red-500 hover:scale-110 transition duration-150 ease-in-out text-2xl font-medium cursor-pointer" (click)="onDropdownMenuClick()"></i>
-            } @else {
-                <i id="closeIcon" class="fa-solid fa-xmark text-white hover:text-red-500 hover:scale-110 transition duration-150 ease-in-out text-2xl font-medium cursor-pointer" (click)="onDropdownMenuClick()"></i>
-                <div class="absolute top-0 right-0 mt-14 bg-gradient-to-b from-stone-800 to-stone-900 opacity-95 rounded-md shadow-lg ring-1 ring-black/5" tabindex="-1">
+            <div id="menuButton" (click)="onDropdownMenuClick()">
+                <div id="icon" [ngClass]="{'close': this.isSelected}">
+                    <span class="lines"></span>
+                </div>
+            </div>
+            @if(isSelected) {
+                <div id="dropDownOptionContainer" #dropDownOptionContainerRef class="absolute top-0 right-0 mt-14 bg-gradient-to-b from-stone-800 to-stone-900 opacity-95 rounded-md shadow-lg ring-1 ring-black/5" tabindex="-1">
                     <div class="flex flex-col py-1 text-white font-medium" (click)="onDropdownMenuClick()">
                         <a routerLink="/" fragment="about" class="px-6 py-3 hover:bg-red-500 hover:scale-110 transition duration-150 ease-in-out" tabindex="-1" id="aboutMenuItem">About</a>
                         <a routerLink="/" fragment="work" class="px-6 py-3 hover:bg-red-500 hover:scale-110 transition duration-150 ease-in-out" tabindex="-1" id="workMenuItem">Work</a>
                         <a routerLink="/" fragment="contact" class="px-6 py-3 hover:bg-red-500 hover:scale-110 transition duration-150 ease-in-out" tabindex="-1" id="contactMenuItem">Contact</a>
                     </div>
                 </div>
-            }
-        </div>
+            } 
     </div>
 </div>

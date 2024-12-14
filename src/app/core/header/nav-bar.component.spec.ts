@@ -76,7 +76,7 @@ describe('NavBarComponent', () => {
 
             it("displays the menu icon", async () => {
                 const { find } = await shallow.render(`<app-nav-bar></app-nav-bar>`);
-                expect(find("#menuIcon").nativeElement.className).toContain("fa-solid fa-bars");
+                expect(find("#icon").nativeElement.className).toBeFalsy();
 
                 expect(find("#closeIcon")).toHaveFound(0);
                 expect(find("#aboutMenuItem")).toHaveFound(0);
@@ -84,17 +84,17 @@ describe('NavBarComponent', () => {
                 expect(find("#contactMenuItem")).toHaveFound(0);
             });
 
-            it("displays the x-mark icon and the dropdown elements", async () => {
+            it("displays the close icon and the dropdown elements", async () => {
                 // arrange
                 const { find, fixture } = await shallow.render(`<app-nav-bar></app-nav-bar>`);
-                const menuIcon = find("#menuIcon");
+                const menuIcon = find("#menuButton");
 
                 // act
                 menuIcon.triggerEventHandler("click", {});
                 fixture.detectChanges();
 
                 // assert
-                expect(find("#closeIcon").nativeElement.className).toContain("fa-solid fa-xmark");
+                expect(find("#icon").nativeElement.className).toContain("close");
                 expect(find("#aboutMenuItem").nativeElement.textContent).toBe("About");
                 expect(find("#workMenuItem").nativeElement.textContent).toBe("Work");
                 expect(find("#contactMenuItem").nativeElement.textContent).toBe("Contact");
