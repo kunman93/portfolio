@@ -21,6 +21,10 @@ export class WorkComponent implements AfterViewInit {
     ) { }
 
     ngAfterViewInit(): void {
+        this.animateWorkSection();
+    }
+
+    private animateWorkSection(): void {
         this.zone.runOutsideAngular(() => {
             this.animateExperienceSection();
             this.animateAcademicHistorySection();

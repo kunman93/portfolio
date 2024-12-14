@@ -17,12 +17,16 @@ export class AboutComponent implements AfterViewInit {
     ) { }
 
     ngAfterViewInit(): void {
-        this.zone.runOutsideAngular(() => {
-            this.gsapAnimationService.animateSmallTitleAndTitle(
-                "#overviewSmallTitle, #overviewTitle",
-                "app-about #overviewText"
-            );
+        this.animateAboutSection();
+    }
 
+    private animateAboutSection() {
+        this.gsapAnimationService.animateSmallTitleAndTitle(
+            "#overviewSmallTitle, #overviewTitle",
+            "app-about #overviewText"
+        );
+
+        this.zone.runOutsideAngular(() => {
             this.gsapAnimationService.gsap.from("#overviewText", {
                 opacity: 0,
                 ease: "power2.inOut",

@@ -14,15 +14,16 @@ export class HomeComponent implements AfterViewInit {
     ) { }
 
     ngAfterViewInit(): void {
+        this.animateHomeSection();
+    }
+
+    private animateHomeSection() {
         this.zone.runOutsideAngular(() => {
             this.gsapAnimationService.gsap.from("app-nav-bar, #homeTitle, #homeDescription, app-workstation", {
                 opacity: 0,
                 duration: 2,
-                ease: "power2.inOut",
-                scrollTrigger: {
-                    trigger: "app-home"
-                }
+                ease: "power2.inOut"
             });
-        })
+        });
     }
 }
