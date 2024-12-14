@@ -9,11 +9,7 @@ describe("HomeComponent", () => {
 
     beforeEach(() => {
         shallow = new Shallow(HomeComponent, HomeModule)
-            .mock(GsapAnimationService, {
-                gsap: {
-                    from: () => { }
-                }
-            });
+            .dontMock(GsapAnimationService);
     });
 
     it("creates a component", async () => {
@@ -29,7 +25,7 @@ describe("HomeComponent", () => {
             const description = find("#homeDescription");
 
             expect(title.nativeElement.textContent).toBe("Hi, I'm Manu");
-            expect(description.nativeElement.textContent).toBe("I'm a Full-Stack Software Engineer");
+            expect(description.nativeElement.textContent).toBe("|");
         });
 
         it("displays the workstation", async () => {

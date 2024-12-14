@@ -1,6 +1,7 @@
 import { Injectable, NgZone } from "@angular/core";
 import { gsap } from 'gsap'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { TextPlugin } from "gsap/TextPlugin";
 
 @Injectable({
     providedIn: 'root',
@@ -8,7 +9,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 export class GsapAnimationService {
 
     constructor(private zone: NgZone) {
-        this.zone.runOutsideAngular(() => gsap.registerPlugin(ScrollTrigger));
+        this.zone.runOutsideAngular(() => {
+            gsap.registerPlugin(TextPlugin);
+            gsap.registerPlugin(ScrollTrigger);
+        });
     }
 
     public animateSmallTitleAndTitle(
