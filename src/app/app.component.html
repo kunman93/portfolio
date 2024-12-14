@@ -1,10 +1,10 @@
+@for(toastData of toastDatas; track toastData; let idx = $index) {
+    <app-toast id="{{ 'toast' + idx }}" #toastRef class="fixed z-20 top-0 right-0 mt-16 mr-3 sm:top-0 sm:right-0 sm:mt-20 sm:mr-6" [toastData]="toastData"></app-toast>
+}
 <div class="relative flex flex-col space-y-20 md:space-y-48 overflow-hidden 2xl:overflow-auto">
-  <app-nav-bar class="absolute"></app-nav-bar>
-  @for(toastData of toastDatas; track toastData) {
-    <app-toast class="absolute" [toastData]="toastData"></app-toast>
-  }
-  <app-home></app-home>
-  <app-about id="about"></app-about>
-  <app-work id="work"></app-work>
-  <app-contact id="contact"></app-contact>
+    <app-nav-bar class="absolute"></app-nav-bar>
+    <app-home></app-home>
+    <app-about id="about"></app-about>
+    <app-work id="work"></app-work>
+    <app-contact id="contact"></app-contact>
 </div>

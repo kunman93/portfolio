@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, NgZone } from "@angular/core";
 import { gsap } from 'gsap'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -6,23 +6,26 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
     providedIn: 'root',
 })
 export class GsapAnimationService {
-    constructor() {
-        gsap.registerPlugin(ScrollTrigger);
+
+    constructor(private zone: NgZone) {
+        this.zone.runOutsideAngular(() => gsap.registerPlugin(ScrollTrigger));
     }
 
     public animateSmallTitleAndTitle(
         target: string,
         trigger: string
     ): void {
-        gsap.from(target, {
-            opacity: 0,
-            y: -100,
-            ease: "power2.inOut",
-            scrollTrigger: {
-                trigger: trigger,
-                end: "top 100%",
-                scrub: 4
-            }
+        this.zone.runOutsideAngular(() => {
+            gsap.from(target, {
+                opacity: 0,
+                y: -100,
+                ease: "power2.inOut",
+                scrollTrigger: {
+                    trigger: trigger,
+                    end: "top 100%",
+                    scrub: 4
+                }
+            });
         });
     }
 
@@ -30,15 +33,17 @@ export class GsapAnimationService {
         target: string,
         trigger: string
     ): void {
-        gsap.from(target, {
-            opacity: 0,
-            scale: 0.5,
-            ease: "power2.inOut",
-            scrollTrigger: {
-                trigger,
-                scrub: 4,
-                end: "top 50%",
-            }
+        this.zone.runOutsideAngular(() => {
+            gsap.from(target, {
+                opacity: 0,
+                scale: 0.5,
+                ease: "power2.inOut",
+                scrollTrigger: {
+                    trigger,
+                    scrub: 4,
+                    end: "top 50%",
+                }
+            });
         });
     }
 
@@ -79,15 +84,17 @@ export class GsapAnimationService {
         trigger: string,
         x: number
     ): void {
-        gsap.from(target, {
-            opacity: 0,
-            x,
-            ease: "back.inOut(4)",
-            scrollTrigger: {
-                trigger,
-                scrub: 4,
-                end: "top 50%",
-            }
+        this.zone.runOutsideAngular(() => {
+            gsap.from(target, {
+                opacity: 0,
+                x,
+                ease: "back.inOut(4)",
+                scrollTrigger: {
+                    trigger,
+                    scrub: 4,
+                    end: "top 50%",
+                }
+            });
         });
     }
 
