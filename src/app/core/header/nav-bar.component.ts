@@ -11,7 +11,8 @@ export class NavBarComponent implements AfterViewInit {
     readonly NOJI_LOGO = NOJI_LOGO;
     isSelected = false;
 
-    @ViewChildren('dropDownOptionContainerRef', { read: ElementRef }) dropDownOptionContainerRef!: QueryList<ElementRef>;
+    @ViewChildren('dropDownOptionContainerRef', { read: ElementRef })
+    private dropDownOptionContainerRef!: QueryList<ElementRef>;
 
     constructor(
         private zone: NgZone,
@@ -24,7 +25,7 @@ export class NavBarComponent implements AfterViewInit {
                 this.zone.runOutsideAngular(() => {
                     this.gsapAnimationService.gsap.from(`#${dropDownOptionContainer.first.nativeElement.id}`, {
                         opacity: 0,
-                        skewY:'30deg', 
+                        skewY: '30deg',
                         y: -100,
                         duration: 1,
                         ease: "back.inOut(4)"

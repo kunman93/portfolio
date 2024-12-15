@@ -13,7 +13,8 @@ export class HomeComponent implements AfterViewInit {
         "Scroll down to learn more about me."
     ];
 
-    @ViewChild('animatedTextRef') animatedTextRef!: ElementRef;
+    @ViewChild('animatedTextRef')
+    private animatedTextRef!: ElementRef;
 
     constructor(
         private zone: NgZone,

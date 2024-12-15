@@ -12,7 +12,8 @@ import { GsapAnimationService } from './core/services/gsap-animation.service';
 export class AppComponent implements OnInit, AfterViewInit {
     toastDatas!: ToastData[];
 
-    @ViewChildren('toastRef', { read: ElementRef }) toastsRef!: QueryList<ElementRef>;
+    @ViewChildren('toastRef', { read: ElementRef })
+    private toastsRef!: QueryList<ElementRef>;
 
     constructor(
         viewport: ViewportScroller,
