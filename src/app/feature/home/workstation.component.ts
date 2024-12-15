@@ -75,7 +75,7 @@ export class WorkstationComponent extends ThreejsBaseComponent implements AfterV
 
         gltfLoader.load(GLTF_MODELS.commodore64ComputerFullPack, async (gltf) => {
             component.commodore64ComputerModel = gltf.scene;
-            component.commodore64ComputerModel.position.x = 1;
+            component.commodore64ComputerModel.position.x = 0.5;
             component.commodore64ComputerModel.position.y = -0.75;
             component.commodore64ComputerModel.position.z = 0.5;
 
@@ -87,11 +87,11 @@ export class WorkstationComponent extends ThreejsBaseComponent implements AfterV
         gltfLoader.load(GLTF_MODELS.gameBoyClassic, async (gltf) => {
             component.gameboyClassicModel = gltf.scene;
             component.gameboyClassicModel.scale.set(7, 7, 7);
-            component.gameboyClassicModel.rotation.y -= (Math.PI / 4);
+            component.gameboyClassicModel.rotation.y -= (4 * Math.PI / 6);
             component.gameboyClassicModel.rotation.z += (Math.PI / 2);
-            component.gameboyClassicModel.position.x = -5;
+            component.gameboyClassicModel.position.x = 6.0;
             component.gameboyClassicModel.position.y = -0.5;
-            component.gameboyClassicModel.position.z = 4;
+            component.gameboyClassicModel.position.z = 5;
 
             // wait until the model can be added to the scene without blocking due to shader compilation
             await component.renderer.compileAsync(component.gameboyClassicModel, component.camera, component.scene);
@@ -102,7 +102,7 @@ export class WorkstationComponent extends ThreejsBaseComponent implements AfterV
             component.childhoodBooksModel = gltf.scene;
             component.childhoodBooksModel.scale.set(8, 8, 8);
             component.childhoodBooksModel.rotation.y -= 4 * Math.PI / 6;
-            component.childhoodBooksModel.position.x = 8;
+            component.childhoodBooksModel.position.x = 6.5;
             component.childhoodBooksModel.position.y = -0.65;
             component.childhoodBooksModel.position.z = -2;
 
@@ -114,8 +114,8 @@ export class WorkstationComponent extends ThreejsBaseComponent implements AfterV
         gltfLoader.load(GLTF_MODELS.clipboard, async (gltf) => {
             component.clipboard = gltf.scene;
             component.clipboard.scale.set(10, 10, 10);
-            component.clipboard.rotation.y -= Math.PI / 6;
-            component.clipboard.position.x = 8.2;
+            component.clipboard.rotation.y += Math.PI / 6;
+            component.clipboard.position.x = -5;
             component.clipboard.position.y = -0.65;
             component.clipboard.position.z = 3.5;
 
@@ -127,7 +127,7 @@ export class WorkstationComponent extends ThreejsBaseComponent implements AfterV
         // # Create a desk and add it to the scene
 
         // ## Geometry
-        const boxWidth = 20;
+        const boxWidth = 17.5;
         const boxHeight = 0.25;
         const boxDepth = 12;
         const boxGeometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
@@ -137,7 +137,7 @@ export class WorkstationComponent extends ThreejsBaseComponent implements AfterV
 
         // ## Mesh
         const box = new THREE.Mesh(boxGeometry, boxMaterial);
-        box.position.x = 0.5;
+        box.position.x = 0.2;
         box.position.y = -0.85;
 
         // ## Add box to the scene
