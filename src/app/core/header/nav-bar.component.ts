@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, NgZone, QueryList, ViewChild, Vie
 import { NOJI_LOGO } from 'assets/assets.constants';
 import { GsapAnimationService } from '../services/gsap-animation.service';
 import { Subject } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-nav-bar',
@@ -19,7 +20,8 @@ export class NavBarComponent implements AfterViewInit {
 
     constructor(
         private zone: NgZone,
-        private gsapAnimationService: GsapAnimationService
+        private gsapAnimationService: GsapAnimationService,
+        private router: Router,
     ) { }
 
     ngAfterViewInit(): void {
@@ -63,6 +65,6 @@ export class NavBarComponent implements AfterViewInit {
     }
 
     onLogoNameOccupationClick(): void {
-        window.scroll({ top: 0, left: 0 });
+        this.router.navigate(['/']);
     }
 }

@@ -3,6 +3,7 @@ import { Shallow } from 'shallow-render';
 import { HeaderModule } from './header.module';
 import { GsapAnimationService } from '../services/gsap-animation.service';
 import { NgZone } from '@angular/core';
+import { Router } from '@angular/router';
 
 describe('NavBarComponent', () => {
     let shallow: Shallow<NavBarComponent>;
@@ -14,6 +15,9 @@ describe('NavBarComponent', () => {
                     from: () => { },
                     to: () => Promise.resolve("Animation is done")
                 }
+            })
+            .mock(Router, {
+                navigate: () => Promise.resolve(true)
             });
     });
 
@@ -47,16 +51,17 @@ describe('NavBarComponent', () => {
 
             it("scrolls to the top when the logo, name or occupation is clicked", async () => {
                 // arrange
-                const { find, fixture } = await shallow.render(`<app-nav-bar></app-nav-bar>`);
+                const { find, fixture, inject } = await shallow.render(`<app-nav-bar></app-nav-bar>`);
                 const logoNameOccupationContainer = find("#logoNameOccupationContainer");
-                const scrollMock = spyOn(window, 'scroll').and.callThrough();
+
+                const routerMock = inject(Router);
 
                 // act
                 logoNameOccupationContainer.triggerEventHandler("click", {});
                 fixture.detectChanges();
 
                 // assert
-                expect(scrollMock).toHaveBeenCalled();
+                expect(routerMock.navigate).toHaveBeenCalledWith(['/']);
             });
         });
 
