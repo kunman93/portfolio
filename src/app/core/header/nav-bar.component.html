@@ -17,7 +17,7 @@
                     <span class="lines"></span>
                 </div>
             </div>
-            @if(isSelected) {
+            @if (isSelected) {
                 <div id="dropDownOptionContainer" #dropDownOptionContainerRef class="absolute top-0 right-0 mt-14 bg-gradient-to-b from-stone-800 to-stone-900 opacity-95 rounded-md shadow-lg ring-1 ring-black/5" tabindex="-1">
                     <div class="flex flex-col py-1 text-white font-medium" (click)="onDropdownMenuClick()">
                         <a routerLink="/" fragment="about" class="px-6 py-3 hover:bg-red-500 hover:scale-110 transition duration-150 ease-in-out" tabindex="-1" id="aboutMenuItem">About</a>
