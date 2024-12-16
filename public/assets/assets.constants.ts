@@ -69,6 +69,7 @@ export const TECHNOLOGIES = {
 };
 
 export const BACKGROUNDS = {
+    inkblot1: `${ASSET_PATHS.backgrounds}/inkblot-1.svg`,
     tree: `${ASSET_PATHS.backgrounds}/tree.svg`,
 };
 
