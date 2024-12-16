@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { GsapAnimationService } from 'src/app/core/services/gsap-animation.service';
+import { Image } from 'shared/models/image'
+import { BACKGROUNDS } from 'assets/assets.constants'
 
 @Component({
     selector: 'app-home',
@@ -12,6 +14,11 @@ export class HomeComponent implements AfterViewInit {
         "I'm a Full-Stack Software Engineer.",
         "Scroll down to learn more about me."
     ];
+
+    readonly backgroundImage: Image = {
+        srcImage: BACKGROUNDS.tree,
+        alt: "tree background"
+    };
 
     @ViewChild('animatedTextRef')
     private animatedTextRef!: ElementRef;
@@ -28,7 +35,7 @@ export class HomeComponent implements AfterViewInit {
     private animateHomeSection() {
         this.zone.runOutsideAngular(() => {
             const tlHomeSection = this.gsapAnimationService.gsap.timeline();
-            tlHomeSection.from("app-nav-bar, #homeTitle, #homeDescription, app-workstation", {
+            tlHomeSection.from("app-nav-bar, #backgroundImage, #homeTitle, #homeDescription, app-workstation", {
                 opacity: 0,
                 duration: 2,
                 ease: "power2.inOut"
