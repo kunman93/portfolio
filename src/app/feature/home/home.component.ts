@@ -35,17 +35,29 @@ export class HomeComponent implements AfterViewInit {
     private animateHomeSection() {
         this.zone.runOutsideAngular(() => {
             const tlHomeSection = this.gsapAnimationService.gsap.timeline();
-            tlHomeSection.from("app-nav-bar, #backgroundImage, #homeTitle, #homeDescription, app-workstation", {
-                opacity: 0,
-                duration: 2,
-                ease: "power2.inOut"
-            }).to("#cursor", {
-                opacity: 0,
-                repeat: -1,
-                yoyo: true,
-                duration: 0.5,
-                ease: "power2.inOut"
-            });
+            tlHomeSection
+                .from("app-nav-bar, #homeTitle, #homeDescription", {
+                    opacity: 0,
+                    duration: 2,
+                    ease: "power2.inOut"
+                })
+                .from("#backgroundImage", {
+                    opacity: 0,
+                    duration: 2,
+                    ease: "power2.inOut"
+                }, "-=50%")
+                .from("app-workstation", {
+                    opacity: 0,
+                    duration: 2,
+                    ease: "power2.inOut"
+                }, "-=50%")
+                .to("#cursor", {
+                    opacity: 0,
+                    repeat: -1,
+                    yoyo: true,
+                    duration: 0.5,
+                    ease: "power2.inOut"
+                });
 
             const tlMaster = this.gsapAnimationService.gsap.timeline({ repeat: -1 });
             this.TYPEWRITER_TEXTS.forEach((text) => {
