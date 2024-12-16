@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Input, NgZone, ViewChild } from '@angular/core';
-import { ThreejsEngineComponent } from 'src/app/core/engine/threejs-engine.component';
+import { ThreejsBaseComponent } from 'src/app/shared/components/threejs-base.component';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { DecalGeometry } from 'three/examples/jsm/geometries/DecalGeometry.js';
@@ -9,7 +9,7 @@ import { DecalGeometry } from 'three/examples/jsm/geometries/DecalGeometry.js';
     templateUrl: './technology-orb.component.html',
     styleUrl: './technology-orb.component.scss'
 })
-export class TechnologyOrbComponent extends ThreejsEngineComponent implements AfterViewInit {
+export class TechnologyOrbComponent extends ThreejsBaseComponent implements AfterViewInit {
     @Input() technology!: string;
 
     @ViewChild('canvasTechnologyOrb')

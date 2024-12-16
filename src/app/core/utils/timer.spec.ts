@@ -1,7 +1,7 @@
-import { TimerService } from "./timer.service";
+import { Timer } from "./timer";
 
-describe('TimerService', () => {
-    let timerService: TimerService;
+describe('Timer', () => {
+    let timer: Timer;
     let mockFn: jasmine.Spy;
 
     beforeEach(() => {
@@ -9,43 +9,43 @@ describe('TimerService', () => {
         spyOn(window, 'setInterval').and.callThrough();
         spyOn(window, 'clearInterval');
 
-        // mock function to be called by the timerService
+        // mock function to be called by the timer
         mockFn = jasmine.createSpy('mockFn');
-        timerService = new TimerService(mockFn, 1000);
+        timer = new Timer(mockFn, 1000);
     });
 
     describe('start', () => {
         it('should start the timer when start() is called', () => {
-            timerService.start();
+            timer.start();
             expect(window.setInterval).toHaveBeenCalledWith(mockFn, 1000);
         });
 
         it('should not start a new timer if one is already running', () => {
-            timerService.start();
-            timerService.start(); // attempt to start again
+            timer.start();
+            timer.start(); // attempt to start again
             expect(window.setInterval).toHaveBeenCalledTimes(1); // only one timer
         });
     });
 
     describe('stop', () => {
         it('should stop the timer when stop() is called', () => {
-            timerService.start();
-            timerService.stop();
+            timer.start();
+            timer.stop();
             expect(window.clearInterval).toHaveBeenCalled();
         });
     });
 
     describe('reset', () => {
         it('should reset the timer with the original time if no argument is passed', () => {
-            timerService.start();
-            timerService.reset();
+            timer.start();
+            timer.reset();
             expect(window.clearInterval).toHaveBeenCalled();
             expect(window.setInterval).toHaveBeenCalledWith(mockFn, 1000);
         });
 
         it('should reset the timer with a new interval time if an argument is passed', () => {
-            timerService.start();
-            timerService.reset(500); // set new time
+            timer.start();
+            timer.reset(500); // set new time
             expect(window.clearInterval).toHaveBeenCalled();
             expect(window.setInterval).toHaveBeenCalledWith(mockFn, 500);
         });

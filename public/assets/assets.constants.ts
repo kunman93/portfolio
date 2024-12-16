@@ -3,7 +3,8 @@ export const ASSET_PATHS = {
     institutions: "assets/images/institutions",
     projects: "assets/images/projects",
     services: "assets/images/services",
-    technologies: "assets/images/technologies"
+    technologies: "assets/images/technologies",
+    backgrounds: "assets/images/backgrounds"
 };
 
 export const GLTF_MODELS = {
@@ -65,6 +66,12 @@ export const TECHNOLOGIES = {
     spring: `${ASSET_PATHS.technologies}/spring.png`,
     tailwind: `${ASSET_PATHS.technologies}/tailwind.png`,
     typescript: `${ASSET_PATHS.technologies}/typescript.png`,
+};
+
+export const BACKGROUNDS = {
+    inkblot1: `${ASSET_PATHS.backgrounds}/inkblot-1.svg`,
+    inkblot2: `${ASSET_PATHS.backgrounds}/inkblot-2.svg`,
+    tree: `${ASSET_PATHS.backgrounds}/tree.svg`,
 };
 
 export const NOJI_LOGO = "assets/images/noji-enterprise-high-resolution-logo.png";

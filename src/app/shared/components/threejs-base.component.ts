@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 
-export abstract class ThreejsEngineComponent {
+export abstract class ThreejsBaseComponent {
     // --- Helper properties ----
     protected renderer!: THREE.WebGLRenderer;
     protected camera!: THREE.PerspectiveCamera;
@@ -11,7 +11,7 @@ export abstract class ThreejsEngineComponent {
 
     abstract createScene(): void
 
-    protected animate(component: ThreejsEngineComponent, animationFn?: () => void) {
+    protected animate(component: ThreejsBaseComponent, animationFn?: () => void) {
         component.onWindowResize(component);
         if (!!animationFn) {
             animationFn();
@@ -20,7 +20,7 @@ export abstract class ThreejsEngineComponent {
         component.renderer.render(component.scene, component.camera);
     }
 
-    private onWindowResize(component: ThreejsEngineComponent): void {
+    private onWindowResize(component: ThreejsBaseComponent): void {
         if (component.resizeRendererToDisplaySize(component)) {
             const canvas = component.renderer.domElement;
             component.camera.aspect = canvas.clientWidth / canvas.clientHeight;
@@ -28,7 +28,7 @@ export abstract class ThreejsEngineComponent {
         }
     }
 
-    private resizeRendererToDisplaySize(component: ThreejsEngineComponent): boolean {
+    private resizeRendererToDisplaySize(component: ThreejsBaseComponent): boolean {
         const canvas = component.renderer.domElement;
         const pixelRatio = window.devicePixelRatio; // for handling HD-DPI
         const width = Math.floor(canvas.clientWidth * pixelRatio);
@@ -42,4 +42,3 @@ export abstract class ThreejsEngineComponent {
         return needResize;
     }
 }
-

@@ -1,9 +1,11 @@
 <app-section-wrapper>
-  <h1 id="title">Hi, I'm <span class="text-red-500">Manu</span></h1>
+  <img id="backgroundImage" class="absolute top-24 -z-20 opacity-50 hidden xl:block" src="{{ backgroundImage.srcImage }}" alt="{{ backgroundImage.alt }}"/>
 
-  <p id="description" class="text-white sm:text-lg md:text-2xl">I'm a Full-Stack Software Engineer</p>
+  <h1 id="homeTitle">Hi, I'm <span class="text-red-500">Manu</span></h1>
+
+  <p id="homeDescription" class="text-white sm:text-lg md:text-2xl"><span id="animatedText" #animatedTextRef></span><span id="cursor" class="text-red-500">|</span></p>
   
-  <div class="flex flex-col items-center">
+  <div class="flex-col items-center">
     <app-workstation class="w-screen sm:w-full"></app-workstation>
   </div>
 </app-section-wrapper>

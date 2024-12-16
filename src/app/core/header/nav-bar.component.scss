@@ -1,0 +1,79 @@
+#menuButton {
+  @apply relative;
+  @apply w-14;
+  @apply h-12;
+  @apply cursor-pointer;
+}
+
+#menuButton:hover {
+    @apply bg-red-500;
+}
+
+#icon {
+  @apply absolute;
+  @apply top-0;
+  @apply right-4;
+  @apply left-4;
+  @apply w-auto;
+  @apply h-full;
+}
+
+/* MENU ICON */
+
+.lines,
+.lines:before,
+.lines:after {
+  @apply absolute;
+  @apply block;
+  @apply w-full;
+  @apply left-0;
+  @apply bg-white;
+  @apply duration-300;
+}
+
+.lines {
+  @apply h-[0.2rem];
+  @apply -mt-0.5;
+  @apply top-1/2;
+}
+
+.lines:before,
+.lines:after {
+  content: '';
+  @apply h-full;
+
+  /* Try different values here: .25rem, .5rem, .2rem, 5rem, 10rem... */
+  transform-origin: .5rem center;
+}
+
+.lines:before {
+  @apply top-2;
+}
+
+.lines:after {
+  @apply -top-2;
+}
+
+/* CLOSE ICON */
+
+.close {
+  transform: scale3d(0.8, 0.8, 0.8);
+}
+
+.close .lines {
+    @apply bg-transparent;
+}
+
+.close .lines:before,
+.close .lines:after {
+  @apply top-0;
+  transform-origin: 50% 50%;
+}
+
+.close .lines:before {
+  transform: rotate3d(0, 0, 1, 45deg);
+}
+
+.close .lines:after {
+  transform: rotate3d(0, 0, 1, -45deg);
+}

@@ -18,14 +18,14 @@ describe('EmploymentReferenceComponent', () => {
     describe('template', () => {
         it('displays the small title', async () => {
             const { find } = await shallow.render(`<app-employment-reference></app-employment-reference>`);
-            const smallTitle = find('#smallTitle');
+            const smallTitle = find('#employmentReferencesSmallTitle');
 
             expect(smallTitle.nativeElement.textContent).toBe('WHAT OTHERS SAY');
         });
 
         it('displays the employment reference title', async () => {
             const { find } = await shallow.render(`<app-employment-reference></app-employment-reference>`);
-            const title = find('#title');
+            const title = find('#employmentReferencesTitle');
 
             expect(title.nativeElement.textContent).toBe('Employment References.');
         });

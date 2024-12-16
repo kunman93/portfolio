@@ -1,13 +1,24 @@
 import { NavBarComponent } from './nav-bar.component';
 import { Shallow } from 'shallow-render';
-import { CoreModule } from '../core.module';
 import { HeaderModule } from './header.module';
+import { GsapAnimationService } from '../services/gsap-animation.service';
+import { NgZone } from '@angular/core';
+import { Router } from '@angular/router';
 
 describe('NavBarComponent', () => {
     let shallow: Shallow<NavBarComponent>;
 
     beforeEach(() => {
-        shallow = new Shallow(NavBarComponent, HeaderModule);
+        shallow = new Shallow(NavBarComponent, HeaderModule)
+            .mock(GsapAnimationService, {
+                gsap: {
+                    from: () => { },
+                    to: () => Promise.resolve("Animation is done")
+                }
+            })
+            .mock(Router, {
+                navigate: () => Promise.resolve(true)
+            });
     });
 
     it('creates a component', async () => {
@@ -40,16 +51,17 @@ describe('NavBarComponent', () => {
 
             it("scrolls to the top when the logo, name or occupation is clicked", async () => {
                 // arrange
-                const { find, fixture } = await shallow.render(`<app-nav-bar></app-nav-bar>`);
+                const { find, fixture, inject } = await shallow.render(`<app-nav-bar></app-nav-bar>`);
                 const logoNameOccupationContainer = find("#logoNameOccupationContainer");
-                const scrollMock = spyOn(window, 'scroll').and.callThrough();
+
+                const routerMock = inject(Router);
 
                 // act
                 logoNameOccupationContainer.triggerEventHandler("click", {});
                 fixture.detectChanges();
 
                 // assert
-                expect(scrollMock).toHaveBeenCalled();
+                expect(routerMock.navigate).toHaveBeenCalledWith(['/']);
             });
         });
 
@@ -76,30 +88,55 @@ describe('NavBarComponent', () => {
 
             it("displays the menu icon", async () => {
                 const { find } = await shallow.render(`<app-nav-bar></app-nav-bar>`);
-                expect(find("#menuIcon").nativeElement.className).toContain("fa-solid fa-bars");
+                expect(find("#icon").nativeElement.className).toBeFalsy();
 
-                expect(find("#closeIcon")).toHaveFound(0);
                 expect(find("#aboutMenuItem")).toHaveFound(0);
                 expect(find("#workMenuItem")).toHaveFound(0);
                 expect(find("#contactMenuItem")).toHaveFound(0);
             });
 
-            it("displays the x-mark icon and the dropdown elements", async () => {
+            it("displays the close icon and the dropdown elements on menu button click", async () => {
                 // arrange
-                const { find, fixture } = await shallow.render(`<app-nav-bar></app-nav-bar>`);
-                const menuIcon = find("#menuIcon");
+                const { find, fixture, instance } = await shallow.render(`<app-nav-bar></app-nav-bar>`);
+                const menuButton = find("#menuButton");
 
                 // act
-                menuIcon.triggerEventHandler("click", {});
+                menuButton.triggerEventHandler("click", {});
                 fixture.detectChanges();
 
                 // assert
-                expect(find("#closeIcon").nativeElement.className).toContain("fa-solid fa-xmark");
+                expect(find("#icon").nativeElement.className).toContain("close");
                 expect(find("#aboutMenuItem").nativeElement.textContent).toBe("About");
                 expect(find("#workMenuItem").nativeElement.textContent).toBe("Work");
                 expect(find("#contactMenuItem").nativeElement.textContent).toBe("Contact");
+                expect(instance.isSelected).toBeTrue();
+            });
 
-                expect(find("#menuIcon")).toHaveFound(0);
+            it('closes the dropdown menu on close button click', async () => {
+                // arrange
+                const { find, fixture, instance, inject } = await shallow.render(`<app-nav-bar></app-nav-bar>`);
+                const menuButton = find("#menuButton");
+
+                const zone = inject(NgZone);
+                const runOutsideAngularSpy = spyOn(zone, 'runOutsideAngular').and.callThrough();
+                const runSpy = spyOn(zone, 'run').and.callThrough();
+
+                // act
+                // -- click on menu icon
+                expect(instance.isSelected).toBeFalse();
+                menuButton.triggerEventHandler("click", {});
+                fixture.detectChanges();
+                // -- click on close icon
+                expect(instance.isSelected).toBeTrue();
+                menuButton.triggerEventHandler("click", {});
+                fixture.detectChanges();
+
+                await fixture.whenStable();
+
+                // assert
+                expect(instance.isSelected).toBeFalse();
+                expect(runOutsideAngularSpy).toHaveBeenCalled();
+                expect(runSpy).toHaveBeenCalled();
             });
         });
     });

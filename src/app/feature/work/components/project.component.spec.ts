@@ -20,14 +20,14 @@ describe('ProjectComponent', () => {
     describe('template', () => {
         it('displays the small title', async () => {
             const { find } = await shallow.render(`<app-project></app-project>`);
-            const smallTitle = find('#smallTitle');
+            const smallTitle = find('#projectsSmallTitle');
 
             expect(smallTitle.nativeElement.textContent).toBe('MY WORK');
         });
 
         it('displays the projects title', async () => {
             const { find } = await shallow.render(`<app-project></app-project>`);
-            const title = find('#title');
+            const title = find('#projectsTitle');
 
             expect(title.nativeElement.textContent).toBe('Projects.');
         });

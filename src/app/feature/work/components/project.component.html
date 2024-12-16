@@ -1,8 +1,8 @@
 @if(!!projects && projects.length > 0){
     <app-section-wrapper>
-        <p id="smallTitle">MY WORK</p>
+        <p id="projectsSmallTitle">MY WORK</p>
 
-        <h2 id="title">Projects.</h2>
+        <h2 id="projectsTitle">Projects.</h2>
 
         <p id="projectsText" class="md:w-3/4 lg:w-2/3 xl:w-1/2">
             The projects below showcase my skills and experience. 
@@ -11,7 +11,7 @@
             utilizing various technologies, and managing projects efficiently.
         </p>
 
-        <div class="flex flex-row justify-center">
+        <div id="projectsContainer" class="flex flex-row justify-center">
             <div class="flex flex-col w-full sm:w-10/12 md:w-9/12 lg:w-8/12 lx:w-7/12 2xl:w-6/12 mt-11 space-y-6">
                 <cdk-virtual-scroll-viewport itemSize="50" class="w-full h-screen rounded-md">
                     <div class="mb-7 last:mb-0" *cdkVirtualFor="let project of projects">

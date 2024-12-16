@@ -9,7 +9,7 @@ describe('ContactComponent', () => {
     let shallow: Shallow<ContactComponent>;
 
     beforeEach(() => {
-        shallow = new Shallow(ContactComponent, ContactModule);
+        shallow = new Shallow(ContactComponent, ContactModule); 
     });
 
     it('creates a component', async () => {

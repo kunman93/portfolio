@@ -1,4 +1,4 @@
-export class TimerService {
+export class Timer {
     private timerObj: any;
 
     constructor(
@@ -9,7 +9,7 @@ export class TimerService {
     }
 
     // start timer using current settings (if it's not already running)
-    public start(): TimerService {
+    public start(): Timer {
         if (!this.timerObj) {
             this.stop();
             this.timerObj = setInterval(this.fn, this.timeInMilliseconds);
@@ -17,7 +17,7 @@ export class TimerService {
         return this;
     }
 
-    public stop(): TimerService {
+    public stop(): Timer {
         if (!!this.timerObj) {
             clearInterval(this.timerObj);
             this.timerObj = null;
