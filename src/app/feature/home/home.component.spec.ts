@@ -16,6 +16,11 @@ describe("HomeComponent", () => {
     });
 
     describe("template", () => {
+        it("displays the background image", async () => {
+            const { find } = await shallow.render(`<app-home></app-home>`);
+            expect(find("#backgroundImage")).toBeTruthy();
+        });
+
         it("displays title and description", async () => {
             const { find, instance } = await shallow.render(`<app-home></app-home>`);
             spyOn(instance, 'ngAfterViewInit');

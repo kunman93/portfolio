@@ -17,6 +17,11 @@ describe('SkillsComponent', () => {
     });
 
     describe('template', () => {
+        it("displays the background image", async () => {
+            const { find } = await shallow.render(`<app-skills></app-skills>`);
+            expect(find("#backgroundImage")).toBeTruthy();
+        });
+
         it('displays the small title', async () => {
             const { find } = await shallow.render(`<app-skills></app-skills>`);
             const smallTitle = find('#skillsSmallTitle');
