@@ -1,7 +1,7 @@
 <div class="fixed w-screen z-20 bg-gradient-to-b from-stone-800 to-stone-900 opacity-95">
     <div class="flex flex-row justify-between sm:justify-around mx-5 sm:mx-20 md:mx-5">
         <div id="logoNameOccupationContainer" class="flex gap-3 items-center cursor-pointer" (click)="onLogoNameOccupationClick()">
-            <img id="logo" class="w-12 h-12 md:w-14 md:h-14" src="{{ NOJI_LOGO }}" alt="Noji Enterprise Logo">
+            <img id="logo" class="w-12 h-12 md:w-14 md:h-14" src="{{ logo.srcImage }}" alt="{{ logo.alt }}">
             <p id="nameOccupation"class="text-base font-bold">Manu&nbsp;<span class="md:inline hidden">|&nbsp;Full-Stack Software Engineer</span></p>
         </div>
         <nav class="sm:block hidden content-center">
