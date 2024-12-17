@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "e2e-test": "cucumber-js"
+    "e2e-test": "npx cypress open"
   },
   "private": true,
   "dependencies": {
