@@ -8,7 +8,7 @@ import { Timer } from 'src/app/core/utils/timer';
 })
 export class ToastService {
     private toastDatas: ToastData[] = [];
-    private timer = new Timer(() => this.remove(0), TOASTER_CONFIG.DURATION);
+    private timer = new Timer(() => this.remove(0), TOASTER_CONFIG.TOTAL_DURATION * 1000);
 
     add(toastData: ToastData): void {
         this.toastDatas.push(toastData);

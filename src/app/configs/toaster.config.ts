@@ -1,4 +1,9 @@
-// change duration also in toast.component.scss
+const SLIDE_IN_OUT_DURATION = 1; // in s
+const PROGRESS_BAR_DURATION = 5; // in s
+const TOTAL_DURATION = 2 * SLIDE_IN_OUT_DURATION + PROGRESS_BAR_DURATION; // in s
+
 export const TOASTER_CONFIG = {
-    DURATION: 10000 // in milliseconds
+    SLIDE_IN_OUT_DURATION: SLIDE_IN_OUT_DURATION, // in s
+    PROGRESS_BAR_DURATION: PROGRESS_BAR_DURATION, // in s
+    TOTAL_DURATION: TOTAL_DURATION // in s
 };

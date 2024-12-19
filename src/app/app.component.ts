@@ -1,5 +1,6 @@
 import { ViewportScroller } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, NgZone, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { TOASTER_CONFIG } from 'src/app/configs/toaster.config';
 import { ToastService } from './core/notification/services/toast.service';
 import { ToastData } from './core/notification/models/toast-data';
 import { GsapAnimationService } from './core/services/gsap-animation.service';
@@ -41,7 +42,7 @@ export class AppComponent implements OnInit, AfterViewInit {
                     const tweenParamsFrom = {
                         opacity: 0,
                         x: 100,
-                        duration: 1,
+                        duration: TOASTER_CONFIG.SLIDE_IN_OUT_DURATION,
                         ease: "back.inOut(4)"
                     };
 
@@ -49,18 +50,26 @@ export class AppComponent implements OnInit, AfterViewInit {
                         opacity: tweenParamsFrom.opacity,
                         x: tweenParamsFrom.x,
                         duration: tweenParamsFrom.duration,
-                        delay: 5,
                         ease: tweenParamsFrom.ease
                     };
 
                     const tl = this.gsapAnimationService.gsap.timeline();
-                    tl.from(
-                        toastId,
-                        tweenParamsFrom
-                    ).to(
-                        toastId,
-                        tweenParamsTo
-                    );
+                    tl
+                        .from(
+                            toastId,
+                            tweenParamsFrom
+                        )
+                        .to(
+                            `${toastId} #progressBar`,
+                            {
+                                width: '0%',
+                                duration: TOASTER_CONFIG.PROGRESS_BAR_DURATION,
+                            }
+                        )
+                        .to(
+                            toastId,
+                            tweenParamsTo
+                        );
                 });
             }
         });

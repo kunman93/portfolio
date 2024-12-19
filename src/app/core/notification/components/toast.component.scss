@@ -1,9 +1,0 @@
-.progress-bar {
-    animation: progress-bar-animation 5s linear forwards; // change duration also in toaster.config.ts
-}
-
-@keyframes progress-bar-animation {
-    100% {
-        width: 0%;
-    }
-}

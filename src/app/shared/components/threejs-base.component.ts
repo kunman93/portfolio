@@ -11,6 +11,20 @@ export abstract class ThreejsBaseComponent {
 
     abstract createScene(): void
 
+    protected initOrbitControls() {
+        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+
+        this.controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+        this.controls.dampingFactor = 0.05; // The damping inertia used, default is 0.05
+
+        this.controls.screenSpacePanning = false;
+        this.controls.enableZoom = false;
+        this.controls.enablePan = false;
+        this.controls.target.set(0, 0, 0); // The focus point of the controls
+
+        this.controls.maxPolarAngle = Math.PI; // How far you can orbit vertically, upper limit. Range is 0 to Math.PI radians, and default is Math.PI. 
+    }
+
     protected animate(component: ThreejsBaseComponent, animationFn?: () => void) {
         component.onWindowResize(component);
         if (!!animationFn) {

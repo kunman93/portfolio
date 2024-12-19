@@ -3,6 +3,18 @@ import { PROJECTS } from "assets/assets.constants";
 
 export const projects: Project[] = [
     {
+        githubUrl: "https://github.com/kunman93/portfolio",
+        img: {
+            srcImage: PROJECTS.portfolio.img,
+            srcGif: PROJECTS.portfolio.gif,
+            alt: "Porfolio Image"
+        },
+        title: "Portfolio",
+        description: "A portfolio of who I am and what I have done so far.",
+        technologies: ["Angular", "TypeScript", "Tailwind", "Threejs", "Cypress", "Cucumber", "Git"],
+        task: undefined
+    },
+    {
         githubUrl: "https://github.com/kunman93/soundboard",
         img: {
             srcImage: PROJECTS.spaceRunner.img,
