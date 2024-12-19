@@ -1,5 +1,6 @@
 import { Shallow } from 'shallow-render';
 import { HomeComponent } from './home.component';
+import { WorkstationComponent } from './workstation.component';
 import { HomeModule } from './home.module';
 
 describe("HomeComponent", () => {
@@ -28,6 +29,13 @@ describe("HomeComponent", () => {
 
             expect(title.nativeElement.textContent).toBe("Hi, I'm Manu");
             expect(description.nativeElement.textContent).toBe("|");
+        });
+
+        it("displays the workstation", async () => {
+            const { findComponent } = await shallow.render(`<app-home></app-home>`);
+            const workstationComponent = findComponent(WorkstationComponent);
+
+            expect(workstationComponent).toBeTruthy();
         });
     });
 });
