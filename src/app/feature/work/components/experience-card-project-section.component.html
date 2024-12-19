@@ -1,6 +1,8 @@
-<h4>{{ project.title }}</h4>
-<p>{{ project.description }}</p>
+<div class="flex flex-col">
+  <h4>{{ project.title }}</h4>
+  <p>{{ project.description }}</p>
 
-@if (!!project.task) {
+  @if (!!project.task) {
     <app-experience-card-task-section class="mt-2" [task]="project.task"></app-experience-card-task-section>
-}
+  }
+</div>
