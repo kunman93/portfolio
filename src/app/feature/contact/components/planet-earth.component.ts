@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { ASSET_PATHS, GLTF_MODELS } from 'assets/assets.constants';
 import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { ThreejsBaseComponent } from 'src/app/shared/components/threejs-base.component';
@@ -80,17 +79,7 @@ export class PlanetEarthComponent extends ThreejsBaseComponent implements AfterV
         this.scene.add(light);
 
         // # Add OrbitControl
-        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-
-        this.controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
-        this.controls.dampingFactor = 0.05; // The damping inertia used, default is 0.05
-
-        this.controls.screenSpacePanning = false;
-        this.controls.enableZoom = false;
-        this.controls.enablePan = false;
-        this.controls.target.set(0, 0, 0); // The focus point of the controls
-
-        this.controls.maxPolarAngle = Math.PI; // How far you can orbit vertically, upper limit. Range is 0 to Math.PI radians, and default is Math.PI. 
+        this.initOrbitControls();
 
         // # Set an animation loop on the renderer
         // ## The function will be called every available frame.

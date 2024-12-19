@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, NgZone, ViewChild } from '@angular/core';
 import { ThreejsBaseComponent } from 'src/app/shared/components/threejs-base.component';
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { DecalGeometry } from 'three/examples/jsm/geometries/DecalGeometry.js';
 
 @Component({
@@ -130,17 +129,7 @@ export class TechnologyOrbComponent extends ThreejsBaseComponent implements Afte
         this.scene.add(lightBack);
 
         // # Add OrbitControl
-        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-
-        this.controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
-        this.controls.dampingFactor = 0.05; // The damping inertia used, default is 0.05
-
-        this.controls.screenSpacePanning = false;
-        this.controls.enableZoom = false;
-        this.controls.enablePan = false;
-        this.controls.target.set(0, 0, 0); // The focus point of the controls
-
-        this.controls.maxPolarAngle = Math.PI; // How far you can orbit vertically, upper limit. Range is 0 to Math.PI radians, and default is Math.PI. 
+        this.initOrbitControls();
 
         // # Set an animation loop on the renderer
         // ## The function will be called every available frame.
