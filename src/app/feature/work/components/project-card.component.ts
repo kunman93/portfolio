@@ -25,7 +25,7 @@ export class ProjectCardComponent implements OnInit {
             .every(prop => prop);
     }
 
-    onClick(): void {
+    onTouch(): void {
         this.imageSource = this.toggle
             ? this.project.img?.srcGif
             : this.project.img?.srcImage;

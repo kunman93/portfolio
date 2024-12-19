@@ -110,14 +110,14 @@ describe('ProjectCardComponent', () => {
             const img = find('#image');
 
             // act
-            img.triggerEventHandler("click", {});
+            img.triggerEventHandler("touchstart", {});
             fixture.detectChanges();
 
             // assert
             expect(img.nativeElement.src).toContain(project.img?.srcGif);
 
             // act
-            img.triggerEventHandler("click", {});
+            img.triggerEventHandler("touchstart", {});
             fixture.detectChanges();
 
             // assert
