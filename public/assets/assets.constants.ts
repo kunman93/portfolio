@@ -23,6 +23,10 @@ export const INSTITUTIONS = {
 };
 
 export const PROJECTS = {
+    portfolio: {
+        img: `${ASSET_PATHS.projects}/portfolio.png`,
+        gif: `${ASSET_PATHS.projects}/portfolio.gif`,
+    },
     soundboard: {
         img: `${ASSET_PATHS.projects}/soundboard.png`,
         gif: `${ASSET_PATHS.projects}/soundboard.gif`,
