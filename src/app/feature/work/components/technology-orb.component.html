@@ -1,1 +1,7 @@
-<canvas #canvasTechnologyOrb class="block w-full h-full"></canvas>
+<div id="technologyOrbsContainer" class="flex flex-row justify-center">
+    <div class="flex flex-row flex-wrap justify-center gap-x-10 gap-y-10 w-5/6 sm:w-3/4">
+        @for(technology of technologies; track technology; let idx = $index) {
+            <div #div id="{{ 'technologyOrb' + idx }}" data-diagram="technology-orb" class="w-28 h-28 lg:w-32 lg:h-32"></div>
+        }
+    </div>
+</div>
