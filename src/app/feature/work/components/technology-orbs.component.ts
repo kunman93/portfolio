@@ -1,8 +1,14 @@
-import { AfterViewInit, Component, ElementRef, Input, NgZone, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, NgZone, QueryList, ViewChildren } from '@angular/core';
 import * as THREE from 'three';
 import { DecalGeometry } from 'three/examples/jsm/geometries/DecalGeometry.js';
 import { technologies } from '../data/technologies';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+interface SceneElement {
+    elem: HTMLElement;
+    fn: (time: number, rect: DOMRect) => void;
+    ctx: CanvasRenderingContext2D | null;
+}
 
 @Component({
     selector: 'app-technology-orbs',
@@ -17,7 +23,7 @@ export class TechnologyOrbsComponent implements AfterViewInit {
 
     private renderer!: THREE.WebGLRenderer;
 
-    private sceneElements: { elem: HTMLElement, fn: (time: number, rect: DOMRect) => void, ctx: CanvasRenderingContext2D | null }[] = [];
+    private sceneElements: SceneElement[] = [];
 
     constructor(private zone: NgZone) {
     }
@@ -43,15 +49,20 @@ export class TechnologyOrbsComponent implements AfterViewInit {
         requestAnimationFrame((time) => this.render(time, this));
     }
 
-    private addScene(elem: HTMLElement, fn: (time: number, rect: DOMRect) => void) {
-
+    private addScene(
+        elem: HTMLElement,
+        fn: (time: number, rect: DOMRect) => void
+    ): void {
         const ctx = document.createElement('canvas').getContext('2d');
         elem.appendChild(ctx!.canvas);
         this.sceneElements.push({ elem, ctx, fn });
     }
 
-    private makeScene(elem: HTMLElement) {
-
+    private makeScene(elem: HTMLElement): {
+        scene: THREE.Scene,
+        camera: THREE.PerspectiveCamera,
+        controls: OrbitControls
+    } {
         const scene = new THREE.Scene();
 
         const fov = 75;
@@ -167,16 +178,18 @@ export class TechnologyOrbsComponent implements AfterViewInit {
                     orbGroup.rotation.y += Math.sin(time + 0.768 * Math.PI) * 0.0003;
                     orbGroup.position.x = Math.sin(2.5 * time) * 0.125;
                     orbGroup.position.y = Math.sin(1.5 * time) * 0.25;
+
                     camera.aspect = rect.width / rect.height;
                     camera.updateProjectionMatrix();
+
                     controls.update();
+
                     this.renderer.render(scene, camera);
                 };
             },
         };
 
-    private render(time: number, component: TechnologyOrbsComponent) {
-
+    private render(time: number, component: TechnologyOrbsComponent): void {
         time *= 0.001;
 
         for (const { elem, fn, ctx } of component.sceneElements) {
@@ -196,17 +209,13 @@ export class TechnologyOrbsComponent implements AfterViewInit {
 
                 // make sure the renderer's canvas is big enough
                 if (rendererCanvas.width < width || rendererCanvas.height < height) {
-
                     component.renderer.setSize(width, height, false);
-
                 }
 
                 // make sure the canvas for this area is the same size as the area
                 if (ctx!.canvas.width !== width || ctx!.canvas.height !== height) {
-
                     ctx!.canvas.width = width;
                     ctx!.canvas.height = height;
-
                 }
 
                 component.renderer.setScissor(0, 0, width, height);
