@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TechnologyOrbComponent } from './technology-orb.component';
+import { TechnologyOrbsComponent } from './technology-orbs.component';
 
-describe('TechnologyOrbComponent', () => {
-  let component: TechnologyOrbComponent;
-  let fixture: ComponentFixture<TechnologyOrbComponent>;
+describe('TechnologyOrbsComponent', () => {
+  let component: TechnologyOrbsComponent;
+  let fixture: ComponentFixture<TechnologyOrbsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TechnologyOrbComponent]
+      declarations: [TechnologyOrbsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TechnologyOrbComponent);
+    fixture = TestBed.createComponent(TechnologyOrbsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,7 +1,7 @@
 import { SkillsComponent } from './skills.component';
 import { Shallow } from 'shallow-render';
 import { WorkModule } from '../work.module';
-import { TechnologyOrbComponent } from './technology-orb.component';
+import { TechnologyOrbsComponent } from './technology-orbs.component';
 
 describe('SkillsComponent', () => {
     let shallow: Shallow<SkillsComponent>;
@@ -38,7 +38,7 @@ describe('SkillsComponent', () => {
         it('displays technology orbs', async () => {
             const { findComponent } = await shallow.render(`<app-skills></app-skills>`);
 
-            const technologyOrbs = findComponent(TechnologyOrbComponent);
+            const technologyOrbs = findComponent(TechnologyOrbsComponent);
             expect(technologyOrbs).toHaveFound(1);
         });
     });

@@ -5,11 +5,11 @@ import { technologies } from '../data/technologies';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 @Component({
-    selector: 'app-technology-orb',
-    templateUrl: './technology-orb.component.html',
-    styleUrl: './technology-orb.component.scss'
+    selector: 'app-technology-orbs',
+    templateUrl: './technology-orbs.component.html',
+    styleUrl: './technology-orbs.component.scss'
 })
-export class TechnologyOrbComponent implements AfterViewInit {
+export class TechnologyOrbsComponent implements AfterViewInit {
     readonly technologies = technologies;
 
     @ViewChildren('div', { read: ElementRef })
@@ -174,7 +174,7 @@ export class TechnologyOrbComponent implements AfterViewInit {
             },
         };
 
-    private render(time: number, component: TechnologyOrbComponent) {
+    private render(time: number, component: TechnologyOrbsComponent) {
 
         time *= 0.001;
 
