@@ -46,7 +46,7 @@ export class AboutComponent implements AfterViewInit {
                     each: 1
                 },
                 scrollTrigger: {
-                    trigger: "app-service-card",
+                    trigger: "#overviewText",
                     endTrigger: "app-work",
                     scrub: 4,
                     end: "top 100%"
