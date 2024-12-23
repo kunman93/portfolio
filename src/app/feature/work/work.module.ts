@@ -5,7 +5,7 @@ import { ExperienceCardComponent } from './components/experience-card.component'
 import { ExperienceComponent } from './components/experience.component';
 import { ExperienceCardProjectSectionComponent } from './components/experience-card-project-section.component';
 import { ExperienceCardTaskSectionComponent } from './components/experience-card-task-section.component';
-import { TechnologyOrbComponent } from './components/technology-orb.component';
+import { TechnologyOrbsComponent } from './components/technology-orbs.component';
 import { WorkComponent } from './components/work.component';
 import { SharedModule } from "../../shared/shared.module";
 import { SkillsComponent } from './components/skills.component';
@@ -24,7 +24,7 @@ import { EmploymentReferenceCarouselComponent } from './components/employment-re
         ExperienceCardProjectSectionComponent,
         ExperienceCardTaskSectionComponent,
         WorkComponent,
-        TechnologyOrbComponent,
+        TechnologyOrbsComponent,
         SkillsComponent,
         ProjectComponent,
         ProjectCardComponent,
