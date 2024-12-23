@@ -12,8 +12,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 export class TechnologyOrbsComponent implements AfterViewInit {
     readonly technologies = technologies;
 
-    @ViewChildren('div', { read: ElementRef })
-    private divRef!: QueryList<ElementRef>;
+    @ViewChildren('technologyOrb', { read: ElementRef })
+    private technologyOrbRef!: QueryList<ElementRef>;
 
     private renderer!: THREE.WebGLRenderer;
 
@@ -32,10 +32,11 @@ export class TechnologyOrbsComponent implements AfterViewInit {
 
         this.renderer.setScissorTest(true);
 
-        this.divRef.map(elementRef => elementRef.nativeElement).forEach((elem: Element) => {
+        this.technologyOrbRef.map(elementRef => elementRef.nativeElement).forEach((elem: Element) => {
             const sceneName = (elem as HTMLElement).dataset['diagram'];
+            const technology = (elem as HTMLElement).dataset['technology'];
             const sceneInitFunction = this.sceneInitFunctionsByName[sceneName ?? ''];
-            const sceneRenderFunction = sceneInitFunction((elem as HTMLElement));
+            const sceneRenderFunction = sceneInitFunction((elem as HTMLElement), technology ?? '');
             this.addScene((elem as HTMLElement), sceneRenderFunction);
         });
 
@@ -111,9 +112,9 @@ export class TechnologyOrbsComponent implements AfterViewInit {
     }
 
     private sceneInitFunctionsByName: {
-        [key: string]: (elem: HTMLElement) => (time: number, rect: DOMRect) => void
+        [key: string]: (elem: HTMLElement, technology: string) => (time: number, rect: DOMRect) => void
     } = {
-            'technology-orb': (elem: HTMLElement) => {
+            'technology-orb': (elem: HTMLElement, technology: string) => {
 
                 const { scene, camera, controls } = this.makeScene(elem);
 
@@ -138,7 +139,7 @@ export class TechnologyOrbsComponent implements AfterViewInit {
                 const orb = new THREE.Mesh(geometry, material);
 
                 // ## DecalGeometry
-                const texture = new THREE.TextureLoader().load(technologies[0]);
+                const texture = new THREE.TextureLoader().load(technology);
 
                 const position = new THREE.Vector3(0, 0, 1);
                 const orientation = new THREE.Euler(2 * Math.PI);
