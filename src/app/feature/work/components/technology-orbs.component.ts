@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { DecalGeometry } from 'three/examples/jsm/geometries/DecalGeometry.js';
 import { technologies } from '../data/technologies';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { ThreejsBaseComponent } from 'src/app/shared/components/threejs-base.component';
 
 interface SceneElement {
     elem: HTMLElement;
@@ -15,24 +16,23 @@ interface SceneElement {
     templateUrl: './technology-orbs.component.html',
     styleUrl: './technology-orbs.component.scss'
 })
-export class TechnologyOrbsComponent implements AfterViewInit {
+export class TechnologyOrbsComponent extends ThreejsBaseComponent implements AfterViewInit {
     readonly technologies = technologies;
 
     @ViewChildren('technologyOrb', { read: ElementRef })
     private technologyOrbRef!: QueryList<ElementRef>;
 
-    private renderer!: THREE.WebGLRenderer;
-
     private sceneElements: SceneElement[] = [];
 
     constructor(private zone: NgZone) {
+        super();
     }
 
     ngAfterViewInit(): void {
         this.zone.runOutsideAngular(() => this.createScene());
     }
 
-    private createScene(): void {
+    override createScene(): void {
         const canvas = document.createElement('canvas');
         this.renderer = new THREE.WebGLRenderer({ antialias: true, canvas, alpha: true });
 
