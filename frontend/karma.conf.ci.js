@@ -40,8 +40,9 @@ module.exports = function (config) {
                 base: 'ChromeHeadless',
                 flags: [
                     '--no-sandbox',
-                    '--disable-dev-shm-usage', // karma timeout error fix. Source: https://stackoverflow.com/questions/69173469/meaning-of-selenium-chromeoptions 
-                    '--disable-browser-side-navigation' // karma timeout error fix. Source: https://stackoverflow.com/questions/69173469/meaning-of-selenium-chromeoptions
+                    // karma timeout error fix. Source: https://stackoverflow.com/questions/69173469/meaning-of-selenium-chromeoptions 
+                    '--disable-dev-shm-usage',
+                    '--disable-browser-side-navigation',
                 ]
             }
         },

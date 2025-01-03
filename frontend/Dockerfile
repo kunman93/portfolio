@@ -2,12 +2,6 @@
 # STAGE: Base
 #
 FROM node:20-alpine AS base
-## Install Chromium for the unit / e2e tests
-RUN apk add --no-cache chromium
-### Set environment variables
-ENV CHROME_BIN=/usr/bin/chromium-browser
-ENV CHROME_PATH=/usr/lib/chromium/
-ENV PUPPETEER_SKIP_DOWNLOAD=true
 ## Create and set working directory
 WORKDIR /app
 ## Copy package.json and install dependencies
@@ -20,6 +14,10 @@ COPY . .
 # STAGE: Test
 #
 FROM base AS test
+## Install Chromium for the unit / e2e tests
+RUN apk add --no-cache chromium
+### Set environment variables
+ENV CHROME_BIN=/usr/bin/chromium-browser
 ## Run unit tests
 RUN npm run test-ci
 
