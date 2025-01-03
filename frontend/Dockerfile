@@ -1,13 +1,40 @@
-# STAGE 1: Build
-FROM node:20-alpine AS build
+#
+# STAGE: Base
+#
+FROM node:20-alpine AS base
+## Install Chromium for the unit / e2e tests
+RUN apk add --no-cache chromium
+### Set environment variables
+ENV CHROME_BIN=/usr/bin/chromium-browser
+ENV CHROME_PATH=/usr/lib/chromium/
+ENV PUPPETEER_SKIP_DOWNLOAD=true
+## Create and set working directory
 WORKDIR /app
+## Copy package.json and install dependencies
 COPY package.json .
 RUN npm install
+## Copy the application source code
 COPY . .
+
+#
+# STAGE: Test
+#
+FROM base as test
+## Run unit tests
+RUN npm run test
+
+#
+# STAGE: Build
+#
+FROM base as build
+## Build the Angular application
 RUN npm run build --prod
 
-# STAGE 2: Run
-FROM nginx:latest
+#
+# STAGE: Prod
+#
+FROM nginx:1.27-alpine AS prod
+## Nginx setup
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build app/dist/portfolio/browser /usr/share/nginx/html
 EXPOSE 80
