@@ -33,11 +33,16 @@ module.exports = function (config) {
         },
         reporters: ['progress', 'kjhtml'],
         // Changed 'Chrome' to 'ChromeHeadlessNoSandbox' and added `customLaunchers` so that the tests could be executed within the container. Source: https://github.com/karma-runner/karma-chrome-launcher/issues/158
-        browsers: ['ChromeHeadlessNoSandbox'], // replace 'ChromeHeadlessNoSandbox' with 'Chrome' for local development so that you can debug using the browser
+        browsers: ['ChromeHeadlessNoSandbox'],
+        singleRun: true,
         customLaunchers: {
             ChromeHeadlessNoSandbox: {
                 base: 'ChromeHeadless',
-                flags: ['--no-sandbox']
+                flags: [
+                    '--no-sandbox',
+                    '--disable-dev-shm-usage', // karma timeout error fix. Source: https://stackoverflow.com/questions/69173469/meaning-of-selenium-chromeoptions 
+                    '--disable-browser-side-navigation' // karma timeout error fix. Source: https://stackoverflow.com/questions/69173469/meaning-of-selenium-chromeoptions
+                ]
             }
         },
         restartOnFileChange: true

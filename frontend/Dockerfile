@@ -19,14 +19,14 @@ COPY . .
 #
 # STAGE: Test
 #
-FROM base as test
+FROM base AS test
 ## Run unit tests
-RUN npm run test
+RUN npm run test-ci
 
 #
 # STAGE: Build
 #
-FROM base as build
+FROM base AS build
 ## Build the Angular application
 RUN npm run build --prod
 

@@ -1,23 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ContactModule } from '../contact.module';
 import { PlanetEarthComponent } from './planet-earth.component';
+import { Shallow } from 'shallow-render';
 
-describe('PlanetEarthComponent', () => {
-  let component: PlanetEarthComponent;
-  let fixture: ComponentFixture<PlanetEarthComponent>;
+describe("PlanetEarthComponent", () => {
+    let shallow: Shallow<PlanetEarthComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [PlanetEarthComponent]
-    })
-    .compileComponents();
+    beforeEach(() => {
+        shallow = new Shallow(PlanetEarthComponent, ContactModule);
+    });
 
-    fixture = TestBed.createComponent(PlanetEarthComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it("creates a component", async () => {
+        const { find } = await shallow.render(`<app-planet-earth></app-planet-earth>`);
+        expect(find).toBeTruthy();
+    });
 });

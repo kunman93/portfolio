@@ -1,23 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Shallow } from 'shallow-render';
 import { WorkstationComponent } from './workstation.component';
+import { HomeModule } from './home.module';
 
-describe('WorkstationComponent', () => {
-  let component: WorkstationComponent;
-  let fixture: ComponentFixture<WorkstationComponent>;
+describe("WorkstationComponent", () => {
+    let shallow: Shallow<WorkstationComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [WorkstationComponent]
-    })
-    .compileComponents();
+    beforeEach(() => {
+        shallow = new Shallow(WorkstationComponent, HomeModule);
+    });
 
-    fixture = TestBed.createComponent(WorkstationComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it("creates a component", async () => {
+        const { find } = await shallow.render(`<app-workstation></app-workstation>`);
+        expect(find).toBeTruthy();
+    });
 });
