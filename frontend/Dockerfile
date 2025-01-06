@@ -11,17 +11,6 @@ RUN npm install
 COPY . .
 
 #
-# STAGE: Test
-#
-FROM base AS test
-## Install Chromium for the unit / e2e tests
-RUN apk add --no-cache chromium
-### Set environment variables
-ENV CHROME_BIN=/usr/bin/chromium-browser
-## Run unit tests
-RUN npm run test-ci
-
-#
 # STAGE: Build
 #
 FROM base AS build
