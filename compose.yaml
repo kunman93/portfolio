@@ -1,0 +1,15 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      target: prod
+    container_name: frontend_app
+    ports:
+      - "4200:80"
+  e2e_tests:
+    build:
+      context: ./frontend
+      target: e2e-test
+    container_name: cypress_e2e_tests
+    depends_on:
+      - frontend

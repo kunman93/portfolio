@@ -11,7 +11,7 @@ export const projects: Project[] = [
         },
         title: "Portfolio",
         description: "A portfolio of who I am and what I have done so far.",
-        technologies: ["Angular", "TypeScript", "Tailwind", "Threejs", "Cypress", "Cucumber", "Git"],
+        technologies: ["Angular", "TypeScript", "Tailwind", "Threejs", "Cypress", "Cucumber", "Git", "Docker", "DockerCompose"],
         task: undefined
     },
     {

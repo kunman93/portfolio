@@ -1,5 +1,5 @@
 {
-  "name": "manu-portfolio",
+  "name": "portfolio",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "e2e-test": "npx cypress open"
+    "test-ci": "ng test --karma-config karma.conf.ci.js",
+    "e2e-test": "cypress open",
+    "e2e-test-ci": "cypress run --browser chrome --spec 'cypress/e2e/features/*'"
   },
   "private": true,
   "dependencies": {

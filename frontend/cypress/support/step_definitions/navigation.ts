@@ -21,7 +21,7 @@ When('the user clicks on the following nav button', (table: DataTable) => {
 
 Then('the user is navigated to the following section', (table: DataTable) => {
     const tableRow = table.hashes()[0];
-    cy.url().should('eq', Cypress.config().baseUrl + tableRow['route']);
+    cy.url().should('include', tableRow['route']);
 
     assertSectionAndTitle(tableRow['section_selector'], tableRow['section_title']);
 });
