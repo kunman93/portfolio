@@ -17,11 +17,12 @@ Docker Compose is a tool for defining and running multi-container applications. 
 ### Instructions
 
 In the root directory of the project, open a terminal and run the following command:
+
 ```
 docker compose up --detach
 ```
 
-Open a web browser and go to [http://localhost:3000](http://localhost:3000) to access the running game application.
+Open a web browser and go to [http://localhost:4200](http://localhost:4200) to access the running application.
 
 # Some important commands during development
 
