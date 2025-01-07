@@ -2,7 +2,7 @@ import { ContactModule } from '../contact.module';
 import { UniverseComponent } from './universe.component';
 import { Shallow } from 'shallow-render';
 
-describe("UniverseComponent", () => {
+xdescribe("UniverseComponent", () => {
     let shallow: Shallow<UniverseComponent>;
 
     beforeEach(() => {

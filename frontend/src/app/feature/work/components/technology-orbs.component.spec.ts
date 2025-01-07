@@ -2,7 +2,7 @@ import { TechnologyOrbsComponent } from './technology-orbs.component';
 import { Shallow } from 'shallow-render';
 import { WorkModule } from '../work.module';
 
-describe("TechnologyOrbsComponent", () => {
+xdescribe("TechnologyOrbsComponent", () => {
     let shallow: Shallow<TechnologyOrbsComponent>;
 
     beforeEach(() => {

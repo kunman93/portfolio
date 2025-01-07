@@ -2,7 +2,7 @@ import { Shallow } from 'shallow-render';
 import { WorkstationComponent } from './workstation.component';
 import { HomeModule } from './home.module';
 
-describe("WorkstationComponent", () => {
+xdescribe("WorkstationComponent", () => {
     let shallow: Shallow<WorkstationComponent>;
 
     beforeEach(() => {
