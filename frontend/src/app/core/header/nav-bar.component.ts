@@ -19,8 +19,7 @@ export class NavBarComponent implements AfterViewInit, OnDestroy {
     isSelected = false;
 
     private isSelectedSubject$ = new Subject<boolean>();
-    private unsubscribe$: Subject<void> = new Subject();
-
+    private unsubscribe$ = new Subject<void>();
 
     @ViewChildren('dropDownOptionContainerRef', { read: ElementRef })
     private dropDownOptionContainerRef!: QueryList<ElementRef>;
@@ -46,7 +45,7 @@ export class NavBarComponent implements AfterViewInit, OnDestroy {
             }
         });
 
-        if (!!this.dropDownOptionContainerRef) {
+        if (this.dropDownOptionContainerRef) {
             this.isSelectedSubject$
                 .pipe(
                     takeUntil(this.unsubscribe$)

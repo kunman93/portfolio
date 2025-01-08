@@ -85,78 +85,79 @@ describe('ProjectCardComponent', () => {
         });
     });
 
-    it('displays the project card', async () => {
-        // arrange
-        const { find } = await shallow.render({ bind: { project } });
-
-        const img = find('#image');
-        const gitHubIcon = find('#githubIcon');
-        const title = find('#title');
-        const description = find('#description');
-        const technologies = find('#technology');
-
-        // assert
-        expect(img.nativeElement.src).toContain(project.img?.srcImage);
-        expect(gitHubIcon.nativeElement.className).toContain("fa-brands fa-square-github");
-        expect(title.nativeElement.textContent).toBe(project.title);
-        expect(description.nativeElement.textContent).toBe(project.description);
-        expect(technologies.map(t => t.nativeElement.textContent)).toEqual(["#Angular", "#Tailwind"]);
-    });
-
-    describe('image', () => {
-        it('toggles gif and image on click', async () => {
+    describe('template', () => {
+        it('displays the project card', async () => {
             // arrange
-            const { find, fixture } = await shallow.render({ bind: { project } });
+            const { find } = await shallow.render({ bind: { project } });
+
             const img = find('#image');
-
-            // act
-            img.triggerEventHandler("touchstart", {});
-            fixture.detectChanges();
-
-            // assert
-            expect(img.nativeElement.src).toContain(project.img?.srcGif);
-
-            // act
-            img.triggerEventHandler("touchstart", {});
-            fixture.detectChanges();
+            const gitHubIcon = find('#githubIcon');
+            const title = find('#title');
+            const description = find('#description');
+            const technologies = find('#technology');
 
             // assert
             expect(img.nativeElement.src).toContain(project.img?.srcImage);
+            expect(gitHubIcon.nativeElement.className).toContain("fa-brands fa-square-github");
+            expect(title.nativeElement.textContent).toBe(project.title);
+            expect(description.nativeElement.textContent).toBe(project.description);
+            expect(technologies.map(t => t.nativeElement.textContent)).toEqual(["#Angular", "#Tailwind"]);
         });
 
-        it('displays gif on mouse over', async () => {
-            // arrange
-            const { find, fixture } = await shallow.render({ bind: { project } });
-            const img = find('#image');
+        describe('image', () => {
+            it('toggles gif and image on click', async () => {
+                // arrange
+                const { find, fixture } = await shallow.render({ bind: { project } });
+                const img = find('#image');
 
-            // act
-            img.triggerEventHandler("mouseover", {});
-            fixture.detectChanges();
+                // act
+                img.triggerEventHandler("touchstart", {});
+                fixture.detectChanges();
 
-            // assert
-            expect(img.nativeElement.src).toContain(project.img?.srcGif);
+                // assert
+                expect(img.nativeElement.src).toContain(project.img?.srcGif);
+
+                // act
+                img.triggerEventHandler("touchstart", {});
+                fixture.detectChanges();
+
+                // assert
+                expect(img.nativeElement.src).toContain(project.img?.srcImage);
+            });
+
+            it('displays gif on mouse over', async () => {
+                // arrange
+                const { find, fixture } = await shallow.render({ bind: { project } });
+                const img = find('#image');
+
+                // act
+                img.triggerEventHandler("mouseover", {});
+                fixture.detectChanges();
+
+                // assert
+                expect(img.nativeElement.src).toContain(project.img?.srcGif);
+            });
+
+            it('displays png image on mouse leave', async () => {
+                // arrange
+                const { find, fixture } = await shallow.render({ bind: { project } });
+                const img = find('#image');
+
+                // act
+                img.triggerEventHandler("mouseleave", {});
+                fixture.detectChanges();
+
+                // assert
+                expect(img.nativeElement.src).toContain(project.img?.srcImage);
+            });
         });
 
-        it('displays png image on mouse leave', async () => {
-            // arrange
-            const { find, fixture } = await shallow.render({ bind: { project } });
-            const img = find('#image');
+        it('open a new tab with the repo, when the github icon is clicked', async () => {
+            const { find } = await shallow.render({ bind: { project } });
+            const gitHubIconLink = find('a');
 
-            // act
-            img.triggerEventHandler("mouseleave", {});
-            fixture.detectChanges();
-
-            // assert
-            expect(img.nativeElement.src).toContain(project.img?.srcImage);
+            expect(gitHubIconLink.nativeElement.target).toContain("_blank");
+            expect(gitHubIconLink.nativeElement.href).toContain(project.githubUrl);
         });
-    });
-
-
-    it('open a new tab with the repo, when the github icon is clicked', async () => {
-        const { find } = await shallow.render({ bind: { project } });
-        const gitHubIconLink = find('a');
-
-        expect(gitHubIconLink.nativeElement.target).toContain("_blank");
-        expect(gitHubIconLink.nativeElement.href).toContain(project.githubUrl);
     });
 });

@@ -12,7 +12,7 @@ describe('NavBarComponent', () => {
         shallow = new Shallow(NavBarComponent, HeaderModule)
             .mock(GsapAnimationService, {
                 gsap: {
-                    from: () => { },
+                    from: () => { return },
                     to: () => Promise.resolve("Animation is done")
                 }
             })

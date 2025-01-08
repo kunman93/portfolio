@@ -27,7 +27,7 @@ export abstract class ThreejsBaseComponent {
 
     protected animate(component: ThreejsBaseComponent, animationFn?: () => void) {
         component.onWindowResize(component);
-        if (!!animationFn) {
+        if (animationFn) {
             animationFn();
         }
         component.controls.update();

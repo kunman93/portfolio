@@ -122,72 +122,70 @@ export class TechnologyOrbsComponent extends ThreejsBaseComponent implements Aft
         return { scene, camera, controls };
     }
 
-    private sceneInitFunctionsByName: {
-        [key: string]: (elem: HTMLElement, technology: string) => (time: number, rect: DOMRect) => void
-    } = {
-            'technology-orb': (elem: HTMLElement, technology: string) => {
+    private sceneInitFunctionsByName: Record<string, (elem: HTMLElement, technology: string) => (time: number, rect: DOMRect) => void> = {
+        'technology-orb': (elem: HTMLElement, technology: string) => {
 
-                const { scene, camera, controls } = this.makeScene(elem);
+            const { scene, camera, controls } = this.makeScene(elem);
 
-                // # Create an Orb with image
+            // # Create an Orb with image
 
-                // ## Geometry
-                const radius = 1;
-                const detail = 2;
-                const geometry = new THREE.IcosahedronGeometry(radius, detail);
+            // ## Geometry
+            const radius = 1;
+            const detail = 2;
+            const geometry = new THREE.IcosahedronGeometry(radius, detail);
 
-                // ## Material
-                const material = new THREE.MeshPhongMaterial({
-                    color: 0xFFFFFF,
-                    polygonOffset: true,
-                    polygonOffsetFactor: 1,
-                    flatShading: true,
-                    shininess: 30,
-                    specular: 0x808080,
-                });
+            // ## Material
+            const material = new THREE.MeshPhongMaterial({
+                color: 0xFFFFFF,
+                polygonOffset: true,
+                polygonOffsetFactor: 1,
+                flatShading: true,
+                shininess: 30,
+                specular: 0x808080,
+            });
 
-                // ## Orb Mesh 
-                const orb = new THREE.Mesh(geometry, material);
+            // ## Orb Mesh 
+            const orb = new THREE.Mesh(geometry, material);
 
-                // ## DecalGeometry
-                const texture = new THREE.TextureLoader().load(technology);
+            // ## DecalGeometry
+            const texture = new THREE.TextureLoader().load(technology);
 
-                const position = new THREE.Vector3(0, 0, 1);
-                const orientation = new THREE.Euler(2 * Math.PI);
-                const size = new THREE.Vector3(1, 1, 1);
-                const decalGeometry = new DecalGeometry(orb, position, orientation, size);
-                const decalMaterial = new THREE.MeshPhongMaterial({
-                    map: texture,
-                    transparent: true,
-                    flatShading: true,
-                    shininess: 50,
-                    specular: 0x404040,
-                });
-                const decal = new THREE.Mesh(decalGeometry, decalMaterial);
+            const position = new THREE.Vector3(0, 0, 1);
+            const orientation = new THREE.Euler(2 * Math.PI);
+            const size = new THREE.Vector3(1, 1, 1);
+            const decalGeometry = new DecalGeometry(orb, position, orientation, size);
+            const decalMaterial = new THREE.MeshPhongMaterial({
+                map: texture,
+                transparent: true,
+                flatShading: true,
+                shininess: 50,
+                specular: 0x404040,
+            });
+            const decal = new THREE.Mesh(decalGeometry, decalMaterial);
 
-                // ## Add orb and decal to orbGroup
-                const orbGroup = new THREE.Group();
-                orbGroup.add(orb);
-                orbGroup.add(decal);
-                orbGroup.rotation.y = -Math.PI;
+            // ## Add orb and decal to orbGroup
+            const orbGroup = new THREE.Group();
+            orbGroup.add(orb);
+            orbGroup.add(decal);
+            orbGroup.rotation.y = -Math.PI;
 
-                // ## Add orbGroup to the scene
-                scene.add(orbGroup)
+            // ## Add orbGroup to the scene
+            scene.add(orbGroup)
 
-                return (time: number, rect: DOMRect) => {
-                    orbGroup.rotation.y += Math.sin(time + 0.768 * Math.PI) * 0.0003;
-                    orbGroup.position.x = Math.sin(2.5 * time) * 0.125;
-                    orbGroup.position.y = Math.sin(1.5 * time) * 0.25;
+            return (time: number, rect: DOMRect) => {
+                orbGroup.rotation.y += Math.sin(time + 0.768 * Math.PI) * 0.0003;
+                orbGroup.position.x = Math.sin(2.5 * time) * 0.125;
+                orbGroup.position.y = Math.sin(1.5 * time) * 0.25;
 
-                    camera.aspect = rect.width / rect.height;
-                    camera.updateProjectionMatrix();
+                camera.aspect = rect.width / rect.height;
+                camera.updateProjectionMatrix();
 
-                    controls.update();
+                controls.update();
 
-                    this.renderer.render(scene, camera);
-                };
-            },
-        };
+                this.renderer.render(scene, camera);
+            };
+        },
+    };
 
     private render(time: number, component: TechnologyOrbsComponent): void {
         time *= 0.001;

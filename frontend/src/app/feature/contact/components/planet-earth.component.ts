@@ -52,19 +52,17 @@ export class PlanetEarthComponent extends ThreejsBaseComponent implements AfterV
         this.clock = new THREE.Clock();
 
         // # Load gltf model
-        let component: PlanetEarthComponent = this;
-
         const dracoLoader = new DRACOLoader();
         dracoLoader.setDecoderPath(ASSET_PATHS.gltfModels);
 
         const gltfLoader = new GLTFLoader();
         gltfLoader.setDRACOLoader(dracoLoader);
         gltfLoader.load(GLTF_MODELS.planetEarth, async (gltf) => {
-            component.planetEarthModel = gltf.scene;
+            this.planetEarthModel = gltf.scene;
 
             // wait until the model can be added to the scene without blocking due to shader compilation
-            await component.renderer.compileAsync(component.planetEarthModel, component.camera, component.scene);
-            component.scene.add(component.planetEarthModel);
+            await this.renderer.compileAsync(this.planetEarthModel, this.camera, this.scene);
+            this.scene.add(this.planetEarthModel);
         });
 
         // # Creating lights
@@ -83,11 +81,11 @@ export class PlanetEarthComponent extends ThreejsBaseComponent implements AfterV
 
         // # Set an animation loop on the renderer
         // ## The function will be called every available frame.
-        this.renderer.setAnimationLoop(() => this.animate(component, () => {
-            const time = component.clock.getElapsedTime();
+        this.renderer.setAnimationLoop(() => this.animate(this, () => {
+            const time = this.clock.getElapsedTime();
             if (this.planetEarthModel) {
-                component.planetEarthModel.rotation.y += Math.PI / 360;
-                component.planetEarthModel.position.y = Math.sin(2.5 * time) * 0.125;
+                this.planetEarthModel.rotation.y += Math.PI / 360;
+                this.planetEarthModel.position.y = Math.sin(2.5 * time) * 0.125;
             }
         }));
     }
