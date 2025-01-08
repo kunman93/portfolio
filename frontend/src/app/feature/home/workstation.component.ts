@@ -52,75 +52,73 @@ export class WorkstationComponent extends ThreejsBaseComponent implements AfterV
         this.scene = new THREE.Scene();
 
         // # Load gltf models
-        let component: WorkstationComponent = this;
-
         const dracoLoader = new DRACOLoader();
         dracoLoader.setDecoderPath(ASSET_PATHS.gltfModels);
 
         const gltfLoader = new GLTFLoader();
         gltfLoader.setDRACOLoader(dracoLoader);
         gltfLoader.load(GLTF_MODELS.headphoneWithStand, async (gltf) => {
-            component.headPhoneWithStand = gltf.scene;
-            component.headPhoneWithStand.scale.set(7, 7, 7);
-            component.headPhoneWithStand.position.x = -6.5;
-            component.headPhoneWithStand.position.y = -0.75;
-            component.headPhoneWithStand.position.z = -1.25;
-            component.headPhoneWithStand.rotation.y += (Math.PI / 4);
+            this.headPhoneWithStand = gltf.scene;
+            this.headPhoneWithStand.scale.set(7, 7, 7);
+            this.headPhoneWithStand.position.x = -6.5;
+            this.headPhoneWithStand.position.y = -0.75;
+            this.headPhoneWithStand.position.z = -1.25;
+            this.headPhoneWithStand.rotation.y += (Math.PI / 4);
 
             // wait until the model can be added to the scene without blocking due to shader compilation
-            await component.renderer.compileAsync(component.headPhoneWithStand, component.camera, component.scene);
-            component.scene.add(component.headPhoneWithStand);
+            await this.renderer.compileAsync(this.headPhoneWithStand, this.camera, this.scene);
+            this.scene.add(this.headPhoneWithStand);
         });
 
         gltfLoader.load(GLTF_MODELS.commodore64ComputerFullPack, async (gltf) => {
-            component.commodore64ComputerModel = gltf.scene;
-            component.commodore64ComputerModel.position.x = 0.5;
-            component.commodore64ComputerModel.position.y = -0.75;
-            component.commodore64ComputerModel.position.z = 0.5;
+            this.commodore64ComputerModel = gltf.scene;
+            this.commodore64ComputerModel.position.x = 0.5;
+            this.commodore64ComputerModel.position.y = -0.75;
+            this.commodore64ComputerModel.position.z = 0.5;
 
             // wait until the model can be added to the scene without blocking due to shader compilation
-            await component.renderer.compileAsync(component.commodore64ComputerModel, component.camera, component.scene);
-            component.scene.add(component.commodore64ComputerModel);
+            await this.renderer.compileAsync(this.commodore64ComputerModel, this.camera, this.scene);
+            this.scene.add(this.commodore64ComputerModel);
         });
 
         gltfLoader.load(GLTF_MODELS.gameBoyClassic, async (gltf) => {
-            component.gameboyClassicModel = gltf.scene;
-            component.gameboyClassicModel.scale.set(7, 7, 7);
-            component.gameboyClassicModel.rotation.y -= (4 * Math.PI / 6);
-            component.gameboyClassicModel.rotation.z += (Math.PI / 2);
-            component.gameboyClassicModel.position.x = 6.0;
-            component.gameboyClassicModel.position.y = -0.5;
-            component.gameboyClassicModel.position.z = 5;
+            this.gameboyClassicModel = gltf.scene;
+            this.gameboyClassicModel.scale.set(7, 7, 7);
+            this.gameboyClassicModel.rotation.y -= (4 * Math.PI / 6);
+            this.gameboyClassicModel.rotation.z += (Math.PI / 2);
+            this.gameboyClassicModel.position.x = 6.0;
+            this.gameboyClassicModel.position.y = -0.5;
+            this.gameboyClassicModel.position.z = 5;
 
             // wait until the model can be added to the scene without blocking due to shader compilation
-            await component.renderer.compileAsync(component.gameboyClassicModel, component.camera, component.scene);
-            component.scene.add(component.gameboyClassicModel);
+            await this.renderer.compileAsync(this.gameboyClassicModel, this.camera, this.scene);
+            this.scene.add(this.gameboyClassicModel);
         });
 
         gltfLoader.load(GLTF_MODELS.childhoodBooks, async (gltf) => {
-            component.childhoodBooksModel = gltf.scene;
-            component.childhoodBooksModel.scale.set(8, 8, 8);
-            component.childhoodBooksModel.rotation.y -= 4 * Math.PI / 6;
-            component.childhoodBooksModel.position.x = 6.5;
-            component.childhoodBooksModel.position.y = -0.65;
-            component.childhoodBooksModel.position.z = -2;
+            this.childhoodBooksModel = gltf.scene;
+            this.childhoodBooksModel.scale.set(8, 8, 8);
+            this.childhoodBooksModel.rotation.y -= 4 * Math.PI / 6;
+            this.childhoodBooksModel.position.x = 6.5;
+            this.childhoodBooksModel.position.y = -0.65;
+            this.childhoodBooksModel.position.z = -2;
 
             // wait until the model can be added to the scene without blocking due to shader compilation
-            await component.renderer.compileAsync(component.childhoodBooksModel, component.camera, component.scene);
-            component.scene.add(component.childhoodBooksModel);
+            await this.renderer.compileAsync(this.childhoodBooksModel, this.camera, this.scene);
+            this.scene.add(this.childhoodBooksModel);
         });
 
         gltfLoader.load(GLTF_MODELS.clipboard, async (gltf) => {
-            component.clipboard = gltf.scene;
-            component.clipboard.scale.set(10, 10, 10);
-            component.clipboard.rotation.y += Math.PI / 6;
-            component.clipboard.position.x = -5;
-            component.clipboard.position.y = -0.65;
-            component.clipboard.position.z = 3.5;
+            this.clipboard = gltf.scene;
+            this.clipboard.scale.set(10, 10, 10);
+            this.clipboard.rotation.y += Math.PI / 6;
+            this.clipboard.position.x = -5;
+            this.clipboard.position.y = -0.65;
+            this.clipboard.position.z = 3.5;
 
             // wait until the model can be added to the scene without blocking due to shader compilation
-            await component.renderer.compileAsync(component.clipboard, component.camera, component.scene);
-            component.scene.add(component.clipboard);
+            await this.renderer.compileAsync(this.clipboard, this.camera, this.scene);
+            this.scene.add(this.clipboard);
         });
 
         // # Create a desk and add it to the scene
@@ -158,6 +156,6 @@ export class WorkstationComponent extends ThreejsBaseComponent implements AfterV
        
         // # Set an animation loop on the renderer
         // ## The function will be called every available frame.
-        this.renderer.setAnimationLoop(() => this.animate(component));
+        this.renderer.setAnimationLoop(() => this.animate(this));
     }
 }

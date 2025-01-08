@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, QueryList, ViewChildren } from '@angular/core';
 import { NOJI_LOGO } from 'assets/assets.constants';
-import { Image } from 'shared/models/image'
+import { Image } from 'shared/models/image';
 import { GsapAnimationService } from '../services/gsap-animation.service';
 import { Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
@@ -19,8 +19,7 @@ export class NavBarComponent implements AfterViewInit, OnDestroy {
     isSelected = false;
 
     private isSelectedSubject$ = new Subject<boolean>();
-    private unsubscribe$: Subject<void> = new Subject();
-
+    private unsubscribe$ = new Subject<void>();
 
     @ViewChildren('dropDownOptionContainerRef', { read: ElementRef })
     private dropDownOptionContainerRef!: QueryList<ElementRef>;
@@ -46,7 +45,7 @@ export class NavBarComponent implements AfterViewInit, OnDestroy {
             }
         });
 
-        if (!!this.dropDownOptionContainerRef) {
+        if (this.dropDownOptionContainerRef) {
             this.isSelectedSubject$
                 .pipe(
                     takeUntil(this.unsubscribe$)
@@ -60,7 +59,7 @@ export class NavBarComponent implements AfterViewInit, OnDestroy {
                             duration: 1,
                             ease: "back.inOut(4)"
                         }).then(() => {
-                            this.zone.run(() => this.isSelected = isSelected)
+                            this.zone.run(() => this.isSelected = isSelected);
                         });
                     });
                 });

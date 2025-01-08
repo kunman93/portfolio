@@ -12,7 +12,7 @@ describe('NavBarComponent', () => {
         shallow = new Shallow(NavBarComponent, HeaderModule)
             .mock(GsapAnimationService, {
                 gsap: {
-                    from: () => { },
+                    from: () => { return; },
                     to: () => Promise.resolve("Animation is done")
                 }
             })
@@ -27,7 +27,6 @@ describe('NavBarComponent', () => {
     });
 
     describe("template", () => {
-
         describe("logo and first name", () => {
             it("displays the logo", async () => {
                 const { find } = await shallow.render(`<app-nav-bar></app-nav-bar>`);

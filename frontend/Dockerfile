@@ -9,6 +9,8 @@ COPY package.json .
 RUN npm install
 ## Copy the application source code
 COPY . .
+## Run the lint
+RUN npm run lint
 
 #
 # STAGE: Test
@@ -47,6 +49,6 @@ WORKDIR /e2e-tests
 COPY --from=base app/ /e2e-tests/
 ## Install dependencies
 RUN npm install
-## include service 'frontend' in baseUrl - defined in compose.yaml - and run e2e tests 
+## Include service 'frontend' in baseUrl as defined in compose.yaml and run the e2e tests 
 ENV CYPRESS_baseUrl=http://frontend
 CMD ["npm", "run", "e2e-test-ci"]

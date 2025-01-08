@@ -3,7 +3,6 @@ import { WorkModule } from '../work.module';
 import { employmentReferences } from '../data/employment-reference-data';
 import { EmploymentReference } from '../models/employment-reference';
 import { EmploymentReferenceCarouselComponent } from './employment-reference-carousel.component';
-import { GsapAnimationService } from 'src/app/core/services/gsap-animation.service';
 
 describe('EmploymentReferenceCarouselComponent', () => {
     let shallow: Shallow<EmploymentReferenceCarouselComponent>;

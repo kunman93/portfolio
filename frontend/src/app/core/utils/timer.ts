@@ -1,5 +1,5 @@
 export class Timer {
-    private timerObj: any;
+    private timerObj: ReturnType<typeof setInterval> | null = null;
 
     constructor(
         private fn: () => void, 
@@ -18,7 +18,7 @@ export class Timer {
     }
 
     public stop(): Timer {
-        if (!!this.timerObj) {
+        if (this.timerObj) {
             clearInterval(this.timerObj);
             this.timerObj = null;
         }

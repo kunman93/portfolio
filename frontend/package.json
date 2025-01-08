@@ -9,10 +9,12 @@
     "test": "ng test",
     "test-ci": "ng test --karma-config karma.conf.ci.js",
     "e2e-test": "cypress open",
-    "e2e-test-ci": "cypress run --browser chrome --spec 'cypress/e2e/features/*'"
+    "e2e-test-ci": "cypress run --browser chrome --spec 'cypress/e2e/features/*'",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
+    "@angular-eslint/schematics": "^18.4.3",
     "@angular/animations": "^18.2.0",
     "@angular/cdk": "^18.2.14",
     "@angular/common": "^18.2.0",
@@ -41,9 +43,11 @@
     "@cucumber/cucumber": "^11.1.1",
     "@types/jasmine": "~5.1.0",
     "angular-cli-ghpages": "^2.0.3",
+    "angular-eslint": "18.4.3",
     "autoprefixer": "^10.4.20",
     "cypress": "^13.16.1",
     "esbuild": "^0.24.0",
+    "eslint": "^9.15.0",
     "jasmine-core": "~5.2.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -52,6 +56,7 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.14",
-    "typescript": "~5.5.2"
+    "typescript": "~5.5.2",
+    "typescript-eslint": "8.16.0"
   }
 }

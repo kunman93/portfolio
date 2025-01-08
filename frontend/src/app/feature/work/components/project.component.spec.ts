@@ -44,9 +44,9 @@ describe('ProjectComponent', () => {
             // arrange
             const { findComponent } = await shallow.dontMock(ScrollingModule).render(`<app-project></app-project>`);
             const scrollViewport = findComponent(CdkFixedSizeVirtualScroll);
-            const projectCards = findComponent(ProjectCardComponent)
+            const projectCards = findComponent(ProjectCardComponent);
 
-            expect(scrollViewport).toHaveFound(1)
+            expect(scrollViewport).toHaveFound(1);
             expect(projectCards).toHaveFound(projects.length);
             expect(projectCards.map(p => p.project)).toEqual(projects);
         });

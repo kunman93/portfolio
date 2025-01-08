@@ -38,14 +38,15 @@
     <!--  Dots / Indicator -->
     <div id="dotsIndicatorContainer" class="flex flex-row items-center space-x-2">
         @for(employmentReference of employmentReferences; track employmentReference; let idx =$index) {
-            <button id="dot" class="rounded-full" 
+            <button id="dot" class="rounded-full"
                 [ngClass]="
                     {
-                        'bg-stone-900 w-2 h-2 hover:scale-150 transition duration-150 ease-in-out': currentIndex !== idx, 
+                        'bg-stone-900 w-2 h-2 hover:scale-150 transition duration-150 ease-in-out': currentIndex !== idx,
                         'w-3 h-3 bg-white': currentIndex === idx,
                     }"
                 (click)="onSelectedClick(idx)"
                 [disabled]="isButtonDisabled"
+                [attr.aria-label]="'Select slide ' + (idx + 1)"
             ></button>
         }
     </div>

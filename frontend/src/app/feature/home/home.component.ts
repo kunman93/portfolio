@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { GsapAnimationService } from 'src/app/core/services/gsap-animation.service';
-import { Image } from 'shared/models/image'
-import { BACKGROUNDS } from 'assets/assets.constants'
+import { Image } from 'shared/models/image';
+import { BACKGROUNDS } from 'assets/assets.constants';
 
 @Component({
     selector: 'app-home',

@@ -1,6 +1,6 @@
 import { Project } from "./project";
 import { Task } from "./task";
-import { Image } from "shared/models/image"
+import { Image } from "shared/models/image";
 import { TimePeriod } from "./time-period";
 
 export interface History {
