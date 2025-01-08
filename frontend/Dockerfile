@@ -9,6 +9,8 @@ COPY package.json .
 RUN npm install
 ## Copy the application source code
 COPY . .
+## Run the lint
+RUN npm run lint
 
 #
 # STAGE: Test
