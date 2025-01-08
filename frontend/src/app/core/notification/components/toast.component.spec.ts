@@ -10,7 +10,7 @@ describe('ToastComponent', () => {
 
     beforeEach(() => {
         shallow = new Shallow(ToastComponent, NotificationModule)
-            .mock(ToastService, { remove: () => { return } });
+            .mock(ToastService, { remove: () => { return; } });
     });
 
     it('creates a component', async () => {

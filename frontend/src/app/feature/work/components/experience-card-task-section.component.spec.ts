@@ -49,7 +49,7 @@ describe('ExperienceCardTaskSectionComponent', () => {
             const tasks = find('li');
 
             // assert
-            expect(title.nativeElement.textContent).toBe(task.taskTitle)
+            expect(title.nativeElement.textContent).toBe(task.taskTitle);
             expect(tasks).toHaveFound(2);
             expect(tasks.map(t => t.nativeElement.textContent)).toEqual(task.tasks);
         });

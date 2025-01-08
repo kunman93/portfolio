@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Image } from 'shared/models/image'
+import { Image } from 'shared/models/image';
 import { BACKGROUNDS } from 'assets/assets.constants';
 
 @Component({

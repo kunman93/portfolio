@@ -23,7 +23,7 @@ describe('ContactEditorComponent', () => {
                     ))
             })
             .mock(ToastService, {
-                add: () => { return }
+                add: () => { return; }
             });
     });
 
@@ -34,7 +34,7 @@ describe('ContactEditorComponent', () => {
 
     describe('ngOnInit', () => {
         it('initalises the form', async () => {
-            const sender: Sender = { name: 'John Doe', email: 'john@example.org', message: 'Hello from John' }
+            const sender: Sender = { name: 'John Doe', email: 'john@example.org', message: 'Hello from John' };
             const { instance } = await shallow.render({ bind: { sender } });
             const form = instance.contactEditorForm;
 
@@ -281,7 +281,7 @@ describe('ContactEditorComponent', () => {
 
                     expect(submitButton.nativeElement.disabled).toBeTrue();
                     let loadingSpinner = find('#loadingSpinner');
-                    expect(loadingSpinner).toHaveFound(1)
+                    expect(loadingSpinner).toHaveFound(1);
                     expect(submitButton.nativeElement.textContent).toBe('Send message');
 
                     await fixture.whenStable(); // Waits for all promises to resolve
@@ -289,7 +289,7 @@ describe('ContactEditorComponent', () => {
                     // -- once the promise is resolved, the spinner is hidden and hte input fields are editable
                     fixture.detectChanges();
                     loadingSpinner = find('#loadingSpinner');
-                    expect(loadingSpinner).toHaveFound(0)
+                    expect(loadingSpinner).toHaveFound(0);
                     expect(inputFieldName.nativeElement.readOnly).toBeFalse();
                     expect(inputFieldEmail.nativeElement.readOnly).toBeFalse();
                     expect(textAreaMessage.nativeElement.readOnly).toBeFalse();

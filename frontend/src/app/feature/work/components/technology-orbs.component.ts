@@ -170,7 +170,7 @@ export class TechnologyOrbsComponent extends ThreejsBaseComponent implements Aft
             orbGroup.rotation.y = -Math.PI;
 
             // ## Add orbGroup to the scene
-            scene.add(orbGroup)
+            scene.add(orbGroup);
 
             return (time: number, rect: DOMRect) => {
                 orbGroup.rotation.y += Math.sin(time + 0.768 * Math.PI) * 0.0003;

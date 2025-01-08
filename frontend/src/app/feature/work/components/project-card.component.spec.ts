@@ -72,7 +72,7 @@ describe('ProjectCardComponent', () => {
                 // arrange
                 const { instance } = await shallow.render({ bind: { project } });
 
-                project.githubUrl = param.githubUrl
+                project.githubUrl = param.githubUrl;
                 project.img = param.img;
                 project.title = param.title;
                 project.description = param.description;
