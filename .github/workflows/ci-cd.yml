@@ -48,4 +48,7 @@ jobs:
         API_URI: http://localhost:4200
 
     - name: Deploy Angular app to GitHub Pages
-      run: npm run ng deploy --base-href=/portfolio/ 
+      run: | 
+        git config user.email "kun.manu93@gmail.com"
+        git config user.name "kunman93"
+        npm run ng deploy --base-href=/portfolio/
