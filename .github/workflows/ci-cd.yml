@@ -48,4 +48,4 @@ jobs:
         API_URI: http://localhost:4200
 
     - name: Deploy Angular app to GitHub Pages
-      run: ng deploy --base-href=/portfolio/ 
+      run: npm run ng deploy --base-href=/portfolio/ 
