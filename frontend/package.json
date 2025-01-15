@@ -10,7 +10,9 @@
     "test-ci": "ng test --karma-config karma.conf.ci.js",
     "e2e-test": "cypress open",
     "e2e-test-ci": "cypress run --browser chrome --spec 'cypress/e2e/features/*'",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "deploy": "ng deploy --base-href=/portfolio/",
+    "deploy-cd": "ng deploy --base-href=/portfolio/ --name='kunman93' --email='kun.manu93@gmail.com'"
   },
   "private": true,
   "dependencies": {
