@@ -2,7 +2,7 @@
 
 [![GitHub Actions](https://github.com/kunman93/portfolio/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/kunman93/portfolio/actions/workflows/ci-cd.yml)
 
-A portfolio project which was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.5.
+A [portfolio project](https://kunman93.github.io/portfolio/) which was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.5.
 
 ## Run app inside a docker container
 
